@@ -1,6 +1,6 @@
-import HOME_IMAGE from "@/assets/home.png";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import HOME_IMAGE from "../../assets/home.png";
 import Header from "../../components/header";
 import * as S from "./BasicInfo.style";
 

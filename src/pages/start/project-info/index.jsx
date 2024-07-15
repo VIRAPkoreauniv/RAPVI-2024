@@ -1,9 +1,9 @@
-import MAP_IMAGE from "@/assets/map.jpg";
-import Header from "@components/header";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import MAP_IMAGE from "../../../assets/map.jpg";
+import Header from "../../../components/header";
 import * as S from "./ProjectInfo.style";
 
 export default function ProjectInfoPage() {

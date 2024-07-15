@@ -1,10 +1,10 @@
-import TIER1_IMAGE from "@/assets/tier1.png";
-import TIER23_IMAGE from "@/assets/tier23.png";
-import Header from "@components/header";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import TIER1_IMAGE from "../../../assets/tier1.png";
+import TIER23_IMAGE from "../../../assets/tier23.png";
+import Header from "../../../components/header";
 import * as S from "./TypeInfo.style";
 
 export default function TypeInfoPage() {

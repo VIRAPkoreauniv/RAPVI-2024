@@ -1,8 +1,8 @@
-import * as S from "@/pages/basic-info/BasicInfo.style";
-import Header from "@components/header";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/header";
+import * as S from "../basic-info/BasicInfo.style";
 
 export default function DocsPage() {
   const navigate = useNavigate();

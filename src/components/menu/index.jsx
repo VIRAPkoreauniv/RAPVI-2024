@@ -9,22 +9,20 @@ import {
 import styled from "styled-components";
 
 const Menu = () => {
-  type StatusType = string | null;
-
   const navigate = useNavigate();
 
   const [visible1, setVisible1] = useState("inline-block");
   const [visible2, setVisible2] = useState("inline-block");
   const [visible3, setVisible3] = useState("inline-block");
-  const [where, setWhere] = useState<StatusType>("");
+  const [where, setWhere] = useState("");
 
-  const [evalType, setEvalType] = useState<StatusType>("");
-  const [check_coc, setcheck_coc] = useState<StatusType>("");
-  const [check_depth, setcheck_depth] = useState<StatusType>("");
-  const [check_conc, setcheck_conc] = useState<StatusType>("");
-  const [check_geo, setcheck_geo] = useState<StatusType>("");
-  const [check_found, setcheck_found] = useState<StatusType>("");
-  const [check_exp, setcheck_exp] = useState<StatusType>("");
+  const [evalType, setEvalType] = useState("");
+  const [check_coc, setcheck_coc] = useState("");
+  const [check_depth, setcheck_depth] = useState("");
+  const [check_conc, setcheck_conc] = useState("");
+  const [check_geo, setcheck_geo] = useState("");
+  const [check_found, setcheck_found] = useState("");
+  const [check_exp, setcheck_exp] = useState("");
 
   const setMenu = () => {
     // 위치
@@ -42,9 +40,8 @@ const Menu = () => {
     setcheck_exp(sessionStorage.getItem("check_exp"));
   };
 
-  const setVisible = (e: React.MouseEvent) => {
-    const target = e.target as HTMLButtonElement;
-    const clicked = target.innerText;
+  const setVisible = (e) => {
+    const clicked = e.target.innerText;
     if (clicked === "오염원") {
       if (visible1 === "none") {
         setVisible1("inline-block");

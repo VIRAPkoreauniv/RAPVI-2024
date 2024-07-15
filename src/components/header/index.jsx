@@ -1,6 +1,6 @@
-import LanguageButton from "@components/language-button";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import LanguageButton from "../language-button";
 import * as S from "./Header.style";
 
 const Header = () => {
