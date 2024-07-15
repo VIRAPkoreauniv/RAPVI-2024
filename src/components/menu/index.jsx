@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useTranslation } from "react-i18next";
 import { BiChevronDown, BiChevronRight } from "react-icons/bi";
 import {
   RiCheckboxBlankCircleLine,
@@ -10,6 +11,7 @@ import styled from "styled-components";
 
 const Menu = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation("menu");
 
   const [visible1, setVisible1] = useState("inline-block");
   const [visible2, setVisible2] = useState("inline-block");
@@ -42,21 +44,21 @@ const Menu = () => {
 
   const setVisible = (e) => {
     const clicked = e.target.innerText;
-    if (clicked === "오염원") {
+    if (clicked === t("left.part1.title")) {
       if (visible1 === "none") {
         setVisible1("inline-block");
       }
       if (visible1 === "inline-block") {
         setVisible1("none");
       }
-    } else if (clicked === "경로") {
+    } else if (clicked === t("left.part2.title")) {
       if (visible2 === "none") {
         setVisible2("inline-block");
       }
       if (visible2 === "inline-block") {
         setVisible2("none");
       }
-    } else if (clicked === "수용체") {
+    } else if (clicked === t("left.part3.title")) {
       if (visible3 === "none") {
         setVisible3("inline-block");
       }
@@ -77,20 +79,19 @@ const Menu = () => {
           <TypeBox>
             {evalType === "기본평가" && (
               <h3>
-                <p>기본평가</p>
+                <p>{t("left.type1")}</p>
               </h3>
             )}
             {evalType === "부지기반평가" && (
               <h3>
-                <p>부지기반평가</p>
+                <p>{t("left.type2")}</p>
               </h3>
             )}
           </TypeBox>
           <Category>Input</Category>
-
           <ToggleTap onClick={setVisible}>
             {visible1 === "none" ? <BiChevronRight /> : <BiChevronDown />}
-            오염원
+            {t("left.part1.title")}
           </ToggleTap>
           <div style={{ display: visible1 }}>
             <MenuTap>
@@ -101,11 +102,11 @@ const Menu = () => {
                     evalType === "tier2/3" && navigate("/input/source/coc2");
                   }}
                 >
-                  <RiCheckboxCircleFill /> 오염물질
+                  <RiCheckboxCircleFill /> {t("left.part1.text1")}
                 </span>
               ) : (
                 <span>
-                  <RiCheckboxBlankCircleLine /> 오염물질
+                  <RiCheckboxBlankCircleLine /> {t("left.part1.text1")}
                 </span>
               )}
             </MenuTap>
@@ -117,11 +118,11 @@ const Menu = () => {
                     evalType === "tier2/3" && navigate("/input/source/depth2");
                   }}
                 >
-                  <RiCheckboxCircleFill /> 오염심도
+                  <RiCheckboxCircleFill /> {t("left.part1.text2")}
                 </span>
               ) : (
                 <span>
-                  <RiCheckboxBlankCircleLine /> 오염심도
+                  <RiCheckboxBlankCircleLine /> {t("left.part1.text2")}
                 </span>
               )}
             </MenuTap>
@@ -133,18 +134,18 @@ const Menu = () => {
                     evalType === "tier2/3" && navigate("/input/source/conc2");
                   }}
                 >
-                  <RiCheckboxCircleFill /> 오염농도
+                  <RiCheckboxCircleFill /> {t("left.part1.text3")}
                 </span>
               ) : (
                 <span>
-                  <RiCheckboxBlankCircleLine /> 오염농도
+                  <RiCheckboxBlankCircleLine /> {t("left.part1.text3")}
                 </span>
               )}
             </MenuTap>
           </div>
           <ToggleTap onClick={setVisible}>
             {visible2 === "none" ? <BiChevronRight /> : <BiChevronDown />}
-            경로
+            {t("left.part2.title")}
           </ToggleTap>
           <div style={{ display: visible2 }}>
             <MenuTap>
@@ -155,11 +156,11 @@ const Menu = () => {
                     evalType === "tier2/3" && navigate("/input/pathway/geo2");
                   }}
                 >
-                  <RiCheckboxCircleFill /> 지질매체
+                  <RiCheckboxCircleFill /> {t("left.part2.text1")}
                 </span>
               ) : (
                 <span>
-                  <RiCheckboxBlankCircleLine /> 지질매체
+                  <RiCheckboxBlankCircleLine /> {t("left.part2.text1")}
                 </span>
               )}
             </MenuTap>
@@ -171,18 +172,18 @@ const Menu = () => {
                     evalType === "tier2/3" && navigate("/input/pathway/found2");
                   }}
                 >
-                  <RiCheckboxCircleFill /> 건물
+                  <RiCheckboxCircleFill /> {t("left.part2.text2")}
                 </span>
               ) : (
                 <span>
-                  <RiCheckboxBlankCircleLine /> 건물
+                  <RiCheckboxBlankCircleLine /> {t("left.part2.text2")}
                 </span>
               )}
             </MenuTap>
           </div>
           <ToggleTap onClick={setVisible}>
             {visible3 === "none" ? <BiChevronRight /> : <BiChevronDown />}
-            수용체
+            {t("left.part3.title")}
           </ToggleTap>
           <div style={{ display: visible3 }}>
             <MenuTap>
@@ -193,18 +194,18 @@ const Menu = () => {
                     evalType === "tier2/3" && navigate("/input/receptors/exp2");
                   }}
                 >
-                  <RiCheckboxCircleFill /> 노출 특성
+                  <RiCheckboxCircleFill /> {t("left.part3.text1")}
                 </span>
               ) : (
                 <span>
-                  <RiCheckboxBlankCircleLine /> 노출 특성
+                  <RiCheckboxBlankCircleLine /> {t("left.part3.text1")}
                 </span>
               )}
             </MenuTap>
           </div>
           <Category>Output</Category>
           <ToggleTap>
-            <BiChevronRight /> 결과 확인
+            <BiChevronRight /> {t("left.output")}
           </ToggleTap>
         </Menubar>
       ) : null}
