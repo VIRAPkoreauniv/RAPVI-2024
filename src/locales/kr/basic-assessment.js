@@ -30,4 +30,19 @@ export default {
     prev: "이전",
     next: "다음",
   },
+  depth: {
+    pagePath: {
+      text1: "위해성 평가",
+      text2: "오염원",
+      text3: "오염심도",
+    },
+    pageTitle: "오염심도",
+    alert: "오염물질 {{material}}의 값이 누락되었습니다.",
+    material: "오염물질",
+    waterLevel: "지하수위 (단위 : m)",
+    elevation: "표고 (단위 : m)",
+    placeholder: "값을 입력하세요.",
+    prev: "이전",
+    next: "다음",
+  },
 };

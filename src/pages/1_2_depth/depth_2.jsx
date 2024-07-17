@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { BiChevronRight } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/header";
@@ -94,6 +95,8 @@ const ElevationPoint = () => {
   const [elevation_4, setElevation_4] = useState();
   const [elevation_5, setElevation_5] = useState();
 
+  const { t } = useTranslation("basicAssessment");
+
   const saveData = () => {
     let verify = false; // 값 다 있는 경우 true
 
@@ -110,7 +113,7 @@ const ElevationPoint = () => {
           verify = true;
         }
       } else {
-        alert("오염물질 A의 값이 누락되었습니다.");
+        alert(t("depth.alert", { material: "A" }));
       }
     }
     if (materialNum >= 2) {
@@ -126,7 +129,7 @@ const ElevationPoint = () => {
           verify = true;
         }
       } else {
-        alert("오염물질 B의 값이 누락되었습니다.");
+        alert(t("depth.alert", { material: "B" }));
       }
     }
     if (materialNum >= 3) {
@@ -142,7 +145,7 @@ const ElevationPoint = () => {
           verify = true;
         }
       } else {
-        alert("오염물질 C의 값이 누락되었습니다.");
+        alert(t("depth.alert", { material: "C" }));
       }
     }
     if (materialNum >= 4) {
@@ -158,7 +161,7 @@ const ElevationPoint = () => {
           verify = true;
         }
       } else {
-        alert("오염물질 D의 값이 누락되었습니다.");
+        alert(t("depth.alert", { material: "D" }));
       }
     }
     if (materialNum >= 5) {
@@ -174,7 +177,7 @@ const ElevationPoint = () => {
           verify = true;
         }
       } else {
-        alert("오염물질 E의 값이 누락되었습니다.");
+        alert(t("depth.alert", { material: "E" }));
       }
     }
 
@@ -193,28 +196,31 @@ const ElevationPoint = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            위해성 평가 <BiChevronRight /> Input <BiChevronRight /> 오염원{" "}
-            <BiChevronRight /> 오염심도
+            {t("depth.pagePath.text1")} <BiChevronRight /> Input{" "}
+            <BiChevronRight /> {t("depth.pagePath.text2")}
+            <BiChevronRight /> {t("depth.pagePath.text3")}
           </S.PagePath>
-          <S.PageTitle>오염심도</S.PageTitle>
+          <S.PageTitle>{t("depth.pageTitle")}</S.PageTitle>
           <S.EvalArea>
             {materialNum >= 1 ? (
               <S.EvalBox>
                 <S.PaddingBox>
-                  <h3>오염물질 A : {chem_1}</h3>
-                  <p>지하수위 (단위 : m)</p>
+                  <h3>
+                    {t("depth.material")} A : {chem_1}
+                  </h3>
+                  <p>{t("depth.waterLevel")}</p>
                   <input
                     type="number"
-                    placeholder="값을 입력하세요."
+                    placeholder={t("depth.placeholder")}
                     value={waterlevel_1}
                     onChange={(e) => {
                       setWaterlevel_1(e.target.value);
                     }}
                   />
-                  <p>표고 (단위 : m)</p>
+                  <p>{t("depth.elevation")}</p>
                   <input
                     type="number"
-                    placeholder="값을 입력하세요."
+                    placeholder={t("depth.placeholder")}
                     value={elevation_1}
                     onChange={(e) => {
                       setElevation_1(e.target.value);
@@ -226,20 +232,22 @@ const ElevationPoint = () => {
             {materialNum >= 2 ? (
               <S.EvalBox>
                 <S.PaddingBox>
-                  <h3>오염물질 B : {chem_2}</h3>
-                  <p>지하수위 (단위 : m)</p>
+                  <h3>
+                    {t("depth.material")} B : {chem_2}
+                  </h3>
+                  <p>{t("depth.waterLevel")}</p>
                   <input
                     type="number"
-                    placeholder="값을 입력하세요."
+                    placeholder={t("depth.placeholder")}
                     value={waterlevel_2}
                     onChange={(e) => {
                       setWaterlevel_2(e.target.value);
                     }}
                   />
-                  <p>표고 (단위 : m)</p>
+                  <p>{t("depth.elevation")}</p>
                   <input
                     type="number"
-                    placeholder="값을 입력하세요."
+                    placeholder={t("depth.placeholder")}
                     value={elevation_2}
                     onChange={(e) => {
                       setElevation_2(e.target.value);
@@ -251,20 +259,22 @@ const ElevationPoint = () => {
             {materialNum >= 3 ? (
               <S.EvalBox>
                 <S.PaddingBox>
-                  <h3>오염물질 C : {chem_3}</h3>
-                  <p>지하수위 (단위 : m)</p>
+                  <h3>
+                    {t("depth.material")} C : {chem_3}
+                  </h3>
+                  <p>{t("depth.waterLevel")}</p>
                   <input
                     type="number"
-                    placeholder="값을 입력하세요."
+                    placeholder={t("depth.placeholder")}
                     value={waterlevel_3}
                     onChange={(e) => {
                       setWaterlevel_3(e.target.value);
                     }}
                   />
-                  <p>표고 (단위 : m)</p>
+                  <p>{t("depth.elevation")}</p>
                   <input
                     type="number"
-                    placeholder="값을 입력하세요."
+                    placeholder={t("depth.placeholder")}
                     value={elevation_3}
                     onChange={(e) => {
                       setElevation_3(e.target.value);
@@ -276,20 +286,22 @@ const ElevationPoint = () => {
             {materialNum >= 4 ? (
               <S.EvalBox>
                 <S.PaddingBox>
-                  <h3>오염물질 D : {chem_4}</h3>
-                  <p>지하수위 (단위 : m)</p>
+                  <h3>
+                    {t("depth.material")} D : {chem_4}
+                  </h3>
+                  <p>{t("depth.waterLevel")}</p>
                   <input
                     type="number"
-                    placeholder="값을 입력하세요."
+                    placeholder={t("depth.placeholder")}
                     value={waterlevel_4}
                     onChange={(e) => {
                       setWaterlevel_4(e.target.value);
                     }}
                   />
-                  <p>표고 (단위 : m)</p>
+                  <p>{t("depth.elevation")}</p>
                   <input
                     type="number"
-                    placeholder="값을 입력하세요."
+                    placeholder={t("depth.placeholder")}
                     value={elevation_4}
                     onChange={(e) => {
                       setElevation_4(e.target.value);
@@ -301,20 +313,22 @@ const ElevationPoint = () => {
             {materialNum >= 5 ? (
               <S.EvalBox>
                 <S.PaddingBox>
-                  <h3>오염물질 E : {chem_5}</h3>
-                  <p>지하수위 (단위 : m)</p>
+                  <h3>
+                    {t("depth.material")} E : {chem_5}
+                  </h3>
+                  <p>{t("depth.waterLevel")}</p>
                   <input
                     type="number"
-                    placeholder="값을 입력하세요."
+                    placeholder={t("depth.placeholder")}
                     value={waterlevel_5}
                     onChange={(e) => {
                       setWaterlevel_5(e.target.value);
                     }}
                   />
-                  <p>표고 (단위 : m)</p>
+                  <p>{t("depth.elevation")}</p>
                   <input
                     type="number"
-                    placeholder="값을 입력하세요."
+                    placeholder={t("depth.placeholder")}
                     value={elevation_5}
                     onChange={(e) => {
                       setElevation_5(e.target.value);
@@ -325,9 +339,9 @@ const ElevationPoint = () => {
             ) : null}
             <S.BtnAreaTwin>
               <S.PrevBtn onClick={() => navigate("/input/source/coc1")}>
-                이전
+                {t("depth.prev")}
               </S.PrevBtn>
-              <S.NextBtn onClick={saveData}>다음</S.NextBtn>
+              <S.NextBtn onClick={saveData}>{t("depth.next")}</S.NextBtn>
             </S.BtnAreaTwin>
           </S.EvalArea>
         </S.EvalContent>
