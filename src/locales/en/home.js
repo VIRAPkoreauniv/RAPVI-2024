@@ -32,16 +32,50 @@ export default {
       text18: "Map output",
     },
     menu2: {
-      title: "What is a vapor intrusion risk assessment",
-      text1: "위해성 평가란?",
+      title: "What is a vapor intrusion risk assessment?",
+      text1: "What is risk assessment?",
       text2:
-        "위해성 평가(Risk Assessment)란 유해성이 있는 화학물질이 사람과 환경에 노출되는 경우 사람의 건강이나 환경에 미치는 결과를 예측하기 위해 체계적으로 검토하고 평가하는 것을 의미합니다. 위해성 평가는 ‘1. 유해성 확인’, ‘2. 용량 반응평가’, ‘3. 노출평가’, ‘4. 위해도 결정’의 총 4단계로 구성되어 있습니다. 이 중 ‘3. 노출평가’와 ‘4. 위해도 결정’에서는 노출 시나리오에 기반 한 실제 농도 및 위해성 계산이 요구됩니다.",
-      text3: "증기침입이란?",
+        "Risk Assessment means a systematic review and evaluation to predict the effects on human health or the environment when hazardous chemicals are exposed to humans and the environment. Risk Assessment consists of four steps: '1. Hazard Identification', '2. Dose-Response Assessment', '3. Exposure Assessment', and '4. Risk Determination'. '3. Exposure Assessment' and '4. Risk Determination' require concentrations and risk calculations based on exposure scenarios.",
+      text3: "What is vapor intrusion?",
       text4:
-        " 증기침입(Vapor Intrusion)이란 인체에 유해한 증기가 오염된 토양, 지하수와 같은 오염원으로부터 불포화대를 통과한 뒤, 건물 벽면 및 바닥의 틈, 지하수 사용 목적으로 연결한 도관 등을 통해 최종적으로 실내 공간으로 유입되는 이동 과정입니다. 증기침입은 도심 환경에서 위해성 평가의 대상이 되는 주요 경로입니다.",
+        "Vapor intrusion is the process which contaminated vapors move from contaminated soil, groundwater, and other sources through the unsaturated zone, and ultimately into indoor spaces through cracks in building walls and floors, and pipes connected for the purpose of using groundwater. Vapor intrusion is the main pathway of risk assessment in urban environments.",
     },
     menu3: {
       title: "R&D team",
+      person1: {
+        team: "Professor",
+        name: "Soonjae Lee",
+        address:
+          "510 Mediheal Earth Environmental Sciences Building, Korea University Natural Science Campus, 145 Anam-ro, Seongbuk-gu, Seoul",
+      },
+      person2: {
+        team: "Research",
+        name: "Min Seo Bae",
+      },
+      person3: {
+        team: "Research, Backend development",
+        name: "Yijune Choi",
+      },
+      person4: {
+        team: "Research",
+        name: "Seongkyung Han",
+      },
+      person5: {
+        team: "System design",
+        name: "Nayoung Kim",
+      },
+      person6: {
+        team: "System design",
+        name: "Jeonga Lim",
+      },
+      person7: {
+        team: "Frontend development",
+        name: "Suji Cha",
+      },
+      person8: {
+        team: "Backend development",
+        name: "Hyukju Na",
+      },
     },
   },
 };

@@ -41,6 +41,40 @@ export default {
     },
     menu3: {
       title: "연구진 소개",
+      person1: {
+        team: "교수",
+        name: "이순재",
+        address:
+          "서울시 성북구 안암로 145 고려대학교 자연계캠퍼스 메디힐지구환경관 510호",
+      },
+      person2: {
+        team: "연구",
+        name: "배민서",
+      },
+      person3: {
+        team: "연구, 백엔드 개발",
+        name: "최이준",
+      },
+      person4: {
+        team: "연구",
+        name: "한성경",
+      },
+      person5: {
+        team: "기획",
+        name: "김나영",
+      },
+      person6: {
+        team: "기획",
+        name: "임정아",
+      },
+      person7: {
+        team: "프론트엔드 개발",
+        name: "차수지",
+      },
+      person8: {
+        tema: "백엔드 개발",
+        name: "나혁주",
+      },
     },
   },
 };

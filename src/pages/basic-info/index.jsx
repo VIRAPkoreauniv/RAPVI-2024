@@ -151,47 +151,44 @@ export default function BasicInfoPage() {
                 <S.PageTitle>{t("basicInfo.menu3.title")}</S.PageTitle>
                 <S.RedLine></S.RedLine>
                 <S.Person>
-                  <S.Part>교수</S.Part>
-                  <S.Name>이순재</S.Name>
-                  <S.Mail>
-                    서울시 성북구 안암로 145 고려대학교 자연계캠퍼스
-                    메디힐지구환경관 510호
-                  </S.Mail>
+                  <S.Part>{t("basicInfo.menu3.person1.team")}</S.Part>
+                  <S.Name>{t("basicInfo.menu3.person1.name")}</S.Name>
+                  <S.Mail>{t("basicInfo.menu3.person1.address")}</S.Mail>
                 </S.Person>
                 <hr />
                 <S.Person>
-                  <S.Part>연구</S.Part>
-                  <S.Name>배민서</S.Name>
+                  <S.Part>{t("basicInfo.menu3.person2.team")}</S.Part>
+                  <S.Name>{t("basicInfo.menu3.person2.name")}</S.Name>
                 </S.Person>
                 <hr />
                 <S.Person>
-                  <S.Part>연구, 백엔드 개발</S.Part>
-                  <S.Name>최이준</S.Name>
+                  <S.Part>{t("basicInfo.menu3.person3.team")}</S.Part>
+                  <S.Name>{t("basicInfo.menu3.person3.name")}</S.Name>
                 </S.Person>
                 <hr />
                 <S.Person>
-                  <S.Part>연구</S.Part>
-                  <S.Name>한성경</S.Name>
+                  <S.Part>{t("basicInfo.menu3.person4.team")}</S.Part>
+                  <S.Name>{t("basicInfo.menu3.person4.name")}</S.Name>
                 </S.Person>
                 <hr />
                 <S.Person>
-                  <S.Part>기획</S.Part>
-                  <S.Name>김나영</S.Name>
+                  <S.Part>{t("basicInfo.menu3.person5.team")}</S.Part>
+                  <S.Name>{t("basicInfo.menu3.person5.name")}</S.Name>
                 </S.Person>
                 <hr />
                 <S.Person>
-                  <S.Part>기획</S.Part>
-                  <S.Name>임정아</S.Name>
+                  <S.Part>{t("basicInfo.menu3.person6.team")}</S.Part>
+                  <S.Name>{t("basicInfo.menu3.person6.name")}</S.Name>
                 </S.Person>
                 <hr />
                 <S.Person>
-                  <S.Part>프론트엔드 개발</S.Part>
-                  <S.Name>차수지</S.Name>
+                  <S.Part>{t("basicInfo.menu3.person7.team")}</S.Part>
+                  <S.Name>{t("basicInfo.menu3.person7.name")}</S.Name>
                 </S.Person>
                 <hr />
                 <S.Person>
-                  <S.Part>백엔드 개발</S.Part>
-                  <S.Name>나혁주</S.Name>
+                  <S.Part>{t("basicInfo.menu3.person8.team")}</S.Part>
+                  <S.Name>{t("basicInfo.menu3.person8.name")}</S.Name>
                 </S.Person>
                 <hr />
               </>
