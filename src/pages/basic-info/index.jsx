@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import HOME_IMAGE from "../../assets/home.png";
 import Header from "../../components/header";
+import { MEMBER_LIST } from "../../data/members";
 import * as S from "./BasicInfo.style";
 
 export default function BasicInfoPage() {
@@ -150,47 +151,26 @@ export default function BasicInfoPage() {
               <>
                 <S.PageTitle>{t("basicInfo.menu3.title")}</S.PageTitle>
                 <S.RedLine></S.RedLine>
-                <S.Person>
-                  <S.Part>{t("basicInfo.menu3.person1.team")}</S.Part>
-                  <S.Name>{t("basicInfo.menu3.person1.name")}</S.Name>
-                  <S.Mail>{t("basicInfo.menu3.person1.address")}</S.Mail>
-                </S.Person>
-                <hr />
-                <S.Person>
-                  <S.Part>{t("basicInfo.menu3.person2.team")}</S.Part>
-                  <S.Name>{t("basicInfo.menu3.person2.name")}</S.Name>
-                </S.Person>
-                <hr />
-                <S.Person>
-                  <S.Part>{t("basicInfo.menu3.person3.team")}</S.Part>
-                  <S.Name>{t("basicInfo.menu3.person3.name")}</S.Name>
-                </S.Person>
-                <hr />
-                <S.Person>
-                  <S.Part>{t("basicInfo.menu3.person4.team")}</S.Part>
-                  <S.Name>{t("basicInfo.menu3.person4.name")}</S.Name>
-                </S.Person>
-                <hr />
-                <S.Person>
-                  <S.Part>{t("basicInfo.menu3.person5.team")}</S.Part>
-                  <S.Name>{t("basicInfo.menu3.person5.name")}</S.Name>
-                </S.Person>
-                <hr />
-                <S.Person>
-                  <S.Part>{t("basicInfo.menu3.person6.team")}</S.Part>
-                  <S.Name>{t("basicInfo.menu3.person6.name")}</S.Name>
-                </S.Person>
-                <hr />
-                <S.Person>
-                  <S.Part>{t("basicInfo.menu3.person7.team")}</S.Part>
-                  <S.Name>{t("basicInfo.menu3.person7.name")}</S.Name>
-                </S.Person>
-                <hr />
-                <S.Person>
-                  <S.Part>{t("basicInfo.menu3.person8.team")}</S.Part>
-                  <S.Name>{t("basicInfo.menu3.person8.name")}</S.Name>
-                </S.Person>
-                <hr />
+                {MEMBER_LIST.map((member) => {
+                  return (
+                    <>
+                      <S.Person key={member.id}>
+                        <S.Part>
+                          {t(`basicInfo.menu3.person${member.id}.team`)}
+                        </S.Part>
+                        <S.Name>
+                          {t(`basicInfo.menu3.person${member.id}.name`)}
+                        </S.Name>
+                        {member.id === 1 && (
+                          <S.Mail>
+                            {t(`basicInfo.menu3.person${member.id}.address`)}
+                          </S.Mail>
+                        )}
+                      </S.Person>
+                      <hr />
+                    </>
+                  );
+                })}
               </>
             )}
           </S.TextContainer>
