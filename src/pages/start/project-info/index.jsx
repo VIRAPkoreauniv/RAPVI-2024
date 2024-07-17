@@ -34,6 +34,7 @@ export default function ProjectInfoPage() {
 
   const switchType = (e) => {
     const evalType = e.target.value;
+    //TODO: 번역 작업 후, 로직 수정 (영어 대응)
     evalType === "기본평가" && setTier1("rgb(224, 214, 198)");
     evalType === "기본평가" && setTier2("white");
     evalType === "기본평가" && setEvalType("기본평가");
