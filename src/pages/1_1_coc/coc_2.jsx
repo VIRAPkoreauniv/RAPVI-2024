@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { BiChevronRight, BiChevronUp } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/header";
@@ -336,11 +337,11 @@ const CocPoint = () => {
   const [disabled_Rfc4, setDisabled_Rfc4] = useState("disabled");
   const [disabled_Rfc5, setDisabled_Rfc5] = useState("disabled");
 
-  const [disabled_Koc1, setDisabled_Koc1] = useState("disabled");
-  const [disabled_Koc2, setDisabled_Koc2] = useState("disabled");
-  const [disabled_Koc3, setDisabled_Koc3] = useState("disabled");
-  const [disabled_Koc4, setDisabled_Koc4] = useState("disabled");
-  const [disabled_Koc5, setDisabled_Koc5] = useState("disabled");
+  // const [disabled_Koc1, setDisabled_Koc1] = useState("disabled");
+  // const [disabled_Koc2, setDisabled_Koc2] = useState("disabled");
+  // const [disabled_Koc3, setDisabled_Koc3] = useState("disabled");
+  // const [disabled_Koc4, setDisabled_Koc4] = useState("disabled");
+  // const [disabled_Koc5, setDisabled_Koc5] = useState("disabled");
 
   const [typeIUR1, setTypeIUR1] = useState("number");
   const [typeIUR2, setTypeIUR2] = useState("number");
@@ -354,11 +355,11 @@ const CocPoint = () => {
   const [typeRfc4, setTypeRfc4] = useState("number");
   const [typeRfc5, setTypeRfc5] = useState("number");
 
-  const [typeKoc1, setTypeKoc1] = useState("number");
-  const [typeKoc2, setTypeKoc2] = useState("number");
-  const [typeKoc3, setTypeKoc3] = useState("number");
-  const [typeKoc4, setTypeKoc4] = useState("number");
-  const [typeKoc5, setTypeKoc5] = useState("number");
+  // const [typeKoc1, setTypeKoc1] = useState("number");
+  // const [typeKoc2, setTypeKoc2] = useState("number");
+  // const [typeKoc3, setTypeKoc3] = useState("number");
+  // const [typeKoc4, setTypeKoc4] = useState("number");
+  // const [typeKoc5, setTypeKoc5] = useState("number");
 
   const setNull1 = () => {
     if (value_IUR_1 === null || value_IUR_1 === "0") {
@@ -378,12 +379,12 @@ const CocPoint = () => {
       setTypeRfc1("number");
     }
     if (value_Koc_1 === null || value_Koc_1 === "0") {
-      setDisabled_Koc1("disabled");
-      setTypeKoc1("text");
+      // setDisabled_Koc1("disabled");
+      // setTypeKoc1("text");
       setValue_Koc_1("NULL");
     } else if (value_Koc_1 !== null && value_Koc_1 !== "NULL") {
-      setDisabled_Koc1("");
-      setTypeKoc1("number");
+      // setDisabled_Koc1("");
+      // setTypeKoc1("number");
     }
   };
 
@@ -405,12 +406,12 @@ const CocPoint = () => {
       setTypeRfc2("number");
     }
     if (value_Koc_2 === null || value_Koc_2 === "0") {
-      setDisabled_Koc2("disabled");
-      setTypeKoc2("text");
+      // setDisabled_Koc2("disabled");
+      // setTypeKoc2("text");
       setValue_Koc_2("NULL");
     } else if (value_Koc_2 !== null && value_Koc_2 !== "NULL") {
-      setDisabled_Koc2("");
-      setTypeKoc2("number");
+      // setDisabled_Koc2("");
+      // setTypeKoc2("number");
     }
   };
   const setNull3 = () => {
@@ -431,12 +432,12 @@ const CocPoint = () => {
       setTypeRfc3("number");
     }
     if (value_Koc_3 === null || value_Koc_3 === "0") {
-      setDisabled_Koc3("disabled");
-      setTypeKoc3("text");
+      // setDisabled_Koc3("disabled");
+      // setTypeKoc3("text");
       setValue_Koc_3("NULL");
     } else if (value_Koc_3 !== null && value_Koc_3 !== "NULL") {
-      setDisabled_Koc3("");
-      setTypeKoc3("number");
+      // setDisabled_Koc3("");
+      // setTypeKoc3("number");
     }
   };
   const setNull4 = () => {
@@ -457,12 +458,12 @@ const CocPoint = () => {
       setTypeRfc4("number");
     }
     if (value_Koc_4 === null || value_Koc_4 === "0") {
-      setDisabled_Koc4("disabled");
-      setTypeKoc4("text");
+      // setDisabled_Koc4("disabled");
+      // setTypeKoc4("text");
       setValue_Koc_4("NULL");
     } else if (value_Koc_4 !== null && value_Koc_4 !== "NULL") {
-      setDisabled_Koc4("");
-      setTypeKoc4("number");
+      // setDisabled_Koc4("");
+      // setTypeKoc4("number");
     }
   };
   const setNull5 = () => {
@@ -483,12 +484,12 @@ const CocPoint = () => {
       setTypeRfc5("number");
     }
     if (value_Koc_5 === null || value_Koc_5 === "0") {
-      setDisabled_Koc5("disabled");
-      setTypeKoc5("text");
+      // setDisabled_Koc5("disabled");
+      // setTypeKoc5("text");
       setValue_Koc_5("NULL");
     } else if (value_Koc_5 !== null && value_Koc_5 !== "NULL") {
-      setDisabled_Koc5("");
-      setTypeKoc5("number");
+      // setDisabled_Koc5("");
+      // setTypeKoc5("number");
     }
   };
 
@@ -39825,6 +39826,8 @@ const CocPoint = () => {
   const [option4, setOption4] = useState("inline-block");
   const [option5, setOption5] = useState("inline-block");
 
+  const { t } = useTranslation("basicAssessment");
+
   return (
     <>
       <Header />
@@ -39832,21 +39835,23 @@ const CocPoint = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            위해성 평가 <BiChevronRight /> Input <BiChevronRight /> 오염원{" "}
-            <BiChevronRight /> 오염물질
+            {t("coc.pagePath.text1")} <BiChevronRight /> Input{" "}
+            <BiChevronRight />
+            {t("coc.pagePath.text2")}
+            <BiChevronRight /> {t("coc.pagePath.text3")}
           </S.PagePath>
-          <S.PageTitle>오염물질</S.PageTitle>
+          <S.PageTitle>{t("coc.pageTitle")}</S.PageTitle>
           <S.EvalArea>
             <table>
               <thead>
                 <tr>
                   <S.Td>
-                    <h3>오염물질 개수</h3>
+                    <h3>{t("coc.numOfMaterials")}</h3>
                   </S.Td>
                   <S.Td>
                     <select onChange={setInput} value={materialNum}>
                       <option value="" selected style={{ display: numOption }}>
-                        오염물질 개수를 선택해주세요.
+                        {t("coc.placeholder")}
                       </option>
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -39863,7 +39868,7 @@ const CocPoint = () => {
                 <table>
                   <thead>
                     <tr>
-                      <S.Td>오염물질 1</S.Td>
+                      <S.Td>{t("coc.material.title", { number: 1 })}</S.Td>
                       <S.Td>
                         <select onChange={(e) => selectChem1(e)} value={chem1}>
                           <option
@@ -39871,10 +39876,12 @@ const CocPoint = () => {
                             selected
                             style={{ display: option1 }}
                           >
-                            오염물질을 선택해주세요.
+                            {t("coc.material.placeholder")}
                           </option>
-                          {CHEMICAL_LIST.map((chem) => (
-                            <option value={chem}>{chem}</option>
+                          {CHEMICAL_LIST.map((chem, idx) => (
+                            <option key={idx} value={chem}>
+                              {chem}
+                            </option>
                           ))}
                         </select>
                       </S.Td>
@@ -39886,25 +39893,14 @@ const CocPoint = () => {
                           }}
                           style={{ display: close1 }}
                         >
-                          더보기
+                          {t("coc.more")}
                         </button>
                       </S.Td>
                     </tr>
                   </thead>
                 </table>
                 <S.PaddingBox>
-                  {chem1 === null ? (
-                    <h5>
-                      ※ 아래의 값들은 오염물질에 따라 자동으로 입력되며 필요 시
-                      사용자가 수정할 수 있습니다.
-                    </h5>
-                  ) : (
-                    <h5>
-                      ※ 아래의 값들은 {chem1}에 따라 자동으로 입력되며 필요 시
-                      사용자가 수정할 수 있습니다.
-                    </h5>
-                  )}
-
+                  <h5>{t("coc.info", { chem: chem1 || "오염물질" })}</h5>
                   <div style={{ display: more1 }}>
                     <p style={{ textAlign: "center" }}>
                       <button
@@ -39914,10 +39910,9 @@ const CocPoint = () => {
                         }}
                       >
                         <BiChevronUp />
-                        닫기
+                        {t("coc.close")}
                       </button>
                     </p>
-
                     <table>
                       <tbody>
                         <tr>
@@ -39925,11 +39920,11 @@ const CocPoint = () => {
                         </tr>
                         <tr>
                           <S.Td></S.Td>
-                          <S.Td>기호</S.Td>
-                          <S.Td>단위</S.Td>
+                          <S.Td>{t("coc.table.td1")}</S.Td>
+                          <S.Td>{t("coc.table.td2")}</S.Td>
                         </tr>
                         <tr>
-                          <S.Td>순수 성분 수용성</S.Td>
+                          <S.Td>{t("coc.table.td3")}</S.Td>
                           <S.Td>S</S.Td>
                           <S.Td>mg/L</S.Td>
                           <S.Td>
@@ -39945,7 +39940,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>표준 온도(25℃)의 헨리 상수</S.Td>
+                          <S.Td>{t("coc.table.td4")}</S.Td>
                           <S.Td>Hc</S.Td>
                           <S.Td>atm-m3/mol</S.Td>
                           <S.Td>
@@ -39959,7 +39954,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>공기에서의 확산성</S.Td>
+                          <S.Td>{t("coc.table.td5")}</S.Td>
                           <S.Td>Dair</S.Td>
                           <S.Td>cm2/s</S.Td>
                           <S.Td>
@@ -39973,7 +39968,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>물에서의 확산성</S.Td>
+                          <S.Td>{t("coc.table.td6")}</S.Td>
                           <S.Td>Dwater</S.Td>
                           <S.Td>cm2/s</S.Td>
                           <S.Td>
@@ -39988,7 +39983,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>정상 끓는 점에서의 기화 엔탈피</S.Td>
+                          <S.Td>{t("coc.table.td7")}</S.Td>
                           <S.Td>DHvb</S.Td>
                           <S.Td>cal/mol</S.Td>
                           <S.Td>
@@ -40001,7 +39996,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>임계 온도</S.Td>
+                          <S.Td>{t("coc.table.td8")}</S.Td>
                           <S.Td>Tc</S.Td>
                           <S.Td>K</S.Td>
                           <S.Td>
@@ -40014,7 +40009,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>정상 끓는 점</S.Td>
+                          <S.Td>{t("coc.table.td9")}</S.Td>
                           <S.Td>Tb</S.Td>
                           <S.Td>K</S.Td>
                           <S.Td>
@@ -40027,7 +40022,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>화합물의 분자량</S.Td>
+                          <S.Td>{t("coc.table.td10")}</S.Td>
                           <S.Td>MW</S.Td>
                           <S.Td>g/mol</S.Td>
                           <S.Td>
@@ -40093,7 +40088,7 @@ const CocPoint = () => {
                 <table>
                   <thead>
                     <tr>
-                      <S.Td>오염물질 2</S.Td>
+                      <S.Td>{t("coc.material.title", { number: 2 })}</S.Td>
                       <S.Td>
                         <select onChange={(e) => selectChem2(e)} value={chem2}>
                           <option
@@ -40101,10 +40096,12 @@ const CocPoint = () => {
                             selected
                             style={{ display: option2 }}
                           >
-                            오염물질을 선택해주세요.
+                            {t("coc.material.placeholder")}
                           </option>
-                          {CHEMICAL_LIST.map((chem) => (
-                            <option value={chem}>{chem}</option>
+                          {CHEMICAL_LIST.map((chem, idx) => (
+                            <option key={idx} value={chem}>
+                              {chem}
+                            </option>
                           ))}
                         </select>
                       </S.Td>
@@ -40116,24 +40113,14 @@ const CocPoint = () => {
                           }}
                           style={{ display: close2 }}
                         >
-                          더보기
+                          {t("coc.more")}
                         </button>
                       </S.Td>
                     </tr>
                   </thead>
                 </table>
                 <S.PaddingBox>
-                  {chem2 === null ? (
-                    <h5>
-                      ※ 아래의 값들은 오염물질에 따라 자동으로 입력되며 필요 시
-                      사용자가 수정할 수 있습니다.
-                    </h5>
-                  ) : (
-                    <h5>
-                      ※ 아래의 값들은 {chem2}에 따라 자동으로 입력되며 필요 시
-                      사용자가 수정할 수 있습니다.
-                    </h5>
-                  )}
+                  <h5>{t("coc.info", { chem: chem2 || "오염물질" })}</h5>
                   <div style={{ display: more2 }}>
                     <p style={{ textAlign: "center" }}>
                       <button
@@ -40143,7 +40130,7 @@ const CocPoint = () => {
                         }}
                       >
                         <BiChevronUp />
-                        닫기
+                        {t("coc.close")}
                       </button>
                     </p>
                     <table>
@@ -40153,11 +40140,11 @@ const CocPoint = () => {
                         </tr>
                         <tr>
                           <S.Td></S.Td>
-                          <S.Td>기호</S.Td>
-                          <S.Td>단위</S.Td>
+                          <S.Td>{t("coc.table.td1")}</S.Td>
+                          <S.Td>{t("coc.table.td2")}</S.Td>
                         </tr>
                         <tr>
-                          <S.Td>순수 성분 수용성</S.Td>
+                          <S.Td>{t("coc.table.td3")}</S.Td>
                           <S.Td>S</S.Td>
                           <S.Td>mg/L</S.Td>
                           <S.Td>
@@ -40172,7 +40159,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>표준 온도(25℃)의 헨리 상수</S.Td>
+                          <S.Td>{t("coc.table.td4")}</S.Td>
                           <S.Td>Hc</S.Td>
                           <S.Td>atm-m3/mol</S.Td>
                           <S.Td>
@@ -40185,7 +40172,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>공기에서의 확산성</S.Td>
+                          <S.Td>{t("coc.table.td5")}</S.Td>
                           <S.Td>Dair</S.Td>
                           <S.Td>cm2/s</S.Td>
                           <S.Td>
@@ -40198,7 +40185,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>물에서의 확산성</S.Td>
+                          <S.Td>{t("coc.table.td6")}</S.Td>
                           <S.Td>Dwater</S.Td>
                           <S.Td>cm2/s</S.Td>
                           <S.Td>
@@ -40213,7 +40200,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>정상 끓는 점에서의 기화 엔탈피</S.Td>
+                          <S.Td>{t("coc.table.td7")}</S.Td>
                           <S.Td>DHvb</S.Td>
                           <S.Td>cal/mol</S.Td>
                           <S.Td>
@@ -40226,7 +40213,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>임계 온도</S.Td>
+                          <S.Td>{t("coc.table.td8")}</S.Td>
                           <S.Td>Tc</S.Td>
                           <S.Td>K</S.Td>
                           <S.Td>
@@ -40239,7 +40226,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>정상 끓는 점</S.Td>
+                          <S.Td>{t("coc.table.td9")}</S.Td>
                           <S.Td>Tb</S.Td>
                           <S.Td>K</S.Td>
                           <S.Td>
@@ -40252,7 +40239,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>화합물의 분자량</S.Td>
+                          <S.Td>{t("coc.table.td10")}</S.Td>
                           <S.Td>MW</S.Td>
                           <S.Td>g/mol</S.Td>
                           <S.Td>
@@ -40313,13 +40300,12 @@ const CocPoint = () => {
                 </S.PaddingBox>
               </S.EvalBox>
             ) : null}
-
             {parseInt(materialNum) >= 3 ? (
               <S.EvalBox>
                 <table>
                   <thead>
                     <tr>
-                      <S.Td>오염물질 3</S.Td>
+                      <S.Td>{t("coc.material.title", { number: 3 })}</S.Td>
                       <S.Td>
                         <select onChange={(e) => selectChem3(e)} value={chem3}>
                           <option
@@ -40327,10 +40313,12 @@ const CocPoint = () => {
                             selected
                             style={{ display: option3 }}
                           >
-                            오염물질을 선택해주세요.
+                            {t("coc.material.placeholder")}
                           </option>
-                          {CHEMICAL_LIST.map((chem) => (
-                            <option value={chem}>{chem}</option>
+                          {CHEMICAL_LIST.map((chem, idx) => (
+                            <option key={idx} value={chem}>
+                              {chem}
+                            </option>
                           ))}
                         </select>
                       </S.Td>
@@ -40342,24 +40330,14 @@ const CocPoint = () => {
                           }}
                           style={{ display: close3 }}
                         >
-                          더보기
+                          {t("coc.more")}
                         </button>
                       </S.Td>
                     </tr>
                   </thead>
                 </table>
                 <S.PaddingBox>
-                  {chem3 === null ? (
-                    <h5>
-                      ※ 아래의 값들은 오염물질에 따라 자동으로 입력되며 필요 시
-                      사용자가 수정할 수 있습니다.
-                    </h5>
-                  ) : (
-                    <h5>
-                      ※ 아래의 값들은 {chem3}에 따라 자동으로 입력되며 필요 시
-                      사용자가 수정할 수 있습니다.
-                    </h5>
-                  )}
+                  <h5>{t("coc.info", { chem: chem3 || "오염물질" })}</h5>
                   <div style={{ display: more3 }}>
                     <p style={{ textAlign: "center" }}>
                       <button
@@ -40369,10 +40347,9 @@ const CocPoint = () => {
                         }}
                       >
                         <BiChevronUp />
-                        닫기
+                        {t("coc.close")}
                       </button>
                     </p>
-
                     <table>
                       <tbody>
                         <tr>
@@ -40380,11 +40357,11 @@ const CocPoint = () => {
                         </tr>
                         <tr>
                           <S.Td></S.Td>
-                          <S.Td>기호</S.Td>
-                          <S.Td>단위</S.Td>
+                          <S.Td>{t("coc.table.td1")}</S.Td>
+                          <S.Td>{t("coc.table.td2")}</S.Td>
                         </tr>
                         <tr>
-                          <S.Td>순수 성분 수용성</S.Td>
+                          <S.Td>{t("coc.table.td3")}</S.Td>
                           <S.Td>S</S.Td>
                           <S.Td>mg/L</S.Td>
                           <S.Td>
@@ -40399,7 +40376,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>표준 온도(25℃)의 헨리 상수</S.Td>
+                          <S.Td>{t("coc.table.td4")}</S.Td>
                           <S.Td>Hc</S.Td>
                           <S.Td>atm-m3/mol</S.Td>
                           <S.Td>
@@ -40412,7 +40389,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>공기에서의 확산성</S.Td>
+                          <S.Td>{t("coc.table.td5")}</S.Td>
                           <S.Td>Dair</S.Td>
                           <S.Td>cm2/s</S.Td>
                           <S.Td>
@@ -40425,7 +40402,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>물에서의 확산성</S.Td>
+                          <S.Td>{t("coc.table.td6")}</S.Td>
                           <S.Td>Dwater</S.Td>
                           <S.Td>cm2/s</S.Td>
                           <S.Td>
@@ -40440,7 +40417,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>정상 끓는 점에서의 기화 엔탈피</S.Td>
+                          <S.Td>{t("coc.table.td7")}</S.Td>
                           <S.Td>DHvb</S.Td>
                           <S.Td>cal/mol</S.Td>
                           <S.Td>
@@ -40453,7 +40430,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>임계 온도</S.Td>
+                          <S.Td>{t("coc.table.td8")}</S.Td>
                           <S.Td>Tc</S.Td>
                           <S.Td>K</S.Td>
                           <S.Td>
@@ -40466,7 +40443,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>정상 끓는 점</S.Td>
+                          <S.Td>{t("coc.table.td9")}</S.Td>
                           <S.Td>Tb</S.Td>
                           <S.Td>K</S.Td>
                           <S.Td>
@@ -40479,7 +40456,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>화합물의 분자량</S.Td>
+                          <S.Td>{t("coc.table.td10")}</S.Td>
                           <S.Td>MW</S.Td>
                           <S.Td>g/mol</S.Td>
                           <S.Td>
@@ -40540,13 +40517,12 @@ const CocPoint = () => {
                 </S.PaddingBox>
               </S.EvalBox>
             ) : null}
-
             {parseInt(materialNum) >= 4 ? (
               <S.EvalBox>
                 <table>
                   <thead>
                     <tr>
-                      <S.Td>오염물질 4</S.Td>
+                      <S.Td>{t("coc.material.title", { number: 4 })}</S.Td>
                       <S.Td>
                         <select onChange={(e) => selectChem4(e)} value={chem4}>
                           <option
@@ -40554,10 +40530,12 @@ const CocPoint = () => {
                             selected
                             style={{ display: option4 }}
                           >
-                            오염물질을 선택해주세요.
+                            {t("coc.material.placeholder")}
                           </option>
-                          {CHEMICAL_LIST.map((chem) => (
-                            <option value={chem}>{chem}</option>
+                          {CHEMICAL_LIST.map((chem, idx) => (
+                            <option key={idx} value={chem}>
+                              {chem}
+                            </option>
                           ))}
                         </select>
                       </S.Td>
@@ -40569,24 +40547,14 @@ const CocPoint = () => {
                           }}
                           style={{ display: close4 }}
                         >
-                          더보기
+                          {t("coc.more")}
                         </button>
                       </S.Td>
                     </tr>
                   </thead>
                 </table>
                 <S.PaddingBox>
-                  {chem4 === null ? (
-                    <h5>
-                      ※ 아래의 값들은 오염물질에 따라 자동으로 입력되며 필요 시
-                      사용자가 수정할 수 있습니다.
-                    </h5>
-                  ) : (
-                    <h5>
-                      ※ 아래의 값들은 {chem4}에 따라 자동으로 입력되며 필요 시
-                      사용자가 수정할 수 있습니다.
-                    </h5>
-                  )}
+                  <h5>{t("coc.info", { chem: chem4 || "오염물질" })}</h5>
                   <div style={{ display: more4 }}>
                     <p style={{ textAlign: "center" }}>
                       <button
@@ -40596,7 +40564,7 @@ const CocPoint = () => {
                         }}
                       >
                         <BiChevronUp />
-                        닫기
+                        {t("coc.close")}
                       </button>
                     </p>
 
@@ -40607,11 +40575,11 @@ const CocPoint = () => {
                         </tr>
                         <tr>
                           <S.Td></S.Td>
-                          <S.Td>기호</S.Td>
-                          <S.Td>단위</S.Td>
+                          <S.Td>{t("coc.table.td1")}</S.Td>
+                          <S.Td>{t("coc.table.td2")}</S.Td>
                         </tr>
                         <tr>
-                          <S.Td>순수 성분 수용성</S.Td>
+                          <S.Td>{t("coc.table.td3")}</S.Td>
                           <S.Td>S</S.Td>
                           <S.Td>mg/L</S.Td>
                           <S.Td>
@@ -40626,7 +40594,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>표준 온도(25℃)의 헨리 상수</S.Td>
+                          <S.Td>{t("coc.table.td4")}</S.Td>
                           <S.Td>Hc</S.Td>
                           <S.Td>atm-m3/mol</S.Td>
                           <S.Td>
@@ -40639,7 +40607,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>공기에서의 확산성</S.Td>
+                          <S.Td>{t("coc.table.td5")}</S.Td>
                           <S.Td>Dair</S.Td>
                           <S.Td>cm2/s</S.Td>
                           <S.Td>
@@ -40652,7 +40620,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>물에서의 확산성</S.Td>
+                          <S.Td>{t("coc.table.td6")}</S.Td>
                           <S.Td>Dwater</S.Td>
                           <S.Td>cm2/s</S.Td>
                           <S.Td>
@@ -40667,7 +40635,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>정상 끓는 점에서의 기화 엔탈피</S.Td>
+                          <S.Td>{t("coc.table.td7")}</S.Td>
                           <S.Td>DHvb</S.Td>
                           <S.Td>cal/mol</S.Td>
                           <S.Td>
@@ -40680,7 +40648,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>임계 온도</S.Td>
+                          <S.Td>{t("coc.table.td8")}</S.Td>
                           <S.Td>Tc</S.Td>
                           <S.Td>K</S.Td>
                           <S.Td>
@@ -40693,7 +40661,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>정상 끓는 점</S.Td>
+                          <S.Td>{t("coc.table.td9")}</S.Td>
                           <S.Td>Tb</S.Td>
                           <S.Td>K</S.Td>
                           <S.Td>
@@ -40706,7 +40674,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>화합물의 분자량</S.Td>
+                          <S.Td>{t("coc.table.td10")}</S.Td>
                           <S.Td>MW</S.Td>
                           <S.Td>g/mol</S.Td>
                           <S.Td>
@@ -40767,13 +40735,12 @@ const CocPoint = () => {
                 </S.PaddingBox>
               </S.EvalBox>
             ) : null}
-
             {parseInt(materialNum) >= 5 ? (
               <S.EvalBox>
                 <table>
                   <thead>
                     <tr>
-                      <S.Td>오염물질 5</S.Td>
+                      <S.Td>{t("coc.material.title", { number: 5 })}</S.Td>
                       <S.Td>
                         <select onChange={(e) => selectChem5(e)} value={chem5}>
                           <option
@@ -40781,10 +40748,12 @@ const CocPoint = () => {
                             selected
                             style={{ display: option5 }}
                           >
-                            오염물질을 선택해주세요.
+                            {t("coc.material.placeholder")}
                           </option>
-                          {CHEMICAL_LIST.map((chem) => (
-                            <option value={chem}>{chem}</option>
+                          {CHEMICAL_LIST.map((chem, idx) => (
+                            <option key={idx} value={chem}>
+                              {chem}
+                            </option>
                           ))}
                         </select>
                       </S.Td>
@@ -40796,24 +40765,14 @@ const CocPoint = () => {
                           }}
                           style={{ display: close5 }}
                         >
-                          더보기
+                          {t("coc.more")}
                         </button>
                       </S.Td>
                     </tr>
                   </thead>
                 </table>
                 <S.PaddingBox>
-                  {chem5 === null ? (
-                    <h5>
-                      ※ 아래의 값들은 오염물질에 따라 자동으로 입력되며 필요 시
-                      사용자가 수정할 수 있습니다.
-                    </h5>
-                  ) : (
-                    <h5>
-                      ※ 아래의 값들은 {chem5}에 따라 자동으로 입력되며 필요 시
-                      사용자가 수정할 수 있습니다.
-                    </h5>
-                  )}
+                  <h5>{t("coc.info", { chem: chem5 || "오염물질" })}</h5>
                   <div style={{ display: more5 }}>
                     <p style={{ textAlign: "center" }}>
                       <button
@@ -40823,7 +40782,7 @@ const CocPoint = () => {
                         }}
                       >
                         <BiChevronUp />
-                        닫기
+                        {t("coc.close")}
                       </button>
                     </p>
                     <table>
@@ -40833,11 +40792,11 @@ const CocPoint = () => {
                         </tr>
                         <tr>
                           <S.Td></S.Td>
-                          <S.Td>기호</S.Td>
-                          <S.Td>단위</S.Td>
+                          <S.Td>{t("coc.table.td1")}</S.Td>
+                          <S.Td>{t("coc.table.td2")}</S.Td>
                         </tr>
                         <tr>
-                          <S.Td>순수 성분 수용성</S.Td>
+                          <S.Td>{t("coc.table.td3")}</S.Td>
                           <S.Td>S</S.Td>
                           <S.Td>mg/L</S.Td>
                           <S.Td>
@@ -40852,7 +40811,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>표준 온도(25℃)의 헨리 상수</S.Td>
+                          <S.Td>{t("coc.table.td4")}</S.Td>
                           <S.Td>Hc</S.Td>
                           <S.Td>atm-m3/mol</S.Td>
                           <S.Td>
@@ -40865,7 +40824,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>공기에서의 확산성</S.Td>
+                          <S.Td>{t("coc.table.td5")}</S.Td>
                           <S.Td>Dair</S.Td>
                           <S.Td>cm2/s</S.Td>
                           <S.Td>
@@ -40878,7 +40837,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>물에서의 확산성</S.Td>
+                          <S.Td>{t("coc.table.td6")}</S.Td>
                           <S.Td>Dwater</S.Td>
                           <S.Td>cm2/s</S.Td>
                           <S.Td>
@@ -40893,7 +40852,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>정상 끓는 점에서의 기화 엔탈피</S.Td>
+                          <S.Td>{t("coc.table.td7")}</S.Td>
                           <S.Td>DHvb</S.Td>
                           <S.Td>cal/mol</S.Td>
                           <S.Td>
@@ -40906,7 +40865,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>임계 온도</S.Td>
+                          <S.Td>{t("coc.table.td8")}</S.Td>
                           <S.Td>Tc</S.Td>
                           <S.Td>K</S.Td>
                           <S.Td>
@@ -40919,7 +40878,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>정상 끓는 점</S.Td>
+                          <S.Td>{t("coc.table.td9")}</S.Td>
                           <S.Td>Tb</S.Td>
                           <S.Td>K</S.Td>
                           <S.Td>
@@ -40932,7 +40891,7 @@ const CocPoint = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <S.Td>화합물의 분자량</S.Td>
+                          <S.Td>{t("coc.table.td10")}</S.Td>
                           <S.Td>MW</S.Td>
                           <S.Td>g/mol</S.Td>
                           <S.Td>
@@ -40996,8 +40955,10 @@ const CocPoint = () => {
           </S.EvalArea>
           <S.EvalArea>
             <S.BtnAreaTwin>
-              <S.PrevBtn onClick={() => navigate(-1)}>이전</S.PrevBtn>
-              <S.NextBtn onClick={saveData}>다음</S.NextBtn>
+              <S.PrevBtn onClick={() => navigate(-1)}>
+                {t("coc.prev")}
+              </S.PrevBtn>
+              <S.NextBtn onClick={saveData}>{t("coc.next")}</S.NextBtn>
             </S.BtnAreaTwin>
           </S.EvalArea>
         </S.EvalContent>
