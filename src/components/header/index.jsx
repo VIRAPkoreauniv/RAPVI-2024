@@ -39,7 +39,7 @@ const Header = () => {
             </S.HorizontalMenuTap>
             <S.HorizontalMenuTap
               onClick={() => {
-                navigate("/projectinfo");
+                navigate("/projectInfo");
               }}
             >
               RAPVI
