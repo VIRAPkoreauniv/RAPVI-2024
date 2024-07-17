@@ -3,12 +3,16 @@ import styled from "styled-components";
 import i18n from "../../i18next";
 
 const LanguageButton = () => {
-  const [lang, setLang] = useState(i18n.language);
+  const [lang, setLang] = useState(
+    () => localStorage.getItem("locale") || "kr"
+  );
 
   useEffect(() => {
     const currLang = localStorage.getItem("locale");
     if (currLang) {
       setLang(currLang);
+      const nextLang = currLang === "kr" ? "en" : "kr";
+      i18n.changeLanguage(nextLang.toLowerCase());
     } else {
       localStorage.setItem("locale", "kr");
       setLang("en");
