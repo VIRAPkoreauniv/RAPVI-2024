@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { BiChevronRight } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/header";
@@ -6,6 +7,7 @@ import Menu from "../../components/menu";
 import * as S from "../../styles/Home.style";
 
 const ConcPoint = () => {
+  const { t } = useTranslation("basicAssessment");
   const navigate = useNavigate();
 
   const [chem_1, setChem_1] = useState("");
@@ -351,7 +353,7 @@ const ConcPoint = () => {
           verify = true;
         }
       } else {
-        alert("오염물질 A의 값이 누락되었습니다.");
+        alert(t("conc.alert", { material: "A" }));
         return;
       }
     }
@@ -389,7 +391,7 @@ const ConcPoint = () => {
           verify = true;
         }
       } else {
-        alert("오염물질 B의 값이 누락되었습니다.");
+        alert(t("conc.alert", { material: "B" }));
         return;
       }
     }
@@ -427,7 +429,7 @@ const ConcPoint = () => {
           verify = true;
         }
       } else {
-        alert("오염물질 C의 값이 누락되었습니다.");
+        alert(t("conc.alert", { material: "C" }));
         return;
       }
     }
@@ -465,7 +467,7 @@ const ConcPoint = () => {
           verify = true;
         }
       } else {
-        alert("오염물질 D의 값이 누락되었습니다.");
+        alert(t("conc.alert", { material: "D" }));
         return;
       }
     }
@@ -503,7 +505,7 @@ const ConcPoint = () => {
           verify = true;
         }
       } else {
-        alert("오염물질 E의 값이 누락되었습니다.");
+        alert(t("conc.alert", { material: "E" }));
         return;
       }
     }
@@ -524,19 +526,22 @@ const ConcPoint = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            위해성 평가 <BiChevronRight /> Input <BiChevronRight /> 오염원{" "}
-            <BiChevronRight /> 오염 농도
+            {t("conc.pagePath.text1")} <BiChevronRight /> Input{" "}
+            <BiChevronRight /> {t("conc.pagePath.text2")}
+            <BiChevronRight /> {t("conc.pagePath.text3")}
           </S.PagePath>
-          <S.PageTitle>오염농도</S.PageTitle>
+          <S.PageTitle>{t("conc.pageTitle")}</S.PageTitle>
           <S.EvalArea>
             {materialNum >= 1 ? (
               <S.EvalBox>
                 <S.PaddingBox>
-                  <h3>오염물질 A : {chem_1}</h3>
+                  <h3>
+                    {t("conc.material")} A : {chem_1}
+                  </h3>
                   <table>
                     <thead>
                       <tr>
-                        <td>오염원 매체</td>
+                        <td>{t("conc.media.title")}</td>
                         <S.Td>
                           <select
                             onChange={select_1}
@@ -545,27 +550,27 @@ const ConcPoint = () => {
                             disabled={drop_1}
                           >
                             <option value="" selected disabled hidden>
-                              오염원 매체를 선택해주세요.
+                              {t("conc.media.placeholder")}
                             </option>
-                            <option value="sat">포화대(지하수)</option>
-                            <option value="unsat">불포화대(토양)</option>
+                            <option value="sat">{t("conc.media.sat")}</option>
+                            <option value="unsat">
+                              {t("conc.media.unsat")}
+                            </option>
                           </select>
                         </S.Td>
                       </tr>
                     </thead>
                   </table>
-                  <h5>
-                    ※ 불포화대(토양) 선택 시 지하수 온도는 15℃로 고정됩니다.
-                  </h5>
+                  <h5>{t("conc.info")}</h5>
                   <table>
                     <tbody>
                       <tr>
                         <S.Td></S.Td>
-                        <S.Td>기호</S.Td>
-                        <S.Td>단위</S.Td>
+                        <S.Td>{t("conc.table.td1")}</S.Td>
+                        <S.Td>{t("conc.table.td2")}</S.Td>
                       </tr>
                       <tr>
-                        <td>지하수 온도</td>
+                        <td>{t("conc.table.td3")}</td>
                         <S.Td>Ts</S.Td>
                         <S.Td>℃</S.Td>
                         <S.Td>
@@ -580,7 +585,7 @@ const ConcPoint = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>매체 농도</td>
+                        <td>{t("conc.table.td4")}</td>
                         <S.Td>Cmedium</S.Td>
                         <S.Td>ug/L</S.Td>
                         <S.Td>
@@ -598,28 +603,25 @@ const ConcPoint = () => {
                   {type_1 === "unsat" ? (
                     <>
                       <hr />
-                      <h3>토양흡착특성</h3>
-                      <h5>
-                        ※ koc와 foc의 값은 오염물질에 따라 자동으로 입력될 수
-                        있으며, 필요 시 사용자가 수정할 수 있습니다.
-                      </h5>
+                      <h3>{t("conc.unsat.title")}</h3>
+                      <h5>{t("conc.unsat.info")}</h5>
                       <table>
                         <thead>
                           <tr>
                             <td></td>
-                            <S.Td>기호</S.Td>
-                            <S.Td>단위</S.Td>
+                            <S.Td>{t("conc.unsat.table.td1")}</S.Td>
+                            <S.Td>{t("conc.unsat.table.td2")}</S.Td>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td>토양-물 분배계수</td>
+                            <td>{t("conc.unsat.table.td3")}</td>
                             <S.Td>kd</S.Td>
                             <S.Td></S.Td>
                             <S.Td>= koc x foc</S.Td>
                           </tr>
                           <tr>
-                            <td>탄소-물 분배계수</td>
+                            <td>{t("conc.unsat.table.td4")}</td>
                             <S.Td>koc</S.Td>
                             <S.Td>g-H2O/g-C</S.Td>
                             <S.Td>
@@ -631,7 +633,7 @@ const ConcPoint = () => {
                             </S.Td>
                           </tr>
                           <tr>
-                            <td>유기물 분배계수</td>
+                            <td>{t("conc.unsat.table.td5")}</td>
                             <S.Td>foc</S.Td>
                             <S.Td>g-C/g-soil</S.Td>
                             <S.Td>
@@ -652,11 +654,13 @@ const ConcPoint = () => {
             {materialNum >= 2 ? (
               <S.EvalBox>
                 <S.PaddingBox>
-                  <h3>오염물질 B : {chem_2}</h3>
+                  <h3>
+                    {t("conc.material")} B : {chem_2}
+                  </h3>
                   <table>
                     <thead>
                       <tr>
-                        <td>오염원 매체</td>
+                        <td>{t("conc.media.title")}</td>
                         <S.Td>
                           <select
                             onChange={select_2}
@@ -665,27 +669,27 @@ const ConcPoint = () => {
                             disabled={drop_2}
                           >
                             <option value="" selected disabled hidden>
-                              오염원 매체를 선택해주세요.
+                              {t("conc.media.placeholder")}
                             </option>
-                            <option value="sat">포화대(지하수)</option>
-                            <option value="unsat">불포화대(토양)</option>
+                            <option value="sat">{t("conc.media.sat")}</option>
+                            <option value="unsat">
+                              {t("conc.media.unsat")}
+                            </option>
                           </select>
                         </S.Td>
                       </tr>
                     </thead>
                   </table>
-                  <h5>
-                    ※ 불포화대(토양) 선택 시 지하수 온도는 15℃로 고정됩니다.
-                  </h5>
+                  <h5>{t("conc.info")}</h5>
                   <table>
                     <tbody>
                       <tr>
                         <td></td>
-                        <S.Td>기호</S.Td>
-                        <S.Td>단위</S.Td>
+                        <S.Td>{t("conc.table.td1")}</S.Td>
+                        <S.Td>{t("conc.table.td2")}</S.Td>
                       </tr>
                       <tr>
-                        <td>지하수 온도</td>
+                        <td>{t("conc.table.td3")}</td>
                         <S.Td>Ts</S.Td>
                         <S.Td>℃</S.Td>
                         <S.Td>
@@ -700,7 +704,7 @@ const ConcPoint = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>매체 농도</td>
+                        <td>{t("conc.table.td4")}</td>
                         <S.Td>Cmedium</S.Td>
                         <S.Td>ug/L</S.Td>
                         <S.Td>
@@ -718,28 +722,25 @@ const ConcPoint = () => {
                   {type_2 === "unsat" ? (
                     <>
                       <hr />
-                      <h3>토양흡착특성</h3>
-                      <h5>
-                        ※ koc와 foc의 값은 오염물질에 따라 자동으로 입력될 수
-                        있으며, 필요 시 사용자가 수정할 수 있습니다.
-                      </h5>
+                      <h3>{t("conc.unsat.title")}</h3>
+                      <h5>{t("conc.unsat.info")}</h5>
                       <table>
                         <thead>
                           <tr>
                             <td></td>
-                            <S.Td>기호</S.Td>
-                            <S.Td>단위</S.Td>
+                            <S.Td>{t("conc.unsat.table.td1")}</S.Td>
+                            <S.Td>{t("conc.unsat.table.td2")}</S.Td>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td>토양-물 분배계수</td>
+                            <td>{t("conc.unsat.table.td3")}</td>
                             <S.Td>kd</S.Td>
                             <S.Td></S.Td>
                             <S.Td>= koc x foc</S.Td>
                           </tr>
                           <tr>
-                            <td>탄소-물 분배계수</td>
+                            <td>{t("conc.unsat.table.td4")}</td>
                             <S.Td>koc</S.Td>
                             <S.Td>g-H2O/g-C</S.Td>
                             <S.Td>
@@ -751,7 +752,7 @@ const ConcPoint = () => {
                             </S.Td>
                           </tr>
                           <tr>
-                            <td>유기물 분배계수</td>
+                            <td>{t("conc.unsat.table.td5")}</td>
                             <S.Td>foc</S.Td>
                             <S.Td>g-C/g-soil</S.Td>
                             <S.Td>
@@ -772,11 +773,13 @@ const ConcPoint = () => {
             {materialNum >= 3 ? (
               <S.EvalBox>
                 <S.PaddingBox>
-                  <h3>오염물질 C : {chem_3}</h3>
+                  <h3>
+                    {t("conc.material")} C : {chem_3}
+                  </h3>
                   <table>
                     <thead>
                       <tr>
-                        <td>오염원 매체</td>
+                        <td>{t("conc.media.title")}</td>
                         <S.Td>
                           <select
                             onChange={select_3}
@@ -785,27 +788,29 @@ const ConcPoint = () => {
                             disabled={drop_3}
                           >
                             <option value="" selected disabled hidden>
-                              오염원 매체를 선택해주세요.
+                              {t("conc.media.placeholder")}
                             </option>
-                            <option value="sat">포화대(지하수)</option>
-                            <option value="unsat">불포화대(토양)</option>
+                            <option value="sat">{t("conc.media.sat")}</option>
+                            <option value="unsat">
+                              {t("conc.media.unsat")}
+                            </option>
                           </select>
                         </S.Td>
                       </tr>
                     </thead>
                   </table>
                   <h5>
-                    ※ 불포화대(토양) 선택 시 지하수 온도는 15℃로 고정됩니다.
+                    <h5>{t("conc.info")}</h5>
                   </h5>
                   <table>
                     <tbody>
                       <tr>
                         <td></td>
-                        <S.Td>기호</S.Td>
-                        <S.Td>단위</S.Td>
+                        <S.Td>{t("conc.table.td1")}</S.Td>
+                        <S.Td>{t("conc.table.td2")}</S.Td>
                       </tr>
                       <tr>
-                        <td>지하수 온도</td>
+                        <td>{t("conc.table.td3")}</td>
                         <S.Td>Ts</S.Td>
                         <S.Td>℃</S.Td>
                         <S.Td>
@@ -820,7 +825,7 @@ const ConcPoint = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>매체 농도</td>
+                        <td>{t("conc.table.td4")}</td>
                         <S.Td>Cmedium</S.Td>
                         <S.Td>ug/L</S.Td>
                         <S.Td>
@@ -838,28 +843,25 @@ const ConcPoint = () => {
                   {type_3 === "unsat" ? (
                     <>
                       <hr />
-                      <h3>토양흡착특성</h3>
-                      <h5>
-                        ※ koc와 foc의 값은 오염물질에 따라 자동으로 입력될 수
-                        있으며, 필요 시 사용자가 수정할 수 있습니다.
-                      </h5>
+                      <h3>{t("conc.unsat.title")}</h3>
+                      <h5>{t("conc.unsat.info")}</h5>
                       <table>
                         <thead>
                           <tr>
                             <td></td>
-                            <S.Td>기호</S.Td>
-                            <S.Td>단위</S.Td>
+                            <S.Td>{t("conc.unsat.table.td1")}</S.Td>
+                            <S.Td>{t("conc.unsat.table.td2")}</S.Td>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td>토양-물 분배계수</td>
+                            <td>{t("conc.unsat.table.td3")}</td>
                             <S.Td>kd</S.Td>
                             <S.Td></S.Td>
                             <S.Td>= koc x foc</S.Td>
                           </tr>
                           <tr>
-                            <td>탄소-물 분배계수</td>
+                            <td>{t("conc.unsat.table.td4")}</td>
                             <S.Td>koc</S.Td>
                             <S.Td>g-H2O/g-C</S.Td>
                             <S.Td>
@@ -871,7 +873,7 @@ const ConcPoint = () => {
                             </S.Td>
                           </tr>
                           <tr>
-                            <td>유기물 분배계수</td>
+                            <td>{t("conc.unsat.table.td5")}</td>
                             <S.Td>foc</S.Td>
                             <S.Td>g-C/g-soil</S.Td>
                             <S.Td>
@@ -892,11 +894,13 @@ const ConcPoint = () => {
             {materialNum >= 4 ? (
               <S.EvalBox>
                 <S.PaddingBox>
-                  <h3>오염물질 D : {chem_4}</h3>
+                  <h3>
+                    {t("conc.material")} D : {chem_4}
+                  </h3>
                   <table>
                     <thead>
                       <tr>
-                        <td>오염원 매체</td>
+                        <td>{t("conc.media.title")}</td>
                         <S.Td>
                           <select
                             onChange={select_4}
@@ -905,27 +909,27 @@ const ConcPoint = () => {
                             disabled={drop_4}
                           >
                             <option value="" selected disabled hidden>
-                              오염원 매체를 선택해주세요.
+                              {t("conc.media.placeholder")}
                             </option>
-                            <option value="sat">포화대(지하수)</option>
-                            <option value="unsat">불포화대(토양)</option>
+                            <option value="sat">{t("conc.media.sat")}</option>
+                            <option value="unsat">
+                              {t("conc.media.unsat")}
+                            </option>
                           </select>
                         </S.Td>
                       </tr>
                     </thead>
                   </table>
-                  <h5>
-                    ※ 불포화대(토양) 선택 시 지하수 온도는 15℃로 고정됩니다.
-                  </h5>
+                  <h5>{t("conc.info")}</h5>
                   <table>
                     <tbody>
                       <tr>
                         <S.Td></S.Td>
-                        <S.Td>기호</S.Td>
-                        <S.Td>단위</S.Td>
+                        <S.Td>{t("conc.table.td1")}</S.Td>
+                        <S.Td>{t("conc.table.td2")}</S.Td>
                       </tr>
                       <tr>
-                        <td>지하수 온도</td>
+                        <td>{t("conc.table.td3")}</td>
                         <S.Td>Ts</S.Td>
                         <S.Td>℃</S.Td>
                         <S.Td>
@@ -940,7 +944,7 @@ const ConcPoint = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>매체 농도</td>
+                        <td>{t("conc.table.td4")}</td>
                         <S.Td>Cmedium</S.Td>
                         <S.Td>ug/L</S.Td>
                         <S.Td>
@@ -958,28 +962,25 @@ const ConcPoint = () => {
                   {type_4 === "unsat" ? (
                     <>
                       <hr />
-                      <h3>토양흡착특성</h3>
-                      <h5>
-                        ※ koc와 foc의 값은 오염물질에 따라 자동으로 입력될 수
-                        있으며, 필요 시 사용자가 수정할 수 있습니다.
-                      </h5>
+                      <h3>{t("conc.unsat.title")}</h3>
+                      <h5>{t("conc.unsat.info")}</h5>
                       <table>
                         <thead>
                           <tr>
                             <td></td>
-                            <S.Td>기호</S.Td>
-                            <S.Td>단위</S.Td>
+                            <S.Td>{t("conc.unsat.table.td1")}</S.Td>
+                            <S.Td>{t("conc.unsat.table.td2")}</S.Td>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td>토양-물 분배계수</td>
+                            <td>{t("conc.unsat.table.td3")}</td>
                             <S.Td>kd</S.Td>
                             <S.Td></S.Td>
                             <S.Td>= koc x foc</S.Td>
                           </tr>
                           <tr>
-                            <td>탄소-물 분배계수</td>
+                            <td>{t("conc.unsat.table.td4")}</td>
                             <S.Td>koc</S.Td>
                             <S.Td>g-H2O/g-C</S.Td>
                             <S.Td>
@@ -991,7 +992,7 @@ const ConcPoint = () => {
                             </S.Td>
                           </tr>
                           <tr>
-                            <td>유기물 분배계수</td>
+                            <td>{t("conc.unsat.table.td5")}</td>
                             <S.Td>foc</S.Td>
                             <S.Td>g-C/g-soil</S.Td>
                             <S.Td>
@@ -1012,11 +1013,13 @@ const ConcPoint = () => {
             {materialNum >= 5 ? (
               <S.EvalBox>
                 <S.PaddingBox>
-                  <h3>오염물질 E : {chem_5}</h3>
+                  <h3>
+                    {t("conc.material")} E : {chem_5}
+                  </h3>
                   <table>
                     <thead>
                       <tr>
-                        <td>오염원 매체</td>
+                        <td>{t("conc.media.title")}</td>
                         <S.Td>
                           <select
                             onChange={select_5}
@@ -1025,27 +1028,27 @@ const ConcPoint = () => {
                             disabled={drop_5}
                           >
                             <option value="" selected disabled hidden>
-                              오염원 매체를 선택해주세요.
+                              {t("conc.media.placeholder")}
                             </option>
-                            <option value="sat">포화대(지하수)</option>
-                            <option value="unsat">불포화대(토양)</option>
+                            <option value="sat">{t("conc.media.sat")}</option>
+                            <option value="unsat">
+                              {t("conc.media.unsat")}
+                            </option>
                           </select>
                         </S.Td>
                       </tr>
                     </thead>
                   </table>
-                  <h5>
-                    ※ 불포화대(토양) 선택 시 지하수 온도는 15℃로 고정됩니다.
-                  </h5>
+                  <h5>{t("conc.info")}</h5>
                   <table>
                     <tbody>
                       <tr>
                         <td></td>
-                        <S.Td>기호</S.Td>
-                        <S.Td>단위</S.Td>
+                        <S.Td>{t("conc.table.td1")}</S.Td>
+                        <S.Td>{t("conc.table.td2")}</S.Td>
                       </tr>
                       <tr>
-                        <td>지하수 온도</td>
+                        <td>{t("conc.table.td3")}</td>
                         <S.Td>Ts</S.Td>
                         <S.Td>℃</S.Td>
                         <S.Td>
@@ -1060,7 +1063,7 @@ const ConcPoint = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>매체 농도</td>
+                        <td>{t("conc.table.td4")}</td>
                         <S.Td>Cmedium</S.Td>
                         <S.Td>ug/L</S.Td>
                         <S.Td>
@@ -1078,28 +1081,25 @@ const ConcPoint = () => {
                   {type_5 === "unsat" ? (
                     <>
                       <hr />
-                      <h3>토양흡착특성</h3>
-                      <h5>
-                        ※ koc와 foc의 값은 오염물질에 따라 자동으로 입력될 수
-                        있으며, 필요 시 사용자가 수정할 수 있습니다.
-                      </h5>
+                      <h3>{t("conc.unsat.title")}</h3>
+                      <h5>{t("conc.unsat.info")}</h5>
                       <table>
                         <thead>
                           <tr>
                             <td></td>
-                            <S.Td>기호</S.Td>
-                            <S.Td>단위</S.Td>
+                            <S.Td>{t("conc.unsat.table.td1")}</S.Td>
+                            <S.Td>{t("conc.unsat.table.td2")}</S.Td>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td>토양-물 분배계수</td>
+                            <td>{t("conc.unsat.table.td3")}</td>
                             <S.Td>kd</S.Td>
                             <S.Td></S.Td>
                             <S.Td>= koc x foc</S.Td>
                           </tr>
                           <tr>
-                            <td>탄소-물 분배계수</td>
+                            <td>{t("conc.unsat.table.td4")}</td>
                             <S.Td>koc</S.Td>
                             <S.Td>g-H2O/g-C</S.Td>
                             <S.Td>
@@ -1111,7 +1111,7 @@ const ConcPoint = () => {
                             </S.Td>
                           </tr>
                           <tr>
-                            <td>유기물 분배계수</td>
+                            <td>{t("conc.unsat.table.td5")}</td>
                             <S.Td>foc</S.Td>
                             <S.Td>g-C/g-soil</S.Td>
                             <S.Td>
@@ -1131,9 +1131,9 @@ const ConcPoint = () => {
             ) : null}
             <S.BtnAreaTwin>
               <S.PrevBtn onClick={() => navigate("/input/source/depth1")}>
-                이전
+                {t("conc.prev")}
               </S.PrevBtn>
-              <S.NextBtn onClick={saveData}>다음</S.NextBtn>
+              <S.NextBtn onClick={saveData}>{t("conc.next")}</S.NextBtn>
             </S.BtnAreaTwin>
           </S.EvalArea>
         </S.EvalContent>
