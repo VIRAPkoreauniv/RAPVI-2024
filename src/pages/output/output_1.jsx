@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
+import { useTranslation } from "react-i18next";
 import { BiChevronRight } from "react-icons/bi";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -8,6 +9,7 @@ import Menu from "../../components/menu";
 import * as S from "../../styles/Home.style";
 
 const Output1 = () => {
+  const { t } = useTranslation("basicAssessment");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -17,11 +19,11 @@ const Output1 = () => {
 
   // 세션 값
   const materialNum = parseInt(sessionStorage.getItem("materialNum"));
-  const [chem_1, setChem_1] = useState("입력값 없음");
-  const [chem_2, setChem_2] = useState("입력값 없음");
-  const [chem_3, setChem_3] = useState("입력값 없음");
-  const [chem_4, setChem_4] = useState("입력값 없음");
-  const [chem_5, setChem_5] = useState("입력값 없음");
+  const [chem_1, setChem_1] = useState(t("output.noInput"));
+  const [chem_2, setChem_2] = useState(t("output.noInput"));
+  const [chem_3, setChem_3] = useState(t("output.noInput"));
+  const [chem_4, setChem_4] = useState(t("output.noInput"));
+  const [chem_5, setChem_5] = useState(t("output.noInput"));
 
   // res 가져오기
   const [Cia_1, setCia_1] = useState(0);
@@ -106,7 +108,7 @@ const Output1 = () => {
   };
   let series_Risk = [
     {
-      name: "발암위해도",
+      name: t("output.chart1.name"),
       data: [
         {
           x: chem_1,
@@ -114,7 +116,7 @@ const Output1 = () => {
           width: 10,
           goals: [
             {
-              name: "기준치",
+              name: t("output.chart1.bar"),
               value: 0.000001,
               strokeColor: "rgb(141, 0, 42)",
             },
@@ -125,7 +127,7 @@ const Output1 = () => {
           y: Risk_2,
           goals: [
             {
-              name: "기준치",
+              name: t("output.chart1.bar"),
               value: 0.000001,
               strokeColor: "rgb(141, 0, 42)",
             },
@@ -136,7 +138,7 @@ const Output1 = () => {
           y: Risk_3,
           goals: [
             {
-              name: "기준치",
+              name: t("output.chart1.bar"),
               value: 0.000001,
               strokeColor: "rgb(141, 0, 42)",
             },
@@ -147,7 +149,7 @@ const Output1 = () => {
           y: Risk_4,
           goals: [
             {
-              name: "기준치",
+              name: t("output.chart1.bar"),
               value: 0.000001,
               strokeColor: "rgb(141, 0, 42)",
             },
@@ -158,7 +160,7 @@ const Output1 = () => {
           y: Risk_5,
           goals: [
             {
-              name: "기준치",
+              name: t("output.chart1.bar"),
               value: 0.000001,
               strokeColor: "rgb(141, 0, 42)",
             },
@@ -177,14 +179,14 @@ const Output1 = () => {
   };
   let series_HQ = [
     {
-      name: "비발암위해도",
+      name: t("output.chart2.name"),
       data: [
         {
           x: chem_1,
           y: HQ_1,
           goals: [
             {
-              name: "기준치",
+              name: t("output.chart2.bar"),
               value: 1,
               strokeColor: "rgb(141, 0, 42)",
             },
@@ -195,7 +197,7 @@ const Output1 = () => {
           y: HQ_2,
           goals: [
             {
-              name: "기준치",
+              name: t("output.chart2.bar"),
               value: 1,
               strokeColor: "rgb(141, 0, 42)",
             },
@@ -206,7 +208,7 @@ const Output1 = () => {
           y: HQ_3,
           goals: [
             {
-              name: "기준치",
+              name: t("output.chart2.bar"),
               value: 1,
               strokeColor: "rgb(141, 0, 42)",
             },
@@ -217,7 +219,7 @@ const Output1 = () => {
           y: HQ_4,
           goals: [
             {
-              name: "기준치",
+              name: t("output.chart2.bar"),
               value: 1,
               strokeColor: "rgb(141, 0, 42)",
             },
@@ -228,7 +230,7 @@ const Output1 = () => {
           y: HQ_5,
           goals: [
             {
-              name: "기준치",
+              name: t("output.chart2.bar"),
               value: 1,
               strokeColor: "rgb(141, 0, 42)",
             },
@@ -245,22 +247,29 @@ const Output1 = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            위해성 평가 <BiChevronRight /> Output <BiChevronRight /> 결과 확인
+            {t("output.pagePath.text1")} <BiChevronRight /> Output
+            <BiChevronRight /> {t("output.pagePath.text2")}
           </S.PagePath>
-          <S.PageTitle>결과 확인</S.PageTitle>
+          <S.PageTitle>{t("output.pageTitle")}</S.PageTitle>
           <S.EvalArea>
             <S.EvalBox>
               <S.PaddingBox>
-                <h4>프로젝트 : {projectName}</h4>
-                <h4>담당자 : {projectManager}</h4>
-                <h4>작업 일시 : {projectDate}</h4>
+                <h4>
+                  {t("output.projectInfo.name")} : {projectName}
+                </h4>
+                <h4>
+                  {t("output.projectInfo.manager")} : {projectManager}
+                </h4>
+                <h4>
+                  {t("output.projectInfo.date")} : {projectDate}
+                </h4>
                 <br />
-                <h3>실내 오염 농도</h3>
+                <h3>{t("output.part1.title")}</h3>
                 <S.Table>
                   <thead style={{ backgroundColor: "lightgray" }}>
                     <tr>
-                      <Td>화학물질</Td>
-                      <Td>실내 오염 농도</Td>
+                      <Td>{t("output.part1.td1")}</Td>
+                      <Td>{t("output.part1.td2")}</Td>
                     </tr>
                   </thead>
                   <tbody>
@@ -299,7 +308,7 @@ const Output1 = () => {
                 <br />
                 <hr />
                 <br />
-                <h3>증기침입에 의한 발암위해도</h3>
+                <h3>{t("output.part2.title")}</h3>
                 <Chart
                   options={options_Risk}
                   series={series_Risk}
@@ -309,8 +318,8 @@ const Output1 = () => {
                 <S.Table>
                   <thead style={{ backgroundColor: "lightgray" }}>
                     <tr>
-                      <Td>화학물질</Td>
-                      <Td>증기침입에 의한 발암위해도</Td>
+                      <Td>{t("output.part2.td1")}</Td>
+                      <Td>{t("output.part2.td2")}</Td>
                     </tr>
                   </thead>
                   <tbody>
@@ -349,7 +358,7 @@ const Output1 = () => {
                 <br />
                 <hr />
                 <br />
-                <h3>증기침입에 의한 비발암위해도</h3>
+                <h3>{t("output.part3.title")}</h3>
                 <Chart
                   options={options_HQ}
                   series={series_HQ}
@@ -359,8 +368,8 @@ const Output1 = () => {
                 <S.Table>
                   <thead style={{ backgroundColor: "lightgray" }}>
                     <tr>
-                      <Td>화학물질</Td>
-                      <Td>증기침입에 의한 비발암위해도</Td>
+                      <Td>{t("output.part3.td1")}</Td>
+                      <Td>{t("output.part3.td2")}</Td>
                     </tr>
                   </thead>
                   <tbody>
@@ -399,7 +408,9 @@ const Output1 = () => {
               </S.PaddingBox>
             </S.EvalBox>
             <BtnAreaSolo>
-              <S.PrevBtn onClick={() => navigate(-1)}>이전</S.PrevBtn>
+              <S.PrevBtn onClick={() => navigate(-1)}>
+                {t("output.prev")}
+              </S.PrevBtn>
             </BtnAreaSolo>
           </S.EvalArea>
         </S.EvalContent>

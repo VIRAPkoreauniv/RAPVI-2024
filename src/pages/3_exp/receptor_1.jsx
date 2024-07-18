@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { BiChevronRight, BiLoader } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/header";
@@ -7,6 +8,7 @@ import Menu from "../../components/menu";
 import * as S from "../../styles/Home.style";
 
 const Receptor = () => {
+  const { t } = useTranslation("basicAssessment");
   const navigate = useNavigate();
 
   const [type, setType] = useState("");
@@ -35,7 +37,7 @@ const Receptor = () => {
       setATc(70);
       setATnc(25);
     } else {
-      alert("노출 특성 유형을 선택해주세요.");
+      alert(t("receptor.alert1"));
     }
   };
 
@@ -267,11 +269,9 @@ const Receptor = () => {
       .then((res) => {
         const message = res.data.message;
         if (message === "ZeroDivisionError") {
-          alert("계산 오류\nZeroDivisionError");
+          alert(t("receptor.alert2"));
         } else if (message === "OverflowError") {
-          alert(
-            "계산 오류\nOverflowError\n서버의 계산 한계를 넘어섰습니다. eta를 10배 증가시켜 대입해보세요"
-          );
+          alert(t("receptor.alert3"));
         } else {
           const Cia = res.data.Cia;
           const HQ = res.data.HQ;
@@ -288,7 +288,7 @@ const Receptor = () => {
       .catch((err) => {
         // console.log(err);
         if (err.message === "Request failed with status code 500") {
-          alert("입력값이 잘못되었습니다. (계산 오류)");
+          alert(t("receptor.alert4"));
         }
       });
   };
@@ -322,17 +322,17 @@ const Receptor = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            위해성 평가 <BiChevronRight /> Input <BiChevronRight /> 수용체{" "}
-            <BiChevronRight /> 노출 특성
+            {t("receptor.pagePath.text1")} <BiChevronRight /> Input
+            <BiChevronRight /> {t("receptor.pagePath.text2")} <BiChevronRight />
+            {t("receptor.pagePath.text3")}
           </S.PagePath>
-          <S.PageTitle>노출 특성</S.PageTitle>
-
+          <S.PageTitle>{t("receptor.pageTitle")}</S.PageTitle>
           <S.EvalArea>
             <S.EvalBox>
               <S.PaddingBox>
                 <table>
                   <thead>
-                    <td>노출 특성 유형</td>
+                    <td>{t("receptor.select.title")}</td>
                     <S.Td>Exposure_Type</S.Td>
                     <S.Td>
                       <select
@@ -341,7 +341,7 @@ const Receptor = () => {
                         value={type}
                       >
                         <option value="" defaultValue disabled hidden>
-                          노출 특성 유형을 선택해주세요.
+                          {t("receptor.select.placeholder")}
                         </option>
                         <option value="Residential">Residential</option>
                         <option value="Commercial">Commercial</option>
@@ -349,20 +349,18 @@ const Receptor = () => {
                     </S.Td>
                   </thead>
                 </table>
-                <h5>
-                  ※ 아래의 값은 노출 특성 유형에 따라 자동으로 입력됩니다.
-                </h5>
+                <h5>{t("receptor.info")}</h5>
                 <table>
                   <thead>
                     <tr>
                       <td></td>
-                      <S.Td>기호</S.Td>
-                      <S.Td>단위</S.Td>
+                      <S.Td>{t("receptor.table.td1")}</S.Td>
+                      <S.Td>{t("receptor.table.td2")}</S.Td>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>노출 기간</td>
+                      <td>{t("receptor.table.td3")}</td>
                       <S.Td>EF</S.Td>
                       <S.Td>yrs</S.Td>
                       <S.Td>
@@ -370,7 +368,7 @@ const Receptor = () => {
                       </S.Td>
                     </tr>
                     <tr>
-                      <td>노출 빈도</td>
+                      <td>{t("receptor.table.td4")}</td>
                       <S.Td>ED</S.Td>
                       <S.Td>days/yr</S.Td>
                       <S.Td>
@@ -378,7 +376,7 @@ const Receptor = () => {
                       </S.Td>
                     </tr>
                     <tr>
-                      <td>노출 시간</td>
+                      <td>{t("receptor.table.td5")}</td>
                       <S.Td>ET</S.Td>
                       <S.Td>hrs/day</S.Td>
                       <S.Td>
@@ -386,7 +384,7 @@ const Receptor = () => {
                       </S.Td>
                     </tr>
                     <tr>
-                      <td>발암물질 평균 노출 시간</td>
+                      <td>{t("receptor.table.td6")}</td>
                       <S.Td>ATc</S.Td>
                       <S.Td>hr</S.Td>
                       <S.Td>
@@ -394,7 +392,7 @@ const Receptor = () => {
                       </S.Td>
                     </tr>
                     <tr>
-                      <td>비발암물질 평균 노출 시간</td>
+                      <td>{t("receptor.table.td7")}</td>
                       <S.Td>ATnc</S.Td>
                       <S.Td>hr</S.Td>
                       <S.Td>
@@ -407,7 +405,7 @@ const Receptor = () => {
             </S.EvalBox>
             <S.BtnAreaTwin>
               <S.PrevBtn onClick={() => navigate("/input/pathway/found1")}>
-                이전
+                {t("receptor.prev")}
               </S.PrevBtn>
               <S.NextBtn onClick={saveData}>
                 {isClicked ? (
@@ -415,7 +413,7 @@ const Receptor = () => {
                     <BiLoader /> Loading...
                   </p>
                 ) : (
-                  <p>다음</p>
+                  <p>{t("receptor.next")}</p>
                 )}
               </S.NextBtn>
             </S.BtnAreaTwin>
