@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
 import * as S from "../../styles/Popup.style";
 
 const PopFoundtype = () => {
+  const { t } = useTranslation("site");
   let data = window.opener.document.getElementById("found").value;
   let output = [];
   let bodyRows = [];
@@ -25,7 +27,7 @@ const PopFoundtype = () => {
 
   return (
     <S.Container>
-      <h2>건물</h2>
+      <h2>{t("found.pop")}</h2>
       <S.Table dangerouslySetInnerHTML={{ __html: bodyRows }}></S.Table>
     </S.Container>
   );
