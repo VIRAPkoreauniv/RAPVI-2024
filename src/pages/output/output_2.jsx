@@ -1,5 +1,6 @@
 import { GoogleMap, Polygon, useJsApiLoader } from "@react-google-maps/api";
 import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { BiChevronRight } from "react-icons/bi";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -8,6 +9,7 @@ import Menu from "../../components/menu";
 import * as S from "../../styles/Home.style";
 
 const Output2 = () => {
+  const { t } = useTranslation("site");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -224,10 +226,11 @@ const Output2 = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            위해성 평가 <BiChevronRight /> Output <BiChevronRight /> 결과 확인
+            {t("output.pagePath.text1")} <BiChevronRight /> Output
+            <BiChevronRight /> {t("output.pagePath.text2")}
           </S.PagePath>
           <Box>
-            <S.PageTitle>결과 확인</S.PageTitle>
+            <S.PageTitle>{t("output.pageTitle")}</S.PageTitle>
             <button
               onClick={() =>
                 navigate("/sitePDF", {
@@ -239,16 +242,22 @@ const Output2 = () => {
                 })
               }
             >
-              PDF로 보기
+              {t("output.pdf")}
             </button>
           </Box>
 
           <S.EvalArea>
             <S.EvalBox>
               <S.PaddingBox>
-                <h4>프로젝트 : {projectName}</h4>
-                <h4>담당자 : {projectManager}</h4>
-                <h4>작업 일시 : {projectDate}</h4>
+                <h4>
+                  {t("output.projectInfo.name")} : {projectName}
+                </h4>
+                <h4>
+                  {t("output.projectInfo.manager")} : {projectManager}
+                </h4>
+                <h4>
+                  {t("output.projectInfo.date")} : {projectDate}
+                </h4>
                 {isLoaded ? (
                   <>
                     <GoogleMap
@@ -272,7 +281,7 @@ const Output2 = () => {
                 <br />
                 <hr />
                 <br />
-                <h3>실내 오염 농도</h3>
+                <h3>{t("output.part1")}</h3>
                 <S.GridAndLegend>
                   <GridTable
                     dangerouslySetInnerHTML={{ __html: drawCia }}
@@ -331,7 +340,7 @@ const Output2 = () => {
                 <br />
                 <hr />
                 <br />
-                <h3>발암위해도</h3>
+                <h3>{t("output.part2")}</h3>
                 <S.GridAndLegend>
                   <GridTable
                     dangerouslySetInnerHTML={{ __html: drawRisk }}
@@ -390,7 +399,7 @@ const Output2 = () => {
                 <br />
                 <hr />
                 <br />
-                <h3>비발암위해도</h3>
+                <h3>{t("output.part2")}</h3>
                 <S.GridAndLegend>
                   <GridTable
                     dangerouslySetInnerHTML={{ __html: drawHQ }}
@@ -449,7 +458,9 @@ const Output2 = () => {
               </S.PaddingBox>
             </S.EvalBox>
             <BtnAreaSolo>
-              <S.PrevBtn onClick={() => navigate(-1)}>이전</S.PrevBtn>
+              <S.PrevBtn onClick={() => navigate(-1)}>
+                {t("output.prev")}
+              </S.PrevBtn>
             </BtnAreaSolo>
           </S.EvalArea>
         </S.EvalContent>

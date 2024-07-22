@@ -195,4 +195,21 @@ export default {
     prev: "이전",
     next: "다음",
   },
+  output: {
+    pagePath: {
+      text1: "위해성 평가",
+      text2: "결과 확인",
+    },
+    pageTitle: "결과 확인",
+    pdf: "PDF로 보기",
+    projectInfo: {
+      name: "프로젝트",
+      manager: "담당자",
+      date: "작업 일시",
+    },
+    part1: "실내 오염 농도",
+    part2: "발암위해도",
+    part3: "비발암위해도",
+    prev: "이전",
+  },
 };
