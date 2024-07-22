@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { BiChevronDown, BiChevronRight, BiChevronUp } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -7,6 +8,7 @@ import Menu from "../../components/menu";
 import * as S from "../../styles/Home.style";
 
 const Geo2 = () => {
+  const { t } = useTranslation("site");
   const navigate = useNavigate();
 
   // 토글 관리
@@ -98,12 +100,13 @@ const Geo2 = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            위해성 평가 <BiChevronRight /> Input <BiChevronRight /> 경로{" "}
-            <BiChevronRight /> 지질매체
+            {t("geo.pagePath.text1")} <BiChevronRight /> Input
+            <BiChevronRight /> {t("geo.pagePath.text2")}
+            <BiChevronRight /> {t("geo.pagePath.text3")}
           </S.PagePath>
-          <S.PageTitle>지질매체</S.PageTitle>
+          <S.PageTitle>{t("geo.pageTitle")}</S.PageTitle>
           <LayerSelectBox>
-            <BoldTxt>층서유형 선택</BoldTxt>
+            <BoldTxt>{t("geo.select.title")}</BoldTxt>
             <form>
               <div>
                 <Radio
@@ -112,14 +115,14 @@ const Geo2 = () => {
                   name="layer"
                   onChange={(e) => setLayerType(e.target.id)}
                 />
-                <Label htmlFor="single">단일층</Label>
+                <Label htmlFor="single">{t("geo.select.single")}</Label>
                 <Radio
                   type="radio"
                   id="multiple"
                   name="layer"
                   onChange={(e) => setLayerType(e.target.id)}
                 />
-                <Label htmlFor="multiple">다중층</Label>
+                <Label htmlFor="multiple">{t("geo.select.multiple")}</Label>
               </div>
             </form>
           </LayerSelectBox>
@@ -130,15 +133,15 @@ const Geo2 = () => {
                 {layerType === "" && (
                   <InfoBox>
                     <center>
-                      <p>층서유형을 선택해주세요.</p>
-                      <p>단일층일 때와 다중층일 때 입력값이 달라집니다.</p>
+                      <p>{t("geo.select.info1")}</p>
+                      <p>{t("geo.select.info2")}</p>
                     </center>
                   </InfoBox>
                 )}
                 {layerType === "single" && (
                   <>
                     <LayerSelectBox>
-                      <h3>지층 토양 유형</h3>
+                      <h3>{t("geo.single.title")}</h3>
                       <Select
                         onChange={(e) => {
                           setOption("none");
@@ -146,7 +149,7 @@ const Geo2 = () => {
                         }}
                       >
                         <option value="" style={{ display: option }}>
-                          지층토양유형을 선택해주세요.
+                          {t("geo.single.placeholder")}
                         </option>
                         <option value="1">Clay</option>
                         <option value="2">Loam</option>
@@ -165,14 +168,8 @@ const Geo2 = () => {
                         )}
                       </Select>
                     </LayerSelectBox>
-                    <p>
-                      하단의 '입력 가능한 지층토양유형'표를 참고해
-                      지층토양유형을 선택해주세요.
-                    </p>
-                    <p>
-                      지층토양유형을 선택하면 모든 데이터 범위가 선택한
-                      지층토양유형(단일 유형)으로 채워집니다.
-                    </p>
+                    <p>{t("geo.single.info.info1")}</p>
+                    <p>{t("geo.single.info.info2")}</p>
                     {/* <GeoCheck setData={setData} strat={strat} /> */}
                     <hr />
                     <h4 onClick={clickToggle}>
@@ -181,19 +178,15 @@ const Geo2 = () => {
                       ) : (
                         <BiChevronUp />
                       )}
-                      입력 가능한 지층 토양 유형
+                      {t("geo.single.table.title")}
                     </h4>
                     <div style={{ display: displayTable }}>
-                      <p>
-                        ※ 표 하단의{" "}
-                        <strong>+ 다른 지층토양유형 추가하기</strong>를 클릭하여
-                        사용자 정의 유형을 추가할 수 있습니다.
-                      </p>
+                      <p>{t("geo.single.info.info3")}</p>
                       <Table>
                         <thead>
                           <tr>
-                            <Td>번호</Td>
-                            <Td>지층 토양 유형</Td>
+                            <Td>{t("geo.single.table.td1")}</Td>
+                            <Td>{t("geo.single.table.td2")}</Td>
                             <Td>nSA</Td>
                             <Td>nwSA</Td>
                             <Td>rhoSA</Td>
@@ -386,7 +379,7 @@ const Geo2 = () => {
                                 style={{ padding: "10px 5px" }}
                                 onClick={addRow}
                               >
-                                + 다른 지층 토양 유형 추가하기
+                                {t("geo.single.table.add")}
                               </td>
                             </tr>
                           ) : null}
@@ -398,39 +391,36 @@ const Geo2 = () => {
                 {layerType === "multiple" && (
                   <>
                     <LayerSelectBox>
-                      <h3>확산계수 (DeffT)</h3>
+                      <h3>{t("geo.multiple.title")}</h3>
                       <DeffTInput
                         type="number"
-                        placeholder="DeffT값을 입력해주세요."
+                        placeholder={t("geo.multiple.placeholder")}
                         onChange={(e) => setDeffT(e.target.value)}
                       />
                     </LayerSelectBox>
-                    <h4>
-                      엑셀 전처리 파일의 DeffT 시트에서 계산된 값을
-                      입력해주세요.
-                    </h4>
+                    <h4>{t("geo.multiple.info")}</h4>
                   </>
                 )}
               </S.PaddingBox>
             </S.EvalBox>
             <S.BtnAreaTwin>
               <S.PrevBtn onClick={() => navigate("/input/source/conc2")}>
-                이전
+                {t("geo.prev")}
               </S.PrevBtn>
               <S.NextBtn
                 onClick={() => {
                   if (layerType === "single" && singleType === "") {
-                    alert("지층 토양 유형을 선택해주세요.");
+                    alert(t("geo.alert.alert1"));
                   } else if (layerType === "single" && singleType !== "") {
                     saveData();
                   } else if (layerType === "multiple" && DeffT === 0) {
-                    alert("DeffT을 입력해주세요.");
+                    alert(t("geo.alert.alert2"));
                   } else if (layerType === "multiple" && DeffT !== 0) {
                     saveData();
                   }
                 }}
               >
-                다음
+                {t("geo.next")}
               </S.NextBtn>
             </S.BtnAreaTwin>
           </S.EvalArea>
