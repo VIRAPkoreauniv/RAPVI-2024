@@ -34,34 +34,40 @@ export default function ProjectInfoPage() {
 
   const switchType = (e) => {
     const evalType = e.target.value;
-    //TODO: 번역 작업 후, 로직 수정 (영어 대응)
-    evalType === "기본평가" && setTier1("rgb(224, 214, 198)");
-    evalType === "기본평가" && setTier2("white");
-    evalType === "기본평가" && setEvalType("기본평가");
-    evalType === "부지기반평가" && setTier2("rgb(224, 214, 198)");
-    evalType === "부지기반평가" && setTier1("white");
-    evalType === "부지기반평가" && setEvalType("부지기반평가");
+
+    if (evalType === "기본평가" || evalType === "Basic assessment") {
+      setTier1("rgb(224, 214, 198)");
+      setTier2("white");
+      setEvalType("기본평가");
+    } else if (
+      evalType === "부지기반평가" ||
+      evalType === "Site-specific assessment"
+    ) {
+      setTier2("rgb(224, 214, 198)");
+      setTier1("white");
+      setEvalType("부지기반평가");
+    }
   };
 
   const moveTo = () => {
-    projectName === "" && alert("프로젝트 명을 입력해주세요.");
-    projectManager === "" && alert("담당자 이름을 입력해주세요.");
-    projectDate === "" && alert("작업 일시를 입력해주세요.");
-    evalType === "" && alert("위해성 평가 방식을 선택해주세요.");
+    projectName === "" && alert(t("projectInfo.alert.alert1"));
+    projectManager === "" && alert(t("projectInfo.alert.alert2"));
+    projectDate === "" && alert(t("projectInfo.alert.alert3"));
+    evalType === "" && alert(t("projectInfo.alert.alert4"));
     if (evalType === "부지기반평가" && numofRows === 0) {
-      alert("데이터 크기를 입력해주세요. (행)");
+      alert(t("projectInfo.alert.alert5"));
     }
     if (evalType === "부지기반평가" && numofCols === 0) {
-      alert("데이터 크기를 입력해주세요. (열)");
+      alert(t("projectInfo.alert.alert6"));
     }
     if (evalType === "부지기반평가") {
       if (lat1 === 0 || lat2 === 0 || lat3 === 0 || lat4 === 0) {
-        alert("위도를 입력해주세요.");
+        alert(t("projectInfo.alert.alert7"));
       }
     }
     if (evalType === "부지기반평가") {
       if (lng1 === 0 || lng2 === 0 || lng3 === 0 || lng4 === 0) {
-        alert("경도를 입력해주세요.");
+        alert(t("projectInfo.alert.alert8"));
       }
     }
 
@@ -194,7 +200,7 @@ export default function ProjectInfoPage() {
                   </tr>
                 </tbody>
               </table>
-              {evalType === t("projectInfo.button2") ? (
+              {evalType === "부지기반평가" ? (
                 <>
                   <hr />
                   <table>
