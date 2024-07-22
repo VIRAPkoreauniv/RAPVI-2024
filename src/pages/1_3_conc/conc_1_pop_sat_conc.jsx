@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
 import * as S from "../../styles/Popup.style";
 
 const PopSatConc = () => {
+  const { t } = useTranslation("site");
   let data = window.opener.document.getElementById("satsoilconc").value;
   let output = [];
   let bodyRows = [];
@@ -25,7 +27,7 @@ const PopSatConc = () => {
 
   return (
     <S.Container>
-      <h2>오염농도 - 포화대(지하수)</h2>
+      <h2>{t("conc.pop.satConc")}</h2>
       <S.Table dangerouslySetInnerHTML={{ __html: bodyRows }}></S.Table>
     </S.Container>
   );

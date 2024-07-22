@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
 import * as S from "../../styles/Popup.style";
 
 const PopUnsatConc = () => {
+  const { t } = useTranslation("site");
   let data = window.opener.document.getElementById("unsatsoilconc").value;
   let output = [];
   let bodyRows = [];
@@ -25,7 +27,7 @@ const PopUnsatConc = () => {
 
   return (
     <S.Container>
-      <h2>오염농도 - 불포화대(토양)</h2>
+      <h2>{t("conc.pop.unsatConc")}</h2>
       <S.Table dangerouslySetInnerHTML={{ __html: bodyRows }}></S.Table>
     </S.Container>
   );

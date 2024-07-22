@@ -80,6 +80,11 @@ export default {
         },
       },
     },
+    pop: {
+      satConc: "오염농도 - 포화대(지하수)",
+      unsatConc: "오염농도 - 불포화대(토양)",
+      deffi: "오염농도 - Deffi",
+    },
     prev: "이전",
     next: "다음",
   },

@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
 import * as S from "../../styles/Popup.style";
 
 const PopDeffi = () => {
+  const { t } = useTranslation();
   let data = window.opener.document.getElementById("Deffi").value;
   let output = [];
   let bodyRows = [];
@@ -25,7 +27,7 @@ const PopDeffi = () => {
 
   return (
     <S.Container>
-      <h2>오염농도 - Deffi</h2>
+      <h2>{t("conc.pop.deffi")}</h2>
       <S.Table dangerouslySetInnerHTML={{ __html: bodyRows }}></S.Table>
     </S.Container>
   );
