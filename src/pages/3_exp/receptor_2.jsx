@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   BiChevronDown,
   BiChevronRight,
@@ -14,6 +15,7 @@ import * as S from "../../styles/Home.style";
 import ReceptorCheck from "./receptor_2_check";
 
 const ReceptorPoint = () => {
+  const { t } = useTranslation("site");
   const navigate = useNavigate();
 
   // 토글 관리
@@ -237,11 +239,9 @@ const ReceptorPoint = () => {
       .then((res) => {
         const message = res.data.message;
         if (message === "ZeroDivisionError") {
-          alert("계산 오류\nZeroDivisionError");
+          alert(t("receptor.alert.alert1"));
         } else if (message === "OverflowError") {
-          alert(
-            "계산 오류\nOverflowError\n서버의 계산 한계를 넘어섰습니다. eta를 10배 증가시켜 대입해보세요"
-          );
+          alert(t("receptor.alert.alert2"));
         } else {
           const Cia = res.data.Cia;
           const HQ = res.data.HQ;
@@ -263,7 +263,7 @@ const ReceptorPoint = () => {
       .catch((err) => {
         // console.log(err);
         if (err.message === "Request failed with status code 500") {
-          alert("입력값이 잘못되었습니다. (계산 오류)");
+          alert(t("receptor.alert.alert3"));
         }
       });
   };
@@ -309,14 +309,15 @@ const ReceptorPoint = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            위해성 평가 <BiChevronRight /> Input <BiChevronRight /> 수용체{" "}
-            <BiChevronRight /> 노출 특성
+            {t("receptor.pagePath.text1")} <BiChevronRight /> Input
+            <BiChevronRight /> {t("receptor.pagePath.text2")}
+            <BiChevronRight /> {t("receptor.pagePath.text3")}
           </S.PagePath>
-          <S.PageTitle>노출 특성</S.PageTitle>
+          <S.PageTitle>{t("receptor.pageTitle")}</S.PageTitle>
           <S.EvalArea>
             <S.EvalBox>
               <S.PaddingBox>
-                <h3>노출 특성 유형</h3>
+                <h3>{t("receptor.input.title")}</h3>
                 <ReceptorCheck setData={setData} expoProp={expoProp} />
                 <hr />
                 <h4 onClick={clickToggle}>
@@ -325,20 +326,17 @@ const ReceptorPoint = () => {
                   ) : (
                     <BiChevronUp />
                   )}
-                  입력 가능한 노출 특성 유형
+                  {t("receptor.table.title")}
                 </h4>
 
                 <div style={{ display: displayTable }}>
-                  <p>
-                    ※ 그리드의 각 셀에 해당하는 노출 특성은 아래 표에서 제시한
-                    번호로 표시해야 합니다.
-                  </p>
+                  <p>{t("receptor.table.info")}</p>
                   <br />
                   <Table>
                     <thead>
                       <tr>
-                        <Td>번호</Td>
-                        <Td>노출 특성</Td>
+                        <Td>{t("receptor.table.td1")}</Td>
+                        <Td>{t("receptor.table.td2")}</Td>
                         <Td>EF</Td>
                         <Td>ED</Td>
                         <Td>ET</Td>
@@ -465,7 +463,7 @@ const ReceptorPoint = () => {
                             style={{ padding: "10px 5px" }}
                             onClick={addRow}
                           >
-                            + 다른 노출 특성 유형 추가하기
+                            {t("receptor.table.more")}
                           </td>
                         </tr>
                       ) : null}
@@ -476,12 +474,11 @@ const ReceptorPoint = () => {
             </S.EvalBox>
             <S.BtnAreaTwin>
               <S.PrevBtn onClick={() => navigate("/input/pathway/found2")}>
-                이전
+                {t("receptor.prev")}
               </S.PrevBtn>
               <S.NextBtn
                 onClick={() => {
-                  data === false &&
-                    alert("노출 특성 유형 그리드 값을 입력해주세요.");
+                  data === false && alert(t("receptor.alert"));
                   data === true && saveData();
                 }}
               >
@@ -490,7 +487,7 @@ const ReceptorPoint = () => {
                     <BiLoader /> Loading...
                   </p>
                 ) : (
-                  <p>다음</p>
+                  <p>{t("receptor.next")}</p>
                 )}
               </S.NextBtn>
             </S.BtnAreaTwin>

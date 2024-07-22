@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import * as S from "../../styles/Home.style";
 
 const ReceptorCheck = (props) => {
+  const { t } = useTranslation("site");
   const [visibleBtn, setVisibleBtn] = useState("none");
   const [visibleArea, setVisibleArea] = useState("inline-block");
 
@@ -108,10 +110,12 @@ const ReceptorCheck = (props) => {
 
     if (numOfRows > 1 && numOfColumns > 1) {
       if (numOfRows !== numofRows || numOfColumns !== numofCols) {
-        alert("입력된 데이터의 크기가 올바르지 않습니다.");
+        alert(t("receptor.input.alert.alert1"));
         reset();
       } else {
-        setSizeCheck(`입력된 데이터 크기 : ${numOfRows} X ${numOfColumns} `);
+        setSizeCheck(
+          `${t("receptor.input.sizeCheck")} : ${numOfRows} X ${numOfColumns} `
+        );
         setVisibleBtn("inline-block");
         setVisibleArea("none");
         makeGrid(output, numOfRows, numOfColumns);
@@ -178,9 +182,7 @@ const ReceptorCheck = (props) => {
     for (let i = 0; i < str.length; i++) {
       let n = parseInt(str[i]);
       if (n > props.expoProp || n < 1) {
-        alert(
-          "잘못된 노출 특성 유형 번호가 포함되어 있습니다.\n하단의 입력 가능한 건물 기초 유형 번호를 확인한 후\n다시 시도해주세요."
-        );
+        alert(t("receptor.input.alert.alert2"));
         reset();
         break;
       }
@@ -203,14 +205,16 @@ const ReceptorCheck = (props) => {
         id="recep"
         onChange={constructTableFromPasetedInput}
         value={data}
-        placeholder="그리드 값을 입력하세요."
+        placeholder={t("receptor.input.placeholder")}
       ></textarea>
       <div style={{ display: visibleBtn }}>
         <S.BtnBox>
           <p dangerouslySetInnerHTML={{ __html: sizeCheck }}></p>
           <div>
-            <S.CheckBtn onClick={openData}>데이터 세부 확인</S.CheckBtn>
-            <S.CheckBtn onClick={reset}>다시 입력</S.CheckBtn>
+            <S.CheckBtn onClick={openData}>
+              {t("receptor.input.openData")}
+            </S.CheckBtn>
+            <S.CheckBtn onClick={reset}>{t("receptor.input.reset")}</S.CheckBtn>
           </div>
         </S.BtnBox>
         <S.GridAndLegend>
