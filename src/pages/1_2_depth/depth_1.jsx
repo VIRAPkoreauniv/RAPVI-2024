@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { BiChevronRight } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -8,6 +9,7 @@ import WaterLevel from "./depth_1_ check_waterlevel";
 import Elevation from "./depth_1_check_elevation";
 
 const Depth = () => {
+  const { t } = useTranslation("site");
   const navigate = useNavigate();
 
   const moveTo = () => {
@@ -27,10 +29,11 @@ const Depth = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            위해성 평가 <BiChevronRight /> Input <BiChevronRight /> 오염원{" "}
-            <BiChevronRight /> 오염심도
+            {t("depth.pagePath.text1")} <BiChevronRight /> Input{" "}
+            <BiChevronRight /> {t("depth.pagePath.text2")}
+            <BiChevronRight /> {t("depth.pagePath.text3")}
           </S.PagePath>
-          <S.PageTitle>오염심도</S.PageTitle>
+          <S.PageTitle>{t("depth.pageTitle")}</S.PageTitle>
           <S.EvalArea>
             <S.EvalBox>
               <GridBox>
@@ -45,9 +48,9 @@ const Depth = () => {
             </S.EvalBox>
             <S.BtnAreaTwin>
               <S.PrevBtn onClick={() => navigate("/input/source/coc2")}>
-                이전
+                {t("depth.prev")}
               </S.PrevBtn>
-              <S.NextBtn onClick={moveTo}>다음</S.NextBtn>
+              <S.NextBtn onClick={moveTo}>{t("depth.next")}</S.NextBtn>
             </S.BtnAreaTwin>
           </S.EvalArea>
         </S.EvalContent>

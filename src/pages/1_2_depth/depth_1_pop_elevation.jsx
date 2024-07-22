@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
 import * as S from "../../styles/Popup.style";
 
 const PopElevation = () => {
+  const { t } = useTranslation("site");
   let data = window.opener.document.getElementById("elevation").value;
   let output = [];
   let bodyRows = [];
@@ -25,7 +27,7 @@ const PopElevation = () => {
 
   return (
     <S.Container>
-      <h2>오염농도 - 표고</h2>
+      <h2>{t("depth.popElevation")}</h2>
       <S.Table dangerouslySetInnerHTML={{ __html: bodyRows }}></S.Table>
     </S.Container>
   );

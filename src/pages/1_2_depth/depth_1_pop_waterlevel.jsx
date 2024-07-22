@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
 import * as S from "../../styles/Home.style";
 
 const PopWaterLevel = () => {
+  const { t } = useTranslation("site");
   let data = window.opener.document.getElementById("waterlevel").value;
   let output = [];
   let bodyRows = [];
@@ -25,7 +27,7 @@ const PopWaterLevel = () => {
 
   return (
     <S.Container>
-      <h2>오염심도 - 지하수위</h2>
+      <h2>{t("depth.popWaterlevel")}</h2>
       <S.Table dangerouslySetInnerHTML={{ __html: bodyRows }}></S.Table>
     </S.Container>
   );

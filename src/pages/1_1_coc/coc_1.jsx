@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { BiChevronRight } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/header";
@@ -7,6 +8,7 @@ import { CHEMICAL_LIST } from "../../data/chemicals";
 import * as S from "../../styles/Home.style";
 
 const Coc = () => {
+  const { t } = useTranslation("site");
   const navigate = useNavigate();
 
   const [default_S, setDefault_S] = useState(0);
@@ -41,11 +43,9 @@ const Coc = () => {
   // null 이면 input disabled
   const [disabled_IUR, setDisabled_IUR] = useState("disabled");
   const [disabled_Rfc, setDisabled_Rfc] = useState("disabled");
-  const [disabled_Koc, setDisabled_Koc] = useState("disabled");
 
   const [typeIUR, setTypeIUR] = useState("number");
   const [typeRfc, setTypeRfc] = useState("number");
-  const [typeKoc, setTypeKoc] = useState("number");
 
   // 세션 값 있으면 그거 쓰기
   const getSession = () => {
@@ -88,17 +88,6 @@ const Coc = () => {
     } else if (value_Rfc !== null) {
       setDisabled_Rfc("");
       setTypeRfc("number");
-    }
-    if (
-      sessionStorage.getItem("value_Koc") === "NULL" ||
-      sessionStorage.getItem("value_Koc") === "0"
-    ) {
-      setDisabled_Koc("disabled");
-      setTypeKoc("text");
-      setValue_Koc("NULL");
-    } else if (value_Koc !== null) {
-      setDisabled_Koc("");
-      setTypeKoc("number");
     }
   };
 
@@ -7890,14 +7879,6 @@ const Coc = () => {
       setDisabled_Rfc("");
       setTypeRfc("number");
     }
-    if (value_Koc === null || value_Koc === "0") {
-      setDisabled_Koc("disabled");
-      setTypeKoc("text");
-      setValue_Koc("NULL");
-    } else if (value_Koc !== null && value_Koc !== "NULL") {
-      setDisabled_Koc("");
-      setTypeKoc("number");
-    }
   };
 
   const saveData = () => {
@@ -7917,7 +7898,6 @@ const Coc = () => {
     sessionStorage.setItem("value_foc", value_foc);
     sessionStorage.setItem("default_Koc", default_Koc);
     sessionStorage.setItem("default_foc", default_foc);
-
     sessionStorage.setItem("check_coc", true);
   };
 
@@ -7938,17 +7918,18 @@ const Coc = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            위해성 평가 <BiChevronRight /> Input <BiChevronRight /> 오염원{" "}
-            <BiChevronRight /> 오염물질
+            {t("coc.pagePath.text1")} <BiChevronRight /> Input
+            <BiChevronRight /> {t("coc.pagePath.text2")} <BiChevronRight />{" "}
+            {t("coc.pagePath.text3")}
           </S.PagePath>
-          <S.PageTitle>오염물질</S.PageTitle>
+          <S.PageTitle>{t("coc.pageTitle")}</S.PageTitle>
           <S.EvalArea>
             <form action="/input/source/depth2">
               <S.EvalBox>
                 <table>
                   <thead>
                     <tr>
-                      <S.Td>오염물질</S.Td>
+                      <S.Td>{t("coc.pageTitle")}</S.Td>
                       <S.Td>
                         <select
                           onChange={(e) => selectChem(e)}
@@ -7956,9 +7937,8 @@ const Coc = () => {
                           required
                         >
                           <option value="" selected style={{ display: option }}>
-                            오염물질을 선택해주세요.
+                            {t("coc.placeholder")}
                           </option>
-
                           {CHEMICAL_LIST.map((chem, index) => (
                             <option key={index} value={chem}>
                               {chem}
@@ -7970,17 +7950,7 @@ const Coc = () => {
                   </thead>
                 </table>
                 <S.PaddingBox>
-                  {chem === null ? (
-                    <h5>
-                      ※ 아래의 값들은 오염물질에 따라 자동으로 입력되며 필요 시
-                      사용자가 수정할 수 있습니다.
-                    </h5>
-                  ) : (
-                    <h5>
-                      ※ 아래의 값들은 {chem}에 따라 자동으로 입력되며 필요 시
-                      사용자가 수정할 수 있습니다.
-                    </h5>
-                  )}
+                  <h5>{t("coc.info", { chem: chem || "오염물질" })}</h5>
                   <table>
                     <tbody>
                       <tr>
@@ -7988,11 +7958,11 @@ const Coc = () => {
                       </tr>
                       <tr>
                         <td></td>
-                        <S.Td>기호</S.Td>
-                        <S.Td>단위</S.Td>
+                        <S.Td>{t("coc.table.td1")}</S.Td>
+                        <S.Td>{t("coc.table.td2")}</S.Td>
                       </tr>
                       <tr>
-                        <td>순수 성분 수용성</td>
+                        <S.Td>{t("coc.table.td3")}</S.Td>
                         <S.Td>S</S.Td>
                         <S.Td>mg/L</S.Td>
                         <S.Td>
@@ -8008,7 +7978,7 @@ const Coc = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>표준 온도(25℃)의 헨리 상수</td>
+                        <S.Td>{t("coc.table.td4")}</S.Td>
                         <S.Td>Hc</S.Td>
                         <S.Td>atm-m3/mol</S.Td>
                         <S.Td>
@@ -8022,7 +7992,7 @@ const Coc = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>공기에서의 확산성</td>
+                        <S.Td>{t("coc.table.td5")}</S.Td>
                         <S.Td>Dair</S.Td>
                         <S.Td>cm2/s</S.Td>
                         <S.Td>
@@ -8036,7 +8006,7 @@ const Coc = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>물에서의 확산성</td>
+                        <S.Td>{t("coc.table.td6")}</S.Td>
                         <S.Td>Dwater</S.Td>
                         <S.Td>cm2/s</S.Td>
                         <S.Td>
@@ -8050,7 +8020,7 @@ const Coc = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>정상 끓는 점에서의 기화 엔탈피</td>
+                        <S.Td>{t("coc.table.td7")}</S.Td>
                         <S.Td>DHvb</S.Td>
                         <S.Td>cal/mol</S.Td>
                         <S.Td>
@@ -8064,7 +8034,7 @@ const Coc = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>임계 온도</td>
+                        <S.Td>{t("coc.table.td8")}</S.Td>
                         <S.Td>Tc</S.Td>
                         <S.Td>K</S.Td>
                         <S.Td>
@@ -8078,7 +8048,7 @@ const Coc = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>정상 끓는 점</td>
+                        <S.Td>{t("coc.table.td9")}</S.Td>
                         <S.Td>Tb</S.Td>
                         <S.Td>K</S.Td>
                         <S.Td>
@@ -8092,7 +8062,7 @@ const Coc = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>화합물의 분자량</td>
+                        <S.Td>{t("coc.table.td10")}</S.Td>
                         <S.Td>MW</S.Td>
                         <S.Td>g/mol</S.Td>
                         <S.Td>
@@ -8106,7 +8076,7 @@ const Coc = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>IUR</td>
+                        <S.Td>IUR</S.Td>
                         <S.Td></S.Td>
                         <S.Td>(ug/m3)^-1</S.Td>
                         <S.Td>
@@ -8121,7 +8091,7 @@ const Coc = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>RfC</td>
+                        <S.Td>RfC</S.Td>
                         <S.Td></S.Td>
                         <S.Td>mg/m3</S.Td>
                         <S.Td>
@@ -8136,7 +8106,7 @@ const Coc = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>Mut</td>
+                        <S.Td>Mut</S.Td>
                         <S.Td></S.Td>
                         <S.Td></S.Td>
                         <S.Td>
@@ -8155,10 +8125,11 @@ const Coc = () => {
                   </table>
                 </S.PaddingBox>
               </S.EvalBox>
-
               <S.BtnAreaTwin>
-                <S.PrevBtn onClick={() => navigate(-1)}>이전</S.PrevBtn>
-                <S.NextBtn onClick={saveData}>다음</S.NextBtn>
+                <S.PrevBtn onClick={() => navigate(-1)}>
+                  {t("coc.prev")}
+                </S.PrevBtn>
+                <S.NextBtn onClick={saveData}>{t("coc.next")}</S.NextBtn>
               </S.BtnAreaTwin>
             </form>
           </S.EvalArea>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { BiChevronRight } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/header";
@@ -8,6 +9,7 @@ import SatConc from "./conc_1_check_sat_conc";
 import UnsatConc from "./conc_1_check_unsat_conc";
 
 const Concentration = () => {
+  const { t } = useTranslation("site");
   const [temp, setTemp] = useState(15);
   const [saturated, setSaturated] = useState(false);
   const [unsaturated, setUnsaturated] = useState(false);
@@ -42,7 +44,7 @@ const Concentration = () => {
     } else if (saturated === false && unsaturated === true) {
       type = "unsat";
     } else {
-      alert("오염원 매체를 선택해주세요.");
+      alert(t("conc.alert"));
     }
     sessionStorage.setItem("conc_type", type);
 
@@ -112,15 +114,16 @@ const Concentration = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            위해성 평가 <BiChevronRight /> Input <BiChevronRight /> 오염원{" "}
-            <BiChevronRight /> 오염농도
+            {t("conc.pagePath.text1")} <BiChevronRight /> Input
+            <BiChevronRight /> {t("conc.pagePath.text2")}
+            <BiChevronRight /> {t("conc.pagePath.text3")}
           </S.PagePath>
-          <S.PageTitle>오염농도</S.PageTitle>
+          <S.PageTitle>{t("conc.pageTitle")}</S.PageTitle>
           <S.EvalArea>
             <table>
               <thead>
                 <tr>
-                  <S.Td>오염원 매체 선택</S.Td>
+                  <S.Td>{t("conc.select.title")}</S.Td>
                   <S.Td>
                     <label>
                       <input
@@ -129,7 +132,7 @@ const Concentration = () => {
                         value="포화대"
                         onClick={getCheckbox}
                       />
-                      포화대(지하수)
+                      {t("conc.select.sat")}
                     </label>
                   </S.Td>
                   <S.Td>
@@ -140,7 +143,7 @@ const Concentration = () => {
                         value="불포화대"
                         onClick={getCheckbox}
                       />
-                      불포화대(토양)
+                      {t("conc.select.unsat")}
                     </label>
                   </S.Td>
                 </tr>
@@ -150,26 +153,23 @@ const Concentration = () => {
             <S.EvalBox>
               <S.PaddingBox>
                 {saturated === false && unsaturated === false ? (
-                  <p>※ 오염원 매체를 선택해주세요</p>
+                  <p>{t("conc.info")}</p>
                 ) : null}
-
                 {saturated === true ? (
                   <>
-                    <h3>오염원 매체 : 포화대(지하수)</h3>
-                    <p>
-                      ※ 불포화대(토양) 선택 시 지하수 온도는 15℃로 고정됩니다.
-                    </p>
+                    <h3>{t("conc.sat.title")}</h3>
+                    <p>{t("conc.sat.info")}</p>
                     <table>
                       <thead>
                         <tr>
                           <td></td>
-                          <S.Td>기호</S.Td>
-                          <S.Td>단위</S.Td>
+                          <S.Td>{t("conc.sat.table.td1")}</S.Td>
+                          <S.Td>{t("conc.sat.table.td2")}</S.Td>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td>지하수 온도</td>
+                          <td>{t("conc.sat.table.td3")}</td>
                           <S.Td>Ts</S.Td>
                           <S.Td>℃</S.Td>
                           <S.Td>
@@ -185,7 +185,7 @@ const Concentration = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <td>매체 농도</td>
+                          <td>{t("conc.sat.table.td4")}</td>
                           <S.Td>Cmedium</S.Td>
                           <S.Td>ug/L</S.Td>
                           <S.Td>
@@ -198,18 +198,18 @@ const Concentration = () => {
                 ) : null}
                 {unsaturated === true ? (
                   <>
-                    <h3>오염원 매체 : 불포화대(토양)</h3>
+                    <h3>{t("conc.unsat.title")}</h3>
                     <table>
                       <thead>
                         <tr>
                           <td></td>
-                          <S.Td>기호</S.Td>
-                          <S.Td>단위</S.Td>
+                          <S.Td>{t("conc.unsat.table.td1")}</S.Td>
+                          <S.Td>{t("conc.unsat.table.td2")}</S.Td>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td>매체 농도</td>
+                          <td>{t("conc.unsat.table.td3")}</td>
                           <S.Td>Cmedium</S.Td>
                           <S.Td>ug/L</S.Td>
                           <S.Td>
@@ -219,28 +219,25 @@ const Concentration = () => {
                       </tbody>
                     </table>
                     <hr />
-                    <h3>토양흡착특성</h3>
-                    <h5>
-                      ※ koc와 foc의 값은 오염물질에 따라 자동으로 입력될 수
-                      있으며, 필요 시 사용자가 수정할 수 있습니다.
-                    </h5>
+                    <h3>{t("conc.unsat.soil.title")}</h3>
+                    <h5>{t("conc.unsat.soil.info")}</h5>
                     <table>
                       <thead>
                         <tr>
                           <td></td>
-                          <S.Td>기호</S.Td>
-                          <S.Td>단위</S.Td>
+                          <S.Td>{t("conc.unsat.soil.table.td1")}</S.Td>
+                          <S.Td>{t("conc.unsat.soil.table.td2")}</S.Td>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td>토양-물 분배계수</td>
+                          <td>{t("conc.unsat.soil.table.td3")}</td>
                           <S.Td>kd</S.Td>
                           <S.Td></S.Td>
                           <S.Td>= koc x foc</S.Td>
                         </tr>
                         <tr>
-                          <td>탄소-물 분배계수</td>
+                          <td>{t("conc.unsat.soil.table.td4")}</td>
                           <S.Td>koc</S.Td>
                           <S.Td>g-H2O/g-C</S.Td>
                           <S.Td>
@@ -252,7 +249,7 @@ const Concentration = () => {
                           </S.Td>
                         </tr>
                         <tr>
-                          <td>유기물 분배계수</td>
+                          <td>{t("conc.unsat.soil.table.td5")}</td>
                           <S.Td>foc</S.Td>
                           <S.Td>g-C/g-soil</S.Td>
                           <S.Td>
@@ -271,9 +268,9 @@ const Concentration = () => {
             </S.EvalBox>
             <S.BtnAreaTwin>
               <S.PrevBtn onClick={() => navigate("/input/source/depth2")}>
-                이전
+                {t("conc.prev")}
               </S.PrevBtn>
-              <S.NextBtn onClick={moveTo}>다음</S.NextBtn>
+              <S.NextBtn onClick={moveTo}>{t("conc.next")}</S.NextBtn>
             </S.BtnAreaTwin>
           </S.EvalArea>
         </S.EvalContent>
