@@ -1,12 +1,14 @@
-import React, { useEffect, useState, useCallback } from "react";
+import { useJsApiLoader } from "@react-google-maps/api";
+import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 import * as S from "./PDFstyle";
 import makePDF from "./makePDF";
 import SiteHeader from "./siteInputHeader";
 import SiteOutputHeader from "./siteOutputHeader";
-import { GoogleMap, useJsApiLoader, Polygon } from "@react-google-maps/api";
-import { useLocation } from "react-router-dom";
 
 const SitePdf = () => {
+  const { t } = useTranslation("pdf");
   const location = useLocation();
 
   //오염원 - 오염심도 - 지하수위
@@ -43,7 +45,7 @@ const SitePdf = () => {
     let firstCol = "white";
     let color = "white";
 
-    rawRows.forEach((rawRows, idx) => {
+    rawRows.forEach((rawRows) => {
       let rawRowArray = rawRows.split("\t");
       columnList.push(rawRowArray.length);
       w_output.push(rawRowArray);
@@ -156,7 +158,7 @@ const SitePdf = () => {
     let firstCol = "white";
     let color = "white";
 
-    rawRows.forEach((rawRows, idx) => {
+    rawRows.forEach((rawRows) => {
       let rawRowArray = rawRows.split("\t");
       columnList.push(rawRowArray.length);
       e_output.push(rawRowArray);
@@ -269,7 +271,7 @@ const SitePdf = () => {
     let firstCol = "white";
     let color = "white";
 
-    rawRows.forEach((rawRows, idx) => {
+    rawRows.forEach((rawRows) => {
       let rawRowArray = rawRows.split("\t");
       columnList.push(rawRowArray.length);
       c_output.push(rawRowArray);
@@ -499,7 +501,7 @@ const SitePdf = () => {
     let firstCol = "white";
     let color = "white";
 
-    rawRows.forEach((rawRows, idx) => {
+    rawRows.forEach((rawRows) => {
       let rawRowArray = rawRows.split("\t");
       columnList.push(rawRowArray.length);
       f_output.push(rawRowArray);
@@ -529,9 +531,6 @@ const SitePdf = () => {
         numArr.push(num);
       });
     });
-    let rangeMin = Math.min(...numArr);
-    let rangeMax = Math.max(...numArr);
-    let gap = (rangeMax - rangeMin) / 10;
 
     for (let i = 0; i < arr.length; i++) {
       tag += "<tr>";
@@ -612,7 +611,7 @@ const SitePdf = () => {
     let firstCol = "white";
     let color = "white";
 
-    rawRows.forEach((rawRows, idx) => {
+    rawRows.forEach((rawRows) => {
       let rawRowArray = rawRows.split("\t");
       columnList.push(rawRowArray.length);
       r_output.push(rawRowArray);
@@ -854,7 +853,7 @@ const SitePdf = () => {
   return (
     <div className="div_container">
       <S.PdfBtn>
-        <S.PDFBtn onClick={onClick}>PDF 출력/저장</S.PDFBtn>
+        <S.PDFBtn onClick={onClick}>{t("save")}</S.PDFBtn>
       </S.PdfBtn>
       <S.Layout className="div_paper">
         <S.A4>
@@ -863,12 +862,12 @@ const SitePdf = () => {
             <S.Table>
               <thead>
                 <tr>
-                  <S.TdHead colSpan={3}>오염원-오염물질</S.TdHead>
-                  <S.TdHead>단위</S.TdHead>
-                  <S.TdHead>입력 값</S.TdHead>
+                  <S.TdHead colSpan={3}>{t("site.input.coc.title")}</S.TdHead>
+                  <S.TdHead>{t("site.input.coc.table.head.text1")}</S.TdHead>
+                  <S.TdHead>{t("site.input.coc.table.head.text2")}</S.TdHead>
                 </tr>
                 <tr>
-                  <S.TdHead>선택 물질</S.TdHead>
+                  <S.TdHead>{t("site.input.coc.table.head.text3")}</S.TdHead>
                   <S.TdBody colSpan={6}>
                     {sessionStorage.getItem("chem")}
                   </S.TdBody>
@@ -877,25 +876,33 @@ const SitePdf = () => {
               <tbody>
                 <tr>
                   <S.TdBody2>S</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>순수 성분 수용성</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.coc.table.body.S")}
+                  </S.TdBody3>
                   <S.TdBody4>mg/L</S.TdBody4>
                   <S.TdBody4>{sessionStorage.getItem("value_S")}</S.TdBody4>
                 </tr>
                 <tr>
                   <S.TdBody2>Hc</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>표준 온도(25℃)의 헨리 상수</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.coc.table.body.Hc")}
+                  </S.TdBody3>
                   <S.TdBody4>atm-m3/mol</S.TdBody4>
                   <S.TdBody4>{sessionStorage.getItem("value_Hc")}</S.TdBody4>
                 </tr>
                 <tr>
                   <S.TdBody2>Dair</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>공기에서의 확산성</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.coc.table.body.Dair")}
+                  </S.TdBody3>
                   <S.TdBody4>cm2/s</S.TdBody4>
                   <S.TdBody4>{sessionStorage.getItem("value_Dair")}</S.TdBody4>
                 </tr>
                 <tr>
                   <S.TdBody2>Dwater</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>물에서의 확산성</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.coc.table.body.Dwater")}
+                  </S.TdBody3>
                   <S.TdBody4>cm2/s</S.TdBody4>
                   <S.TdBody4>
                     {sessionStorage.getItem("value_Dwater")}
@@ -904,32 +911,32 @@ const SitePdf = () => {
                 <tr>
                   <S.TdBody2>DHvb</S.TdBody2>
                   <S.TdBody3 colSpan={2}>
-                    정상 끓는 점에서의 기화 엔탈피
+                    {t("site.input.coc.table.body.DHvb")}
                   </S.TdBody3>
                   <S.TdBody4>cal/mol</S.TdBody4>
                   <S.TdBody4>{sessionStorage.getItem("value_DHvb")}</S.TdBody4>
                 </tr>
                 <tr>
                   <S.TdBody2>Tc</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>임계 온도</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.coc.table.body.Tc")}
+                  </S.TdBody3>
                   <S.TdBody4>K</S.TdBody4>
                   <S.TdBody4>{sessionStorage.getItem("value_Tc")}</S.TdBody4>
                 </tr>
                 <tr>
                   <S.TdBody2>Tb</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>Tb</S.TdBody3>
-                  <S.TdBody4>K</S.TdBody4>
-                  <S.TdBody4>{sessionStorage.getItem("value_Tb")}</S.TdBody4>
-                </tr>
-                <tr>
-                  <S.TdBody2>Tb</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>정상 끓는 점</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.coc.table.body.Tb")}
+                  </S.TdBody3>
                   <S.TdBody4>K</S.TdBody4>
                   <S.TdBody4>{sessionStorage.getItem("value_Tb")}</S.TdBody4>
                 </tr>
                 <tr>
                   <S.TdBody2>MW</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>화합물의 분자량</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.coc.table.body.MW")}
+                  </S.TdBody3>
                   <S.TdBody4>g/mol</S.TdBody4>
                   <S.TdBody4>{sessionStorage.getItem("value_MW")}</S.TdBody4>
                 </tr>
@@ -941,13 +948,17 @@ const SitePdf = () => {
                 </tr>
                 <tr>
                   <S.TdBody2>RfC</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>일일 호흡 노출 허용농도</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.coc.table.body.RfC")}
+                  </S.TdBody3>
                   <S.TdBody4>mg/m3</S.TdBody4>
                   <S.TdBody4>{sessionStorage.getItem("value_Rfc")}</S.TdBody4>
                 </tr>
                 <tr>
                   <S.TdBody2>Mut</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>돌연변이 관여 여부</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.coc.table.body.Mut")}
+                  </S.TdBody3>
                   <S.TdBody4>-</S.TdBody4>
                   <S.TdBody4>{sessionStorage.getItem("value_Mut")}</S.TdBody4>
                 </tr>
@@ -961,14 +972,16 @@ const SitePdf = () => {
             <S.Table>
               <thead>
                 <tr>
-                  <S.TdHead>오염원 - 오염심도</S.TdHead>
-                  <S.TdHead>단위</S.TdHead>
-                  <S.TdHead>입력 값</S.TdHead>
+                  <S.TdHead>{t("site.input.detph.title")}</S.TdHead>
+                  <S.TdHead>{t("site.input.detph.table.head.text1")}</S.TdHead>
+                  <S.TdHead>{t("site.input.detph.table.head.text2")}</S.TdHead>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <S.TdBody>지하수위</S.TdBody>
+                  <S.TdBody>
+                    {t("site.input.detph.table.body.waterlevel")}
+                  </S.TdBody>
                   <S.TdBody>m</S.TdBody>
                   <S.TdBody></S.TdBody>
                 </tr>
@@ -982,7 +995,7 @@ const SitePdf = () => {
                   <S.TdBody3 colSpan={2}>
                     <div>
                       <S.Legend>
-                        <h5>오염심도 (최고심도 = 100 기준)</h5>
+                        <h5>{t("site.input.detph.table.body.legend")}</h5>
                       </S.Legend>
                       <S.Legend>
                         <S.LegendItem
@@ -1068,7 +1081,9 @@ const SitePdf = () => {
                   </S.TdBody3>
                 </tr>
                 <tr>
-                  <S.TdBody>표고</S.TdBody>
+                  <S.TdBody>
+                    {t("site.input.detph.table.body.elevation")}
+                  </S.TdBody>
                   <S.TdBody>m</S.TdBody>
                   <S.TdBody></S.TdBody>
                 </tr>
@@ -1082,7 +1097,7 @@ const SitePdf = () => {
                   <S.TdBody3 colSpan={2}>
                     <div>
                       <S.Legend>
-                        <h5>오염심도 (최고심도 = 100 기준)</h5>
+                        <h5>{t("site.input.detph.table.body.legend")}</h5>
                       </S.Legend>
                       <S.Legend>
                         <S.LegendItem
@@ -1177,19 +1192,21 @@ const SitePdf = () => {
             <S.Table>
               <thead>
                 <tr>
-                  <S.TdHead colSpan={3}>오염원 - 오염농도</S.TdHead>
-                  <S.TdHead>단위</S.TdHead>
-                  <S.TdHead>입력 값</S.TdHead>
+                  <S.TdHead colSpan={3}>{t("site.input.conc.title")}</S.TdHead>
+                  <S.TdHead>{t("site.input.conc.table.head.text1")}</S.TdHead>
+                  <S.TdHead>{t("site.input.conc.table.head.text2")}</S.TdHead>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <S.TdBody>오염원</S.TdBody>
+                  <S.TdBody>{t("site.input.conc.table.body.source")}</S.TdBody>
                   <S.TdBody colSpan={4}></S.TdBody>
                 </tr>
                 <tr>
                   <S.TdBody2>Ts</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>지하수 온도</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.conc.table.body.Ts")}
+                  </S.TdBody3>
                   <S.TdBody4>℃</S.TdBody4>
                   {sessionStorage.getItem("Ts") !== "15" ? (
                     <S.TdBody4>15</S.TdBody4>
@@ -1199,19 +1216,25 @@ const SitePdf = () => {
                 </tr>
                 <tr>
                   <S.TdBody2>koc</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>탄소-물 분배계수</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.conc.table.body.koc")}
+                  </S.TdBody3>
                   <S.TdBody4>g-H2O/g-C</S.TdBody4>
                   <S.TdBody4>{sessionStorage.getItem("value_Koc")}</S.TdBody4>
                 </tr>
                 <tr>
                   <S.TdBody2>foc</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>유기물 분배계수</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.conc.table.body.foc")}
+                  </S.TdBody3>
                   <S.TdBody4>g-C/g-Soil</S.TdBody4>
                   <S.TdBody4>{sessionStorage.getItem("value_foc")}</S.TdBody4>
                 </tr>
                 <tr>
                   <S.TdBody2>Cmedium</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>매체 농도</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.conc.table.body.Cmedium")}
+                  </S.TdBody3>
                   <S.TdBody4>μg/L</S.TdBody4>
                   <S.TdBody4></S.TdBody4>
                 </tr>
@@ -1225,7 +1248,7 @@ const SitePdf = () => {
                   <S.TdBody3 colSpan={4}>
                     <div>
                       <S.Legend>
-                        <h5>오염농도 (최고농도 = 100 기준)</h5>
+                        <h5>{t("site.input.conc.table.body.legend")}</h5>
                       </S.Legend>
                       <S.Legend>
                         <S.LegendItem
@@ -1320,12 +1343,12 @@ const SitePdf = () => {
             <S.Table>
               <thead>
                 <tr>
-                  <S.TdHead colSpan={3}>경로 - 지질 매체</S.TdHead>
-                  <S.TdHead>단위</S.TdHead>
-                  <S.TdHead>입력 값</S.TdHead>
+                  <S.TdHead colSpan={3}>{t("site.input.geo.title")}</S.TdHead>
+                  <S.TdHead>{t("site.input.geo.table.head.text1")}</S.TdHead>
+                  <S.TdHead>{t("site.input.geo.table.head.text2")}</S.TdHead>
                 </tr>
                 <tr>
-                  <S.TdHead>지질매체</S.TdHead>
+                  <S.TdHead>{t("site.input.geo.table.body.geo")}</S.TdHead>
                   <S.TdBody colSpan={6}>
                     {sessionStorage.getItem("Geo_Type") === "1" && "Clay"}
                     {sessionStorage.getItem("Geo_Type") === "2" && "Clay Loam"}
@@ -1350,47 +1373,57 @@ const SitePdf = () => {
               <tbody>
                 <tr>
                   <S.TdBody2>nSA</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>지층 전체 공극률</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.geo.table.body.nSA")}
+                  </S.TdBody3>
                   <S.TdBody4>-</S.TdBody4>
                   <S.TdBody4>{nSA}</S.TdBody4>
                 </tr>
                 <tr>
                   <S.TdBody2>nwSA</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>지층 물이 채워진 공극률</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.geo.table.body.nwSA")}
+                  </S.TdBody3>
                   <S.TdBody4>-</S.TdBody4>
                   <S.TdBody4>{nwSA}</S.TdBody4>
                 </tr>
                 <tr>
                   <S.TdBody2>rhoSA</S.TdBody2>
                   <S.TdBody3 colSpan={2}>
-                    지층 부피 밀도 (Bulk Density)
+                    {t("site.input.geo.table.body.rhoSA")}
                   </S.TdBody3>
                   <S.TdBody4>g/cm3</S.TdBody4>
                   <S.TdBody4>{rhoSA}</S.TdBody4>
                 </tr>
                 <tr>
                   <S.TdBody2>hcz</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>모세관대의 높이</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.geo.table.body.hcz")}
+                  </S.TdBody3>
                   <S.TdBody4>m</S.TdBody4>
                   <S.TdBody4>{hcz}</S.TdBody4>
                 </tr>
                 <tr>
                   <S.TdBody2>ncz</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>모세관 영역 전체 공극률</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.geo.table.body.ncz")}
+                  </S.TdBody3>
                   <S.TdBody4>-</S.TdBody4>
                   <S.TdBody4>{ncz}</S.TdBody4>
                 </tr>
                 <tr>
                   <S.TdBody2>nwcz</S.TdBody2>
                   <S.TdBody3 colSpan={2}>
-                    모세관 영역 물이 채워진 공극률
+                    {t("site.input.geo.table.body.nwcz")}
                   </S.TdBody3>
                   <S.TdBody4>-</S.TdBody4>
                   <S.TdBody4>{nwcz}</S.TdBody4>
                 </tr>
                 <tr>
                   <S.TdBody2>DeffT</S.TdBody2>
-                  <S.TdBody3 colSpan={2}>다중 층에서의 확산 계수</S.TdBody3>
+                  <S.TdBody3 colSpan={2}>
+                    {t("site.input.geo.table.body.DeffT")}
+                  </S.TdBody3>
                   <S.TdBody4>-</S.TdBody4>
                   <S.TdBody4>{sessionStorage.getItem("DeffT")}</S.TdBody4>
                 </tr>
@@ -1404,12 +1437,16 @@ const SitePdf = () => {
             <S.Table>
               <thead>
                 <tr>
-                  <S.TdHead colSpan={3}>경로 - 건물</S.TdHead>
-                  <S.TdHead colSpan={4}>단위</S.TdHead>
-                  <S.TdHead colSpan={4}>입력 값</S.TdHead>
+                  <S.TdHead colSpan={3}>{t("site.input.found.title")}</S.TdHead>
+                  <S.TdHead colSpan={4}>
+                    {t("site.input.found.table.head.text1")}
+                  </S.TdHead>
+                  <S.TdHead colSpan={4}>
+                    {t("site.input.found.table.head.text2")}
+                  </S.TdHead>
                 </tr>
                 <tr>
-                  <S.TdHead>건물</S.TdHead>
+                  <S.TdHead>{t("site.input.found.table.body.found")}</S.TdHead>
                   <S.TdBody colSpan={10}></S.TdBody>
                 </tr>
               </thead>
@@ -1568,8 +1605,8 @@ const SitePdf = () => {
                   </S.TdBody3>
                 </tr>
                 <tr>
-                  <S.TdBody>번호</S.TdBody>
-                  <S.TdBody>건물기초 유형</S.TdBody>
+                  <S.TdBody>{t("site.input.found.table.head.text3")}</S.TdBody>
+                  <S.TdBody>{t("site.input.found.table.head.text4")}</S.TdBody>
                   <S.TdBody>LB</S.TdBody>
                   <S.TdBody>Lf</S.TdBody>
                   <S.TdBody>eta</S.TdBody>
@@ -1810,12 +1847,20 @@ const SitePdf = () => {
             <S.Table>
               <thead>
                 <tr>
-                  <S.TdHead colSpan={3}>수용체 - 노출 특성</S.TdHead>
-                  <S.TdHead>단위</S.TdHead>
-                  <S.TdHead>입력 값</S.TdHead>
+                  <S.TdHead colSpan={3}>
+                    {t("site.input.receptor.title")}
+                  </S.TdHead>
+                  <S.TdHead>
+                    {t("site.input.receptor.table.head.text1")}
+                  </S.TdHead>
+                  <S.TdHead>
+                    {t("site.input.receptor.table.head.text2")}
+                  </S.TdHead>
                 </tr>
                 <tr>
-                  <S.TdHead>노출특성</S.TdHead>
+                  <S.TdHead>
+                    {t("site.input.receptor.table.head.text4")}
+                  </S.TdHead>
                   <S.TdBody colSpan={6}></S.TdBody>
                 </tr>
               </thead>
@@ -1879,8 +1924,12 @@ const SitePdf = () => {
                   </S.TdBody3>
                 </tr>
                 <tr>
-                  <S.TdBody>번호</S.TdBody>
-                  <S.TdBody>노출 특성</S.TdBody>
+                  <S.TdBody>
+                    {t("site.input.receptor.table.head.text3")}
+                  </S.TdBody>
+                  <S.TdBody>
+                    {t("site.input.receptor.table.head.text4")}
+                  </S.TdBody>
                   <S.TdBody>EF</S.TdBody>
                   <S.TdBody>ED</S.TdBody>
                   <S.TdBody>ET</S.TdBody>
@@ -1933,7 +1982,7 @@ const SitePdf = () => {
         <S.A4>
           <SiteOutputHeader />
           <S.Box>
-            <h2>1. 실내 오염 농도</h2>
+            <h2>1. {t("site.output.result1")}</h2>
             <S.Table>
               <tr>
                 <S.TdBody2>
@@ -1995,7 +2044,7 @@ const SitePdf = () => {
                 </S.TdBody3>
               </tr>
             </S.Table>
-            <h2>2. 증기침입에 의한 발암 위해도</h2>
+            <h2>2. {t("site.output.result2")}</h2>
             <S.Table>
               <tr>
                 <S.TdBody2>
@@ -2063,7 +2112,7 @@ const SitePdf = () => {
         <S.A4>
           <SiteOutputHeader />
           <S.Box>
-            <h2>3. 증기침입에 의한 비발암 위해도</h2>
+            <h2>3. {t("site.output.result3")}</h2>
             <S.Table>
               <tr>
                 <S.TdBody2>
