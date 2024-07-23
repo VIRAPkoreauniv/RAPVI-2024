@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { BiChevronRight } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/header";
@@ -5,6 +6,7 @@ import Menu from "../../components/menu";
 import * as S from "../../styles/Home.style";
 
 const TExp1 = () => {
+  const { t } = useTranslation("basicAssessment");
   const navigate = useNavigate();
 
   return (
@@ -14,17 +16,17 @@ const TExp1 = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            튜토리얼 <BiChevronRight /> Input <BiChevronRight /> 수용체{" "}
-            <BiChevronRight /> 노출 특성
+            {t("tutorial.title")} <BiChevronRight /> Input <BiChevronRight />{" "}
+            {t("receptor.pagePath.text2")} <BiChevronRight />{" "}
+            {t("receptor.pagePath.text3")}
           </S.PagePath>
-          <S.PageTitle>노출 특성</S.PageTitle>
-
+          <S.PageTitle>{t("receptor.pageTitle")}</S.PageTitle>
           <S.EvalArea>
             <S.EvalBox>
               <S.PaddingBox>
                 <table>
                   <thead>
-                    <td>노출 특성 유형</td>
+                    <td>{t("receptor.select.title")}</td>
                     <S.Td>Exposure_Type</S.Td>
                     <S.Td>
                       <select>
@@ -33,20 +35,18 @@ const TExp1 = () => {
                     </S.Td>
                   </thead>
                 </table>
-                <h5>
-                  ※ 아래의 값은 노출 특성 유형에 따라 자동으로 입력됩니다.
-                </h5>
+                <h5>{t("receptor.info")}</h5>
                 <table>
                   <thead>
                     <tr>
                       <td></td>
-                      <S.Td>기호</S.Td>
-                      <S.Td>단위</S.Td>
+                      <S.Td>{t("receptor.table.td1")}</S.Td>
+                      <S.Td>{t("receptor.table.td2")}</S.Td>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>노출 기간</td>
+                      <td>{t("receptor.table.td3")}</td>
                       <S.Td>EF</S.Td>
                       <S.Td>yrs</S.Td>
                       <S.Td>
@@ -54,7 +54,7 @@ const TExp1 = () => {
                       </S.Td>
                     </tr>
                     <tr>
-                      <td>노출 빈도</td>
+                      <td>{t("receptor.table.td4")}</td>
                       <S.Td>ED</S.Td>
                       <S.Td>days/yr</S.Td>
                       <S.Td>
@@ -62,7 +62,7 @@ const TExp1 = () => {
                       </S.Td>
                     </tr>
                     <tr>
-                      <td>노출 시간</td>
+                      <td>{t("receptor.table.td5")}</td>
                       <S.Td>ET</S.Td>
                       <S.Td>hrs/day</S.Td>
                       <S.Td>
@@ -70,7 +70,7 @@ const TExp1 = () => {
                       </S.Td>
                     </tr>
                     <tr>
-                      <td>발암물질 평균 노출 시간</td>
+                      <td>{t("receptor.table.td6")}</td>
                       <S.Td>ATc</S.Td>
                       <S.Td>hr</S.Td>
                       <S.Td>
@@ -78,7 +78,7 @@ const TExp1 = () => {
                       </S.Td>
                     </tr>
                     <tr>
-                      <td>비발암물질 평균 노출 시간</td>
+                      <td>{t("receptor.table.td7")}</td>
                       <S.Td>ATnc</S.Td>
                       <S.Td>hr</S.Td>
                       <S.Td>
@@ -91,10 +91,10 @@ const TExp1 = () => {
             </S.EvalBox>
             <S.BtnAreaTwin>
               <S.PrevBtn onClick={() => navigate("/tutorial/1/found")}>
-                이전
+                {t("receptor.prev")}
               </S.PrevBtn>
               <S.NextBtn onClick={() => navigate("/tutorial/1/output")}>
-                다음
+                {t("receptor.next")}
               </S.NextBtn>
             </S.BtnAreaTwin>
           </S.EvalArea>

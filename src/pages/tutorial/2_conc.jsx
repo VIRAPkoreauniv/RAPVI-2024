@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { BiChevronRight } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/header";
@@ -7,6 +8,7 @@ import * as S from "../../styles/Home.style";
 import SatConc from "./2_conc_check";
 
 const TConc2 = () => {
+  const { t } = useTranslation("site");
   const [temp, setTemp] = useState(15);
   const [saturated, setSaturated] = useState(false);
   const [unsaturated, setUnsaturated] = useState(false);
@@ -71,15 +73,16 @@ const TConc2 = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            튜토리얼 <BiChevronRight /> Input <BiChevronRight /> 오염원{" "}
-            <BiChevronRight /> 오염농도
+            {t("tutorial.title")} <BiChevronRight /> Input <BiChevronRight />{" "}
+            {t("conc.pagePath.text2")} <BiChevronRight />{" "}
+            {t("conc.pagePath.text3")}
           </S.PagePath>
-          <S.PageTitle>오염농도</S.PageTitle>
+          <S.PageTitle>{t("conc.pageTitle")}</S.PageTitle>
           <S.EvalArea>
             <table>
               <thead>
                 <tr>
-                  <S.Td>오염원 매체 선택</S.Td>
+                  <S.Td>{t("conc.select.title")}</S.Td>
                   <S.Td>
                     <label>
                       <input
@@ -89,7 +92,7 @@ const TConc2 = () => {
                         onClick={getCheckbox}
                         checked
                       />
-                      포화대(지하수)
+                      {t("conc.select.sat")}
                     </label>
                   </S.Td>
                   <S.Td>
@@ -101,7 +104,7 @@ const TConc2 = () => {
                         onClick={getCheckbox}
                         disabled
                       />
-                      불포화대(토양)
+                      {t("conc.select.unsat")}
                     </label>
                   </S.Td>
                 </tr>
@@ -110,25 +113,25 @@ const TConc2 = () => {
 
             <S.EvalBox>
               <S.PaddingBox>
-                <h3>오염원 매체 : 포화대(지하수)</h3>
-                <p>※ 지하수 온도는 필요시 사용자가 수정할 수 있습니다.</p>
+                <h3>{t("conc.sat.title")}</h3>
+                <p>{t("tutorial.conc.info")}</p>
                 <table>
                   <thead>
                     <tr>
                       <td></td>
-                      <S.Td>기호</S.Td>
-                      <S.Td>단위</S.Td>
+                      <S.Td>{t("conc.sat.table.td1")}</S.Td>
+                      <S.Td>{t("conc.sat.table.td2")}</S.Td>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>지하수 온도</td>
+                      <td>{t("conc.sat.table.td3")}</td>
                       <S.Td>Ts</S.Td>
                       <S.Td>℃</S.Td>
                       <S.Td>18</S.Td>
                     </tr>
                     <tr>
-                      <td>매체 농도</td>
+                      <td>{t("conc.sat.table.td4")}</td>
                       <S.Td>Cmedium</S.Td>
                       <S.Td>ug/L</S.Td>
                       <S.Td>
@@ -141,9 +144,9 @@ const TConc2 = () => {
             </S.EvalBox>
             <S.BtnAreaTwin>
               <S.PrevBtn onClick={() => navigate("/tutorial/2/depth")}>
-                이전
+                {t("conc.prev")}
               </S.PrevBtn>
-              <S.NextBtn onClick={moveTo}>다음</S.NextBtn>
+              <S.NextBtn onClick={moveTo}>{t("conc.next")}</S.NextBtn>
             </S.BtnAreaTwin>
           </S.EvalArea>
         </S.EvalContent>

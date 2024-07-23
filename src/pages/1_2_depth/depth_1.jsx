@@ -37,12 +37,12 @@ const Depth = () => {
           <S.EvalArea>
             <S.EvalBox>
               <GridBox>
-                <h3>지하수위 (단위 : m)</h3>
+                <h3>{t("depth.waterlevel")}</h3>
                 <WaterLevel />
               </GridBox>
               <hr />
               <GridBox>
-                <h3>표고 (단위 : m)</h3>
+                <h3>{t("depth.elevation")}</h3>
                 <Elevation />
               </GridBox>
             </S.EvalBox>

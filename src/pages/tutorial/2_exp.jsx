@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   BiChevronDown,
   BiChevronRight,
@@ -14,6 +15,7 @@ import * as S from "../../styles/Home.style";
 import ReceptorCheck from "./2_exp_check";
 
 const TExp2 = () => {
+  const { t } = useTranslation("site");
   const navigate = useNavigate();
 
   // 토글 관리
@@ -331,14 +333,15 @@ const TExp2 = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            튜토리얼 <BiChevronRight /> Input <BiChevronRight /> 수용체{" "}
-            <BiChevronRight /> 노출 특성
+            {t("tutorial.title")} <BiChevronRight /> Input <BiChevronRight />{" "}
+            {t("receptor.pagePath.text2")} <BiChevronRight />{" "}
+            {t("receptor.pagePath.text3")}
           </S.PagePath>
-          <S.PageTitle>노출 특성</S.PageTitle>
+          <S.PageTitle>{t("receptor.pageTitle")}</S.PageTitle>
           <S.EvalArea>
             <S.EvalBox>
               <S.PaddingBox>
-                <h3>노출 특성 유형</h3>
+                <h3>{t("receptor.input.title")}</h3>
                 <ReceptorCheck setData={setData} expoProp={expoProp} />
                 <hr />
                 <h4 onClick={clickToggle}>
@@ -347,20 +350,17 @@ const TExp2 = () => {
                   ) : (
                     <BiChevronUp />
                   )}
-                  입력 가능한 노출 특성 유형
+                  {t("receptor.table.title")}
                 </h4>
 
                 <div style={{ display: displayTable }}>
-                  <p>
-                    ※ 그리드의 각 셀에 해당하는 노출 특성은 아래 표에서 제시한
-                    번호로 표시해야 합니다.
-                  </p>
+                  <p>{t("receptor.table.info")}</p>
                   <br />
                   <Table>
                     <thead>
                       <tr>
-                        <Td>번호</Td>
-                        <Td>노출 특성</Td>
+                        <Td>{t("receptor.table.td1")}</Td>
+                        <Td>{t("receptor.table.td2")}</Td>
                         <Td>EF</Td>
                         <Td>ED</Td>
                         <Td>ET</Td>
@@ -487,7 +487,7 @@ const TExp2 = () => {
                             style={{ padding: "10px 5px" }}
                             onClick={addRow}
                           >
-                            + 다른 노출 특성 유형 추가하기
+                            {t("receptor.table.more")}
                           </td>
                         </tr>
                       ) : null}
@@ -498,7 +498,7 @@ const TExp2 = () => {
             </S.EvalBox>
             <S.BtnAreaTwin>
               <S.PrevBtn onClick={() => navigate("/tutorial/2/found")}>
-                이전
+                {t("receptor.prev")}
               </S.PrevBtn>
               <S.NextBtn onClick={sendToBE}>
                 {" "}
@@ -507,7 +507,7 @@ const TExp2 = () => {
                     <BiLoader /> Loading...
                   </p>
                 ) : (
-                  <p>다음</p>
+                  <p>{t("receptor.next")}</p>
                 )}
               </S.NextBtn>
             </S.BtnAreaTwin>

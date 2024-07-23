@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { BiChevronDown, BiChevronRight, BiChevronUp } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -8,6 +9,7 @@ import * as S from "../../styles/Home.style";
 import FoundCheck from "./2_found._check";
 
 const TFound2 = () => {
+  const { t } = useTranslation("site");
   const navigate = useNavigate();
 
   // 토글 관리
@@ -104,14 +106,15 @@ const TFound2 = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            튜토리얼 <BiChevronRight /> Input <BiChevronRight /> 경로{" "}
-            <BiChevronRight /> 건물
+            {t("tutorial.title")} <BiChevronRight /> Input <BiChevronRight />{" "}
+            {t("found.pagePath.text2")} <BiChevronRight />{" "}
+            {t("found.pagePath.text3")}
           </S.PagePath>
-          <S.PageTitle>건물</S.PageTitle>
+          <S.PageTitle>{t("found.pageTitle")}</S.PageTitle>
           <S.EvalArea>
             <S.EvalBox>
               <S.PaddingBox>
-                <h3>건물 기초 유형</h3>
+                <h3>{t("found.input.title")}</h3>
                 <FoundCheck setData={setData} building={building} />
                 <hr />
                 <h4 onClick={clickToggle}>
@@ -120,18 +123,15 @@ const TFound2 = () => {
                   ) : (
                     <BiChevronUp />
                   )}
-                  입력 가능한 건물 기초 유형
+                  {t("found.table.title")}
                 </h4>
                 <div style={{ display: displayTable }}>
-                  <p>
-                    ※ 그리드의 각 셀에 해당하는 건물 유형은 아래 표에서 제시한
-                    번호로 표시해야 합니다.
-                  </p>
+                  <p>{t("found.table.info")}</p>
                   <Table>
                     <thead>
                       <tr>
-                        <Td>번호</Td>
-                        <Td>건물기초 유형</Td>
+                        <Td>{t("found.table.td1")}</Td>
+                        <Td>{t("found.table.td2")}</Td>
                         <Td>LB</Td>
                         <Td>Lf</Td>
                         <Td>eta</Td>
@@ -656,7 +656,7 @@ const TFound2 = () => {
                             style={{ padding: "10px 5px" }}
                             onClick={addRow}
                           >
-                            + 다른 건물 기초 유형 추가하기
+                            {t("found.table.more")}
                           </td>
                         </tr>
                       ) : null}
@@ -667,9 +667,9 @@ const TFound2 = () => {
             </S.EvalBox>
             <S.BtnAreaTwin>
               <S.PrevBtn onClick={() => navigate("/tutorial/2/geo")}>
-                이전
+                {t("found.prev")}
               </S.PrevBtn>
-              <S.NextBtn onClick={saveData}>다음</S.NextBtn>
+              <S.NextBtn onClick={saveData}>{t("found.next")}</S.NextBtn>
             </S.BtnAreaTwin>
           </S.EvalArea>
         </S.EvalContent>

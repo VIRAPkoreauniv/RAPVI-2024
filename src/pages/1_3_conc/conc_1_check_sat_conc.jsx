@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import * as S from "../../styles/Home.style";
 
 const SatConc = () => {
+  const { t } = useTranslation("site");
   const [visibleBtn, setVisibleBtn] = useState("none");
   const [visibleArea, setVisibleArea] = useState("inline-block");
 
@@ -139,10 +141,12 @@ const SatConc = () => {
 
     if (numOfRows > 1 && numOfColumns > 1) {
       if (numOfRows !== numofRows || numOfColumns !== numofCols) {
-        alert("입력된 데이터의 크기가 올바르지 않습니다.");
+        alert(t("conc.input.alert"));
         reset();
       } else {
-        setSizeCheck(`입력된 데이터 크기 : ${numOfRows} X ${numOfColumns} `);
+        setSizeCheck(
+          `${t("conc.input.sizeCheck")} : ${numOfRows} X ${numOfColumns} `
+        );
         setVisibleBtn("inline-block");
         setVisibleArea("none");
         makeGrid(output, numOfRows, numOfColumns);
@@ -207,14 +211,16 @@ const SatConc = () => {
         id="satsoilconc"
         onChange={constructTableFromPasetedInput}
         value={data}
-        placeholder="그리드 값을 입력하세요."
+        placeholder={t("conc.input.placeholder")}
       ></textarea>
       <div style={{ display: visibleBtn }}>
         <S.BtnBox>
           <p dangerouslySetInnerHTML={{ __html: sizeCheck }}></p>
           <div>
-            <S.CheckBtn onClick={openData}>데이터 세부 확인</S.CheckBtn>
-            <S.CheckBtn onClick={reset}>다시 입력</S.CheckBtn>
+            <S.CheckBtn onClick={openData}>
+              {t("conc.input.openData")}
+            </S.CheckBtn>
+            <S.CheckBtn onClick={reset}>{t("conc.input.reset")}</S.CheckBtn>
           </div>
         </S.BtnBox>
         <S.GridAndLegend>
@@ -224,7 +230,7 @@ const SatConc = () => {
           ></GridTable>
           <div>
             <S.Legend>
-              <h5>오염농도 (최고농도 = 100 기준)</h5>
+              <h5>{t("conc.input.legend")}</h5>
             </S.Legend>
             <S.Legend>
               <S.LegendItem

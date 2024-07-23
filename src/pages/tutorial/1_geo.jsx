@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { BiChevronRight } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/header";
@@ -5,6 +6,7 @@ import Menu from "../../components/menu";
 import * as S from "../../styles/Home.style";
 
 const TGeo1 = () => {
+  const { t } = useTranslation("basicAssessment");
   const navigate = useNavigate();
 
   // 세션 데이터 저장
@@ -26,10 +28,11 @@ const TGeo1 = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            튜토리얼 <BiChevronRight /> Input <BiChevronRight /> 경로{" "}
-            <BiChevronRight /> 지질매체
+            {t("tutorial.title")} <BiChevronRight /> Input <BiChevronRight />{" "}
+            {t("geo.pagePath.text2")} <BiChevronRight />{" "}
+            {t("geo.pagePath.text3")}
           </S.PagePath>
-          <S.PageTitle>지질매체</S.PageTitle>
+          <S.PageTitle>{t("geo.pageTitle")}</S.PageTitle>
           <S.EvalArea>
             <form action="/tutorial/1/found">
               <S.EvalBox>
@@ -37,7 +40,7 @@ const TGeo1 = () => {
                   <table>
                     <thead>
                       <tr>
-                        <td>지층 토양 유형</td>
+                        <td>{t("geo.select.title")}</td>
                         <S.Td>SCS_A</S.Td>
                         <S.Td>
                           <select>
@@ -47,23 +50,18 @@ const TGeo1 = () => {
                       </tr>
                     </thead>
                   </table>
-
-                  <h5>
-                    ※ 아래의 값은 지층 토양 유형에 따라 자동으로 입력되며 필요
-                    시 수정할 수 있습니다.
-                  </h5>
-
+                  <h5>{t("geo.info")}</h5>
                   <table>
                     <thead>
                       <tr>
                         <td></td>
-                        <S.Td>기호</S.Td>
-                        <S.Td>단위</S.Td>
+                        <S.Td>{t("geo.table.td1")}</S.Td>
+                        <S.Td>{t("geo.table.td2")}</S.Td>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>지층 전체 공극률</td>
+                        <td>{t("geo.table.td3")}</td>
                         <S.Td>nSA</S.Td>
                         <S.Td></S.Td>
                         <S.Td>
@@ -71,7 +69,7 @@ const TGeo1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>지층 물이 채워진 공극률</td>
+                        <td>{t("geo.table.td4")}</td>
                         <S.Td>nwSA</S.Td>
                         <S.Td></S.Td>
                         <S.Td>
@@ -79,7 +77,7 @@ const TGeo1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>지층 부피밀도 (bulk density)</td>
+                        <td>{t("geo.table.td5")}</td>
                         <S.Td>rhoSA</S.Td>
                         <S.Td>g/cm3</S.Td>
                         <S.Td>
@@ -87,7 +85,7 @@ const TGeo1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>모세관대의 높이</td>
+                        <td>{t("geo.table.td6")}</td>
                         <S.Td>hcz</S.Td>
                         <S.Td>m</S.Td>
                         <S.Td>
@@ -95,7 +93,7 @@ const TGeo1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>모세관 영역 전체 공극률</td>
+                        <td>{t("geo.table.td7")}</td>
                         <S.Td>ncz</S.Td>
                         <S.Td></S.Td>
                         <S.Td>
@@ -103,7 +101,7 @@ const TGeo1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>모세관 영역 물이 채워진 공극률</td>
+                        <td>{t("geo.table.td8")}</td>
                         <S.Td>nwcz</S.Td>
                         <S.Td></S.Td>
                         <S.Td>
@@ -116,9 +114,9 @@ const TGeo1 = () => {
               </S.EvalBox>
               <S.BtnAreaTwin>
                 <S.PrevBtn onClick={() => navigate("/tutorial/1/conc")}>
-                  이전
+                  {t("geo.prev")}
                 </S.PrevBtn>
-                <S.NextBtn onClick={saveData}>다음</S.NextBtn>
+                <S.NextBtn onClick={saveData}>{t("geo.next")}</S.NextBtn>
               </S.BtnAreaTwin>
             </form>
           </S.EvalArea>

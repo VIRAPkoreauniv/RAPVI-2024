@@ -3,12 +3,14 @@ import * as S from "../../styles/Home.style";
 
 import { GoogleMap, Polygon, useJsApiLoader } from "@react-google-maps/api";
 import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../components/header";
 import Menu from "../../components/menu";
 
 const TOutput2 = () => {
+  const { t } = useTranslation("site");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -188,15 +190,18 @@ const TOutput2 = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            튜토리얼 <BiChevronRight /> Output <BiChevronRight /> 결과 확인
+            {t("tutorial.title")} <BiChevronRight /> Output <BiChevronRight />{" "}
+            {t("output.pagePath.text2")}
           </S.PagePath>
-          <S.PageTitle>결과 확인</S.PageTitle>
+          <S.PageTitle>{t("output.pageTitle")}</S.PageTitle>
           <S.EvalArea>
             <S.EvalBox>
               <S.PaddingBox>
-                <h4>프로젝트 : 튜토리얼</h4>
-                <h4>담당자 : 홍길동</h4>
-                <h4>작업 일시 : 2023-01-01</h4>
+                <h4>
+                  {t("output.projectInfo.name")} : {t("tutorial.title")}
+                </h4>
+                <h4>{t("output.projectInfo.manager")} : 홍길동</h4>
+                <h4> {t("output.projectInfo.date")} : 2023-01-01</h4>
                 {isLoaded ? (
                   <>
                     <GoogleMap
@@ -220,7 +225,7 @@ const TOutput2 = () => {
                 <br />
                 <hr />
                 <br />
-                <h3>실내 오염 농도</h3>
+                <h3>{t("output.part1")}</h3>
                 <S.GridAndLegend>
                   <GridTable
                     dangerouslySetInnerHTML={{ __html: drawCia }}
@@ -279,7 +284,7 @@ const TOutput2 = () => {
                 <br />
                 <hr />
                 <br />
-                <h3>발암위해도</h3>
+                <h3>{t("output.part2")}</h3>
                 <S.GridAndLegend>
                   <GridTable
                     dangerouslySetInnerHTML={{ __html: drawRisk }}
@@ -338,7 +343,7 @@ const TOutput2 = () => {
                 <br />
                 <hr />
                 <br />
-                <h3>비발암위해도</h3>
+                <h3>{t("output.part3")}</h3>
                 <S.GridAndLegend>
                   <GridTable
                     dangerouslySetInnerHTML={{ __html: drawHQ }}
@@ -397,7 +402,9 @@ const TOutput2 = () => {
               </S.PaddingBox>
             </S.EvalBox>
             <BtnAreaSolo>
-              <S.PrevBtn onClick={() => navigate(-1)}>이전</S.PrevBtn>
+              <S.PrevBtn onClick={() => navigate(-1)}>
+                {t("output.prev")}
+              </S.PrevBtn>
             </BtnAreaSolo>
           </S.EvalArea>
         </S.EvalContent>

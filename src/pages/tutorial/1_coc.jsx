@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { BiChevronRight, BiChevronUp } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/header";
@@ -6,6 +7,7 @@ import Menu from "../../components/menu";
 import * as S from "../../styles/Home.style";
 
 const TCoc1 = () => {
+  const { t } = useTranslation("basicAssessment");
   const navigate = useNavigate();
 
   // 세션에 저장
@@ -44,16 +46,17 @@ const TCoc1 = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            튜토리얼 <BiChevronRight /> Input <BiChevronRight /> 오염원{" "}
-            <BiChevronRight /> 오염물질
+            {t("tutorial.title")} <BiChevronRight /> Input <BiChevronRight />{" "}
+            {t("coc.pagePath.text2")}
+            <BiChevronRight /> {t("coc.pagePath.text3")}
           </S.PagePath>
-          <S.PageTitle>오염물질</S.PageTitle>
+          <S.PageTitle>{t("coc.pageTitle")}</S.PageTitle>
           <S.EvalArea>
             <table>
               <thead>
                 <tr>
                   <S.Td>
-                    <h3>오염물질 개수</h3>
+                    <h3>{t("coc.numOfMaterials")}</h3>
                   </S.Td>
                   <S.Td>
                     <select>
@@ -68,7 +71,7 @@ const TCoc1 = () => {
               <table>
                 <thead>
                   <tr>
-                    <S.Td>오염물질 1</S.Td>
+                    <S.Td>{t("coc.material.title", { number: 1 })}</S.Td>
                     <S.Td>
                       <select>
                         <option value="" selected style={{ display: option1 }}>
@@ -84,17 +87,14 @@ const TCoc1 = () => {
                         }}
                         style={{ display: close1 }}
                       >
-                        더보기
+                        {t("coc.more")}
                       </button>
                     </S.Td>
                   </tr>
                 </thead>
               </table>
               <S.PaddingBox>
-                <h5>
-                  ※ 아래의 값들은 Benzene에 따라 자동으로 입력되며 필요 시
-                  사용자가 수정할 수 있습니다.
-                </h5>
+                <h5>{t("coc.info")}</h5>
 
                 <div style={{ display: more1 }}>
                   <p style={{ textAlign: "center" }}>
@@ -105,7 +105,7 @@ const TCoc1 = () => {
                       }}
                     >
                       <BiChevronUp />
-                      닫기
+                      {t("coc.close")}
                     </button>
                   </p>
 
@@ -116,11 +116,11 @@ const TCoc1 = () => {
                       </tr>
                       <tr>
                         <S.Td></S.Td>
-                        <S.Td>기호</S.Td>
-                        <S.Td>단위</S.Td>
+                        <S.Td>{t("coc.table.td1")}</S.Td>
+                        <S.Td>{t("coc.table.td2")}</S.Td>
                       </tr>
                       <tr>
-                        <S.Td>순수 성분 수용성</S.Td>
+                        <S.Td>{t("coc.table.td3")}</S.Td>
                         <S.Td>S</S.Td>
                         <S.Td>mg/L</S.Td>
                         <S.Td>
@@ -128,7 +128,7 @@ const TCoc1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <S.Td>표준 온도(25℃)의 헨리 상수</S.Td>
+                        <S.Td>{t("coc.table.td4")}</S.Td>
                         <S.Td>Hc</S.Td>
                         <S.Td>atm-m3/mol</S.Td>
                         <S.Td>
@@ -136,7 +136,7 @@ const TCoc1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <S.Td>공기에서의 확산성</S.Td>
+                        <S.Td>{t("coc.table.td5")}</S.Td>
                         <S.Td>Dair</S.Td>
                         <S.Td>cm2/s</S.Td>
                         <S.Td>
@@ -144,7 +144,7 @@ const TCoc1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <S.Td>물에서의 확산성</S.Td>
+                        <S.Td>{t("coc.table.td6")}</S.Td>
                         <S.Td>Dwater</S.Td>
                         <S.Td>cm2/s</S.Td>
                         <S.Td>
@@ -152,7 +152,7 @@ const TCoc1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <S.Td>정상 끓는 점에서의 기화 엔탈피</S.Td>
+                        <S.Td>{t("coc.table.td7")}</S.Td>
                         <S.Td>DHvb</S.Td>
                         <S.Td>cal/mol</S.Td>
                         <S.Td>
@@ -160,7 +160,7 @@ const TCoc1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <S.Td>임계 온도</S.Td>
+                        <S.Td>{t("coc.table.td8")}</S.Td>
                         <S.Td>Tc</S.Td>
                         <S.Td>K</S.Td>
                         <S.Td>
@@ -168,7 +168,7 @@ const TCoc1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <S.Td>정상 끓는 점</S.Td>
+                        <S.Td>{t("coc.table.td9")}</S.Td>
                         <S.Td>Tb</S.Td>
                         <S.Td>K</S.Td>
                         <S.Td>
@@ -176,7 +176,7 @@ const TCoc1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <S.Td>화합물의 분자량</S.Td>
+                        <S.Td>{t("coc.table.td10")}</S.Td>
                         <S.Td>MW</S.Td>
                         <S.Td>g/mol</S.Td>
                         <S.Td>
@@ -217,7 +217,7 @@ const TCoc1 = () => {
           </S.EvalArea>
           <S.EvalArea>
             <S.BtnAreaSolo>
-              <S.NextBtn onClick={saveData}>다음</S.NextBtn>
+              <S.NextBtn onClick={saveData}>{t("coc.next")}</S.NextBtn>
             </S.BtnAreaSolo>
           </S.EvalArea>
         </S.EvalContent>

@@ -1,4 +1,10 @@
 export default {
+  tutorial: {
+    title: "튜토리얼",
+    conc: {
+      info: "※ 지하수 온도는 필요시 사용자가 수정할 수 있습니다.",
+    },
+  },
   coc: {
     pagePath: {
       text1: "위해성 평가",

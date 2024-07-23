@@ -1,4 +1,10 @@
 export default {
+  tutorial: {
+    title: "Tutorial",
+    conc: {
+      info: "※ 지하수 온도는 필요시 사용자가 수정할 수 있습니다.",
+    },
+  },
   coc: {
     pagePath: {
       text1: "Risk assessment",
@@ -36,6 +42,12 @@ export default {
     popElevation: "Contamination concentration - Elevation",
     prev: "Previous",
     next: "Next",
+    input: {
+      placeholder: "엑셀 데이터를 복사하여 여기에 붙여넣어주세요.",
+      openData: "데이터 세부 확인",
+      reset: "다시 입력",
+      legend: "오염심도 (최고심도 = 100 기준)",
+    },
   },
   conc: {
     pagePath: {
@@ -84,6 +96,14 @@ export default {
       satConc: "Contamination concentration - Saturated zone(groundwater)",
       unsatConc: "Contamination concentration - Vadose zone(soil)",
       deffi: "Contamination concentration - Deffi",
+    },
+    input: {
+      alert: "입력된 데이터의 크기가 올바르지 않습니다.",
+      sizeCheck: "입력된 데이터 크기",
+      placeholder: "그리드 값을 입력하세요.",
+      openData: "데이터 세부 확인",
+      reset: "다시 입력",
+      legend: "오염심도 (최고심도 = 100 기준)",
     },
     prev: "Previous",
     next: "Next",

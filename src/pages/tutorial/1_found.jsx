@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { BiChevronRight } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/header";
@@ -5,6 +6,7 @@ import Menu from "../../components/menu";
 import * as S from "../../styles/Home.style";
 
 const TFound1 = () => {
+  const { t } = useTranslation("basicAssessment");
   const navigate = useNavigate();
 
   // 세션 데이터 저장
@@ -28,10 +30,11 @@ const TFound1 = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            튜토리얼 <BiChevronRight /> Input <BiChevronRight /> 경로{" "}
-            <BiChevronRight /> 건물
+            {t("tutorial.title")} <BiChevronRight /> Input <BiChevronRight />{" "}
+            {t("found.pagePath.text2")} <BiChevronRight />{" "}
+            {t("found.pagePath.text3")}
           </S.PagePath>
-          <S.PageTitle>건물</S.PageTitle>
+          <S.PageTitle>{t("found.pageTitle")}</S.PageTitle>
           <S.EvalArea>
             <form action="/tutorial/1/exp">
               <S.EvalBox>
@@ -39,7 +42,7 @@ const TFound1 = () => {
                   <table>
                     <thead>
                       <tr>
-                        <td>건물기초 유형</td>
+                        <td>{t("found.select.title")}</td>
                         <S.Td>Found_Type</S.Td>
                         <S.Td>
                           <select>
@@ -49,22 +52,18 @@ const TFound1 = () => {
                       </tr>
                     </thead>
                   </table>
-
-                  <h5>
-                    ※ 아래의 값은 건물기초 유형에 따라 자동으로 입력되며 필요 시
-                    수정할 수 있습니다.
-                  </h5>
+                  <h5>{t("found.info")}</h5>
                   <table>
                     <thead>
                       <tr>
                         <td></td>
-                        <S.Td>기호</S.Td>
-                        <S.Td>단위</S.Td>
+                        <S.Td>{t("found.table.td1")}</S.Td>
+                        <S.Td>{t("found.table.td2")}</S.Td>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>건물기초 바닥까지의 깊이</td>
+                        <td>{t("found.table.td3")}</td>
                         <S.Td>LB</S.Td>
                         <S.Td>m</S.Td>
                         <S.Td>
@@ -72,7 +71,7 @@ const TFound1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>건물기초의 두께</td>
+                        <td>{t("found.table.td4")}</td>
                         <S.Td>Lf</S.Td>
                         <S.Td>m</S.Td>
                         <S.Td>
@@ -80,7 +79,7 @@ const TFound1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>균열이 있는 건물기초 면적의 비율</td>
+                        <td>{t("found.table.td5")}</td>
                         <S.Td>eta</S.Td>
                         <S.Td></S.Td>
                         <S.Td>
@@ -88,7 +87,7 @@ const TFound1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>밀폐된 공간 바닥의 면적</td>
+                        <td>{t("found.table.td6")}</td>
                         <S.Td>Abf</S.Td>
                         <S.Td>m2</S.Td>
                         <S.Td>
@@ -96,7 +95,7 @@ const TFound1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>밀폐된 공간의 섞임 높이 (mixing height)</td>
+                        <td>{t("found.table.td7")}</td>
                         <S.Td>Hb</S.Td>
                         <S.Td>m</S.Td>
                         <S.Td>
@@ -104,7 +103,7 @@ const TFound1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>실내공기교환율</td>
+                        <td>{t("found.table.td8")}</td>
                         <S.Td>ach</S.Td>
                         <S.Td>1/hr</S.Td>
                         <S.Td>
@@ -112,7 +111,7 @@ const TFound1 = () => {
                         </S.Td>
                       </tr>
                       <tr>
-                        <td>건물유입 평균 증기유량 ÷ 건물환기율</td>
+                        <td>{t("found.table.td9")}</td>
                         <S.Td>Qsoil_Qb</S.Td>
                         <S.Td></S.Td>
                         <S.Td>
@@ -125,9 +124,9 @@ const TFound1 = () => {
               </S.EvalBox>
               <S.BtnAreaTwin>
                 <S.PrevBtn onClick={() => navigate("/tutorial/1/geo")}>
-                  이전
+                  {t("found.prev")}
                 </S.PrevBtn>
-                <S.NextBtn onClick={saveData}>다음</S.NextBtn>
+                <S.NextBtn onClick={saveData}>{t("found.next")}</S.NextBtn>
               </S.BtnAreaTwin>
             </form>
           </S.EvalArea>

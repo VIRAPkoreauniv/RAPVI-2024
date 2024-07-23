@@ -5,9 +5,11 @@ import Header from "../../components/header";
 import Menu from "../../components/menu";
 import * as S from "../../styles/Home.style";
 // import GeoCheck from "./geo_2_check";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 const TGeo2 = () => {
+  const { t } = useTranslation("site");
   const navigate = useNavigate();
 
   // 토글 관리
@@ -99,12 +101,13 @@ const TGeo2 = () => {
         <Menu />
         <S.EvalContent>
           <S.PagePath>
-            튜토리얼 <BiChevronRight /> Input <BiChevronRight /> 경로{" "}
-            <BiChevronRight /> 지질매체
+            {t("tutorial.title")} <BiChevronRight /> Input <BiChevronRight />{" "}
+            {t("geo.pagePath.text2")} <BiChevronRight />{" "}
+            {t("geo.pagePath.text3")}
           </S.PagePath>
-          <S.PageTitle>지질매체</S.PageTitle>
+          <S.PageTitle>{t("geo.pageTitle")}</S.PageTitle>
           <LayerSelectBox>
-            <BoldTxt>층서유형 선택</BoldTxt>
+            <BoldTxt>{t("geo.select.title")}</BoldTxt>
             <form>
               <div>
                 <Radio
@@ -114,7 +117,7 @@ const TGeo2 = () => {
                   onChange={(e) => setLayerType(e.target.id)}
                   checked
                 />
-                <Label htmlFor="single">단일층</Label>
+                <Label htmlFor="single">{t("geo.select.single")}</Label>
                 <Radio
                   type="radio"
                   id="multiple"
@@ -122,7 +125,7 @@ const TGeo2 = () => {
                   onChange={(e) => setLayerType(e.target.id)}
                   disabled
                 />
-                <Label htmlFor="multiple">다중층</Label>
+                <Label htmlFor="multiple">{t("geo.select.multiple")}</Label>
               </div>
             </form>
           </LayerSelectBox>
@@ -131,7 +134,7 @@ const TGeo2 = () => {
             <S.EvalBox>
               <S.PaddingBox>
                 <LayerSelectBox>
-                  <h3>지층 토양 유형</h3>
+                  <h3>{t("geo.single.title")}</h3>
                   <Select
                     onChange={(e) => {
                       setOption("none");
@@ -141,14 +144,8 @@ const TGeo2 = () => {
                     <option value="5">Sand</option>
                   </Select>
                 </LayerSelectBox>
-                <p>
-                  하단의 '입력 가능한 지층토양유형'표를 참고해 지층토양유형을
-                  선택해주세요.
-                </p>
-                <p>
-                  지층토양유형을 선택하면 모든 데이터 범위가 선택한
-                  지층토양유형(단일 유형)으로 채워집니다.
-                </p>
+                <p>{t("geo.single.info.info1")}</p>
+                <p>{t("geo.single.info.info2")}</p>
                 <hr />
                 <h4 onClick={clickToggle}>
                   {displayTable === "inline-block" ? (
@@ -156,18 +153,15 @@ const TGeo2 = () => {
                   ) : (
                     <BiChevronUp />
                   )}
-                  입력 가능한 지층 토양 유형
+                  {t("geo.single.table.title")}
                 </h4>
                 <div style={{ display: displayTable }}>
-                  <p>
-                    ※ 표 하단의 <strong>+ 다른 지층토양유형 추가하기</strong>를
-                    클릭하여 사용자 정의 유형을 추가할 수 있습니다.
-                  </p>
+                  <p>{t("geo.single.info.info3")}</p>
                   <Table>
                     <thead>
                       <tr>
-                        <Td>번호</Td>
-                        <Td>지층 토양 유형</Td>
+                        <Td>{t("geo.single.table.td1")}</Td>
+                        <Td>{t("geo.single.table.td2")}</Td>
                         <Td>nSA</Td>
                         <Td>nwSA</Td>
                         <Td>rhoSA</Td>
@@ -358,7 +352,7 @@ const TGeo2 = () => {
                             style={{ padding: "10px 5px" }}
                             onClick={addRow}
                           >
-                            + 다른 지층 토양 유형 추가하기
+                            {t("geo.single.table.add")}
                           </td>
                         </tr>
                       ) : null}
@@ -369,7 +363,7 @@ const TGeo2 = () => {
             </S.EvalBox>
             <S.BtnAreaTwin>
               <S.PrevBtn onClick={() => navigate("/tutorial/2/conc")}>
-                이전
+                {t("geo.prev")}
               </S.PrevBtn>
               <S.NextBtn
                 onClick={() => {
@@ -377,7 +371,7 @@ const TGeo2 = () => {
                   navigate("/tutorial/2/found");
                 }}
               >
-                다음
+                {t("geo.next")}
               </S.NextBtn>
             </S.BtnAreaTwin>
           </S.EvalArea>

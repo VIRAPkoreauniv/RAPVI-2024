@@ -1,4 +1,7 @@
 export default {
+  tutorial: {
+    title: "Tutorial",
+  },
   coc: {
     pagePath: {
       text1: "Risk assessment",

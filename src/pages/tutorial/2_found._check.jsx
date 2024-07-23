@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import * as S from "../../styles/Home.style";
 
 const FoundCheck = () => {
+  const { t } = useTranslation("site");
   const [visibleBtn, setVisibleBtn] = useState("none");
   const [visibleArea, setVisibleArea] = useState("inline-block");
 
@@ -843,7 +845,7 @@ const FoundCheck = () => {
       //     // alert("입력된 데이터의 크기가 올바르지 않습니다.");
       //     // reset();
       //   } else {
-      setSizeCheck(`입력된 데이터 크기 : ${numOfRows} X ${numOfColumns} `);
+      setSizeCheck(`${t("input.sizeCheck")} : ${numOfRows} X ${numOfColumns} `);
       setVisibleBtn("inline-block");
       setVisibleArea("none");
       makeGrid(output, numOfRows, numOfColumns);
@@ -906,14 +908,16 @@ const FoundCheck = () => {
         id="found"
         onChange={constructTableFromPasetedInput}
         value={data}
-        placeholder="엑셀 데이터를 복사하여 여기에 붙여넣어주세요."
+        placeholder={t("found.input.placeholder")}
       ></textarea>
       <div style={{ display: visibleBtn }}>
         <S.BtnBox>
           <p dangerouslySetInnerHTML={{ __html: sizeCheck }}></p>
           <div>
-            <S.CheckBtn onClick={openData}>데이터 세부 확인</S.CheckBtn>
-            <S.CheckBtn>다시 입력</S.CheckBtn>
+            <S.CheckBtn onClick={openData}>
+              {t("found.input.openData")}
+            </S.CheckBtn>
+            <S.CheckBtn>{t("found.input.reset")}</S.CheckBtn>
           </div>
         </S.BtnBox>
         <S.GridAndLegend>

@@ -48,6 +48,17 @@ export default {
     },
   },
   site: {
+    header: {
+      checkOutput: "출력 값 확인",
+      projectInfo: {
+        name: "프로젝트명",
+        manager: "담당자",
+        type: "위해성 평가 방식 : 부지기반평가",
+        date: "작업 일시",
+        site: "부지 영역",
+        coor: "좌표",
+      },
+    },
     input: {
       coc: {
         title: "오염원-오염물질",

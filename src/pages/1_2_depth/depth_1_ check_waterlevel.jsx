@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import * as S from "../../styles/Home.style";
 
 const WaterLevel = () => {
+  const { t } = useTranslation("site");
   const [visibleBtn, setVisibleBtn] = useState("none");
   const [visibleArea, setVisibleArea] = useState("inline-block");
 
@@ -207,14 +209,16 @@ const WaterLevel = () => {
         id="waterlevel"
         onChange={constructTableFromPasetedInput}
         value={data}
-        placeholder="엑셀 데이터를 복사하여 여기에 붙여넣어주세요."
+        placeholder={t("depth.input.placeholder")}
       ></textarea>
       <div style={{ display: visibleBtn }}>
         <S.BtnBox>
           <p dangerouslySetInnerHTML={{ __html: sizeCheck }}></p>
           <div>
-            <S.CheckBtn onClick={openData}>데이터 세부 확인</S.CheckBtn>
-            <S.CheckBtn onClick={reset}>다시 입력</S.CheckBtn>
+            <S.CheckBtn onClick={openData}>
+              {t("depth.input.openData")}
+            </S.CheckBtn>
+            <S.CheckBtn onClick={reset}>{t("depth.input.reset")}</S.CheckBtn>
           </div>
         </S.BtnBox>
         <S.GridAndLegend>
@@ -224,7 +228,7 @@ const WaterLevel = () => {
           ></S.GridTable>
           <div>
             <S.Legend>
-              <h5>오염심도 (최고심도 = 100 기준)</h5>
+              <h5>{t("depth.input.legend")}</h5>
             </S.Legend>
             <S.Legend>
               <S.LegendItem

@@ -1,4 +1,7 @@
 export default {
+  tutorial: {
+    name: "Tutorial",
+  },
   projectInfo: {
     title: "Project information",
     section1: "Project title",
