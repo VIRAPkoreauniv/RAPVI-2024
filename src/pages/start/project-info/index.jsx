@@ -32,17 +32,16 @@ export default function ProjectInfoPage() {
     localStorage.clear();
   }, []);
 
+  const BUTTON_LIST = [t("projectInfo.button1"), t("projectInfo.button2")];
+
   const switchType = (e) => {
     const evalType = e.target.value;
 
-    if (evalType === "기본평가" || evalType === "Basic assessment") {
+    if (evalType === t("projectInfo.button1")) {
       setTier1("rgb(224, 214, 198)");
       setTier2("white");
       setEvalType("기본평가");
-    } else if (
-      evalType === "부지기반평가" ||
-      evalType === "Site-specific assessment"
-    ) {
+    } else if (evalType === t("projectInfo.button2")) {
       setTier2("rgb(224, 214, 198)");
       setTier1("white");
       setEvalType("부지기반평가");
@@ -170,32 +169,24 @@ export default function ProjectInfoPage() {
                       </div>
                     </S.Td>
                     <S.Td>
-                      <input
-                        type="submit"
-                        value={t("projectInfo.button1")}
-                        style={{
-                          backgroundColor: tier1,
-                          padding: "1rem",
-                          margin: "0.5rem",
-                          fontSize: "1.1rem",
-                        }}
-                        onClick={(e) => {
-                          switchType(e);
-                        }}
-                      />
-                      <input
-                        type="submit"
-                        value={t("projectInfo.button2")}
-                        style={{
-                          backgroundColor: tier2,
-                          padding: "1rem",
-                          margin: "0.5rem",
-                          fontSize: "1.1rem",
-                        }}
-                        onClick={(e) => {
-                          switchType(e);
-                        }}
-                      />
+                      {BUTTON_LIST.map((button, idx) => {
+                        return (
+                          <input
+                            key={idx}
+                            type="submit"
+                            value={button}
+                            style={{
+                              backgroundColor: idx === 0 ? tier1 : tier2,
+                              padding: "1rem",
+                              margin: "0.5rem",
+                              fontSize: "1.1rem",
+                            }}
+                            onClick={(e) => {
+                              switchType(e);
+                            }}
+                          />
+                        );
+                      })}
                     </S.Td>
                   </tr>
                 </tbody>
