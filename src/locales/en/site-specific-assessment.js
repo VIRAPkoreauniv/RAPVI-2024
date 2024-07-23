@@ -2,7 +2,7 @@ export default {
   tutorial: {
     title: "Tutorial",
     conc: {
-      info: "※ 지하수 온도는 필요시 사용자가 수정할 수 있습니다.",
+      info: "※ Users can edit groundwater temperature if required.",
     },
   },
   coc: {
@@ -43,10 +43,10 @@ export default {
     prev: "Previous",
     next: "Next",
     input: {
-      placeholder: "엑셀 데이터를 복사하여 여기에 붙여넣어주세요.",
-      openData: "데이터 세부 확인",
-      reset: "다시 입력",
-      legend: "오염심도 (최고심도 = 100 기준)",
+      placeholder: "Copy Excel data and paste here.",
+      openData: "Data check",
+      reset: "Insert again",
+      legend: "Contamination depth (Deepest depth = 100)",
     },
   },
   conc: {
@@ -98,12 +98,12 @@ export default {
       deffi: "Contamination concentration - Deffi",
     },
     input: {
-      alert: "입력된 데이터의 크기가 올바르지 않습니다.",
-      sizeCheck: "입력된 데이터 크기",
-      placeholder: "그리드 값을 입력하세요.",
-      openData: "데이터 세부 확인",
-      reset: "다시 입력",
-      legend: "오염심도 (최고심도 = 100 기준)",
+      alert: "Inserted data size is inappropriate.",
+      sizeCheck: "Inserted data size",
+      placeholder: "Insert grid data.",
+      openData: "Data check",
+      reset: "Insert again",
+      legend: "Contamination depth (Deepest depth = 100)",
     },
     prev: "Previous",
     next: "Next",
