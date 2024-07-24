@@ -4,10 +4,6 @@ export const HeaderContainer = styled.div`
   height: 10%;
 `;
 
-export const HorizontalMenu = styled.div`
-  background-color: rgb(141, 0, 42);
-  padding: 0.1rem;
-`;
 export const HorizontalMenuTap = styled.p`
   &:hover {
     cursor: pointer;
@@ -18,6 +14,8 @@ export const HorizontalMenuTap = styled.p`
 `;
 
 export const MenuWrapper = styled.div`
+  background-color: rgb(141, 0, 42);
+  padding: 0.1rem;
   width: 100%;
   display: flex;
   flex-direction: row;
