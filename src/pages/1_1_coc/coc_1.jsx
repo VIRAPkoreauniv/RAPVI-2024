@@ -12,35 +12,11 @@ const Coc = () => {
   const { t } = useTranslation("site")
   const navigate = useNavigate()
 
-  const [default_S, setDefault_S] = useState(0)
-  const [default_Hc, setDefault_Hc] = useState(0)
-  const [default_Dair, setDefault_Dair] = useState(0)
-  const [default_Dwater, setDefault_Dwater] = useState(0)
-  const [default_DHvb, setDefault_DHvb] = useState(0)
-  const [default_Tc, setDefault_Tc] = useState(0)
-  const [default_Tb, setDefault_Tb] = useState(0)
-  const [default_MW, setDefault_MW] = useState(0)
-  const [default_IUR, setDefault_IUR] = useState(0)
-  const [default_Rfc, setDefault_Rfc] = useState(0)
-  const [default_Mut, setDefault_Mut] = useState(0)
-  const [default_Koc, setDefault_Koc] = useState(0)
-  const [default_foc, setDefault_foc] = useState(0)
-
-  const [value_S, setValue_S] = useState()
-  const [value_Hc, setValue_Hc] = useState()
-  const [value_Dair, setValue_Dair] = useState()
-  const [value_Dwater, setValue_Dwater] = useState()
-  const [value_DHvb, setValue_DHvb] = useState()
-  const [value_Tc, setValue_Tc] = useState()
-  const [value_Tb, setValue_Tb] = useState()
-  const [value_MW, setValue_MW] = useState()
-  const [value_IUR, setValue_IUR] = useState()
-  const [value_Rfc, setValue_Rfc] = useState()
-  const [value_Mut, setValue_Mut] = useState()
-  const [value_Koc, setValue_Koc] = useState()
-  const [value_foc, setValue_foc] = useState()
-
   const [chem, setChem] = useState("오염 물질")
+  const [value, setValue] = useState({})
+  const [defaultValue, setDefaultValue] = useState({})
+  const [option, setOption] = useState("inline-block")
+
   // null 이면 input disabled
   const [disabled_IUR, setDisabled_IUR] = useState("disabled")
   const [disabled_Rfc, setDisabled_Rfc] = useState("disabled")
@@ -54,19 +30,22 @@ const Coc = () => {
       setChem(sessionStorage.getItem("chem"))
     }
 
-    setValue_S(sessionStorage.getItem("value_S"))
-    setValue_Hc(sessionStorage.getItem("value_Hc"))
-    setValue_Dair(sessionStorage.getItem("value_Dair"))
-    setValue_Dwater(sessionStorage.getItem("value_Dwater"))
-    setValue_DHvb(sessionStorage.getItem("value_DHvb"))
-    setValue_Tc(sessionStorage.getItem("value_Tc"))
-    setValue_Tb(sessionStorage.getItem("value_Tb"))
-    setValue_MW(sessionStorage.getItem("value_MW"))
-    setValue_IUR(sessionStorage.getItem("value_IUR"))
-    setValue_Rfc(sessionStorage.getItem("value_Rfc"))
-    setValue_Mut(sessionStorage.getItem("value_Mut"))
-    setValue_Koc(sessionStorage.getItem("value_Koc"))
-    setValue_foc(sessionStorage.getItem("value_foc"))
+    setValue((prev) => ({
+      ...prev,
+      S: sessionStorage.getItem("value_S"),
+      Hc: sessionStorage.getItem("value_Hc"),
+      Dair: sessionStorage.getItem("value_Dair"),
+      Dwater: sessionStorage.getItem("value_Dwater"),
+      DHvb: sessionStorage.getItem("value_DHvb"),
+      Tc: sessionStorage.getItem("value_Tc"),
+      Tb: sessionStorage.getItem("value_Tb"),
+      MW: sessionStorage.getItem("value_MW"),
+      IUR: sessionStorage.getItem("value_IUR"),
+      Rfc: sessionStorage.getItem("value_Rfc"),
+      Mut: sessionStorage.getItem("value_Mut"),
+      Koc: sessionStorage.getItem("value_Koc"),
+      foc: sessionStorage.getItem("value_foc"),
+    }))
 
     if (
       sessionStorage.getItem("value_IUR") === "NULL" ||
@@ -74,8 +53,8 @@ const Coc = () => {
     ) {
       setDisabled_IUR("disabled")
       setTypeIUR("text")
-      setValue_IUR("NULL")
-    } else if (value_IUR !== null) {
+      setValue((prev) => ({ ...prev, IUR: "NULL" }))
+    } else if (value.IUR !== null) {
       setDisabled_IUR("")
       setTypeIUR("number")
     }
@@ -85,8 +64,8 @@ const Coc = () => {
     ) {
       setDisabled_Rfc("disabled")
       setTypeRfc("text")
-      setValue_Rfc("NULL")
-    } else if (value_Rfc !== null) {
+      setValue((prev) => ({ ...prev, Rfc: "NULL" }))
+    } else if (value.Rfc !== null) {
       setDisabled_Rfc("")
       setTypeRfc("number")
     }
@@ -99,60 +78,24 @@ const Coc = () => {
 
     const defaultValues = getDefaultValues(selectedChem)
 
-    setValue_S(defaultValues.S)
-    setDefault_S(defaultValues.S)
-
-    setValue_Hc(defaultValues.Hc)
-    setDefault_Hc(defaultValues.Hc)
-
-    setValue_Dair(defaultValues.Dair)
-    setDefault_Dair(defaultValues.Dair)
-
-    setValue_Dwater(defaultValues.Dwater)
-    setDefault_Dwater(defaultValues.Dwater)
-
-    setValue_DHvb(defaultValues.DHvb)
-    setDefault_DHvb(defaultValues.DHvb)
-
-    setValue_Tc(defaultValues.Tc)
-    setDefault_Tc(defaultValues.Tc)
-
-    setValue_Tb(defaultValues.Tb)
-    setDefault_Tb(defaultValues.Tb)
-
-    setValue_MW(defaultValues.MW)
-    setDefault_MW(defaultValues.MW)
-
-    setValue_IUR(defaultValues.IUR)
-    setDefault_IUR(defaultValues.IUR)
-
-    setValue_Rfc(defaultValues.Rfc)
-    setDefault_Rfc(defaultValues.Rfc)
-
-    setValue_Mut(defaultValues.Mut)
-    setDefault_Mut(defaultValues.Mut)
-
-    setValue_Koc(defaultValues.Koc)
-    setDefault_Koc(defaultValues.Koc)
-
-    setValue_foc(defaultValues.foc)
-    setDefault_foc(defaultValues.foc)
+    setDefaultValue(defaultValues)
+    setValue(defaultValues)
   }
 
   const setNull = () => {
-    if (value_IUR === null || value_IUR === "0") {
+    if (value.IUR === null || value.IUR === "0") {
       setDisabled_IUR("disabled")
       setTypeIUR("text")
-      setValue_IUR("NULL")
-    } else if (value_IUR !== null && value_IUR !== "NULL") {
+      setValue((prev) => ({ ...prev, IUR: "NULL" }))
+    } else if (value.IUR !== null && value.IUR !== "NULL") {
       setDisabled_IUR("")
       setTypeIUR("number")
     }
-    if (value_Rfc === null || value_Rfc === "0") {
+    if (value.Rfc === null || value.Rfc === "0") {
       setDisabled_Rfc("disabled")
       setTypeRfc("text")
-      setValue_Rfc("NULL")
-    } else if (value_Rfc !== null && value_Rfc !== "NULL") {
+      setValue((prev) => ({ ...prev, Rfc: "NULL" }))
+    } else if (value.Rfc !== null && value.Rfc !== "NULL") {
       setDisabled_Rfc("")
       setTypeRfc("number")
     }
@@ -160,33 +103,31 @@ const Coc = () => {
 
   const saveData = () => {
     sessionStorage.setItem("chem", chem)
-    sessionStorage.setItem("value_S", value_S)
-    sessionStorage.setItem("value_Hc", value_Hc)
-    sessionStorage.setItem("value_Dair", value_Dair)
-    sessionStorage.setItem("value_Dwater", value_Dwater)
-    sessionStorage.setItem("value_DHvb", value_DHvb)
-    sessionStorage.setItem("value_Tc", value_Tc)
-    sessionStorage.setItem("value_Tb", value_Tb)
-    sessionStorage.setItem("value_MW", value_MW)
-    sessionStorage.setItem("value_IUR", value_IUR)
-    sessionStorage.setItem("value_Rfc", value_Rfc)
-    sessionStorage.setItem("value_Mut", value_Mut)
-    sessionStorage.setItem("value_Koc", value_Koc)
-    sessionStorage.setItem("value_foc", value_foc)
-    sessionStorage.setItem("default_Koc", default_Koc)
-    sessionStorage.setItem("default_foc", default_foc)
+    sessionStorage.setItem("value_S", value.S)
+    sessionStorage.setItem("value_Hc", value.Hc)
+    sessionStorage.setItem("value_Dair", value.Dair)
+    sessionStorage.setItem("value_Dwater", value.Dwater)
+    sessionStorage.setItem("value_DHvb", value.DHvb)
+    sessionStorage.setItem("value_Tc", value.Tc)
+    sessionStorage.setItem("value_Tb", value.Tb)
+    sessionStorage.setItem("value_MW", value.MW)
+    sessionStorage.setItem("value_IUR", value.IUR)
+    sessionStorage.setItem("value_Rfc", value.Rfc)
+    sessionStorage.setItem("value_Mut", value.Mut)
+    sessionStorage.setItem("value_Koc", value.Koc)
+    sessionStorage.setItem("value_foc", value.foc)
+    sessionStorage.setItem("default_Koc", defaultValue.Koc)
+    sessionStorage.setItem("default_foc", defaultValue.foc)
     sessionStorage.setItem("check_coc", true)
   }
 
   useEffect(() => {
     setNull()
-  }, [value_Hc])
+  }, [value.Hc])
 
   useEffect(() => {
     getSession()
   }, [])
-
-  const [option, setOption] = useState("inline-block")
 
   return (
     <>
@@ -244,11 +185,14 @@ const Coc = () => {
                         <S.Td>mg/L</S.Td>
                         <S.Td>
                           <input
-                            value={value_S}
+                            value={value.S}
                             onChange={(e) => {
-                              setValue_S(e.target.value)
+                              setValue((prev) => ({
+                                ...prev,
+                                S: e.target.value,
+                              }))
                             }}
-                            placeholder={default_S}
+                            placeholder={defaultValue.S}
                             required
                             type="number"
                           />
@@ -260,9 +204,14 @@ const Coc = () => {
                         <S.Td>atm-m3/mol</S.Td>
                         <S.Td>
                           <input
-                            value={value_Hc}
-                            onChange={(e) => setValue_Hc(e.target.value)}
-                            placeholder={default_Hc}
+                            value={value.Hc}
+                            onChange={(e) =>
+                              setValue((prev) => ({
+                                ...prev,
+                                Hc: e.target.value,
+                              }))
+                            }
+                            placeholder={defaultValue.Hc}
                             required
                             type="number"
                           />
@@ -274,9 +223,14 @@ const Coc = () => {
                         <S.Td>cm2/s</S.Td>
                         <S.Td>
                           <input
-                            value={value_Dair}
-                            onChange={(e) => setValue_Dair(e.target.value)}
-                            placeholder={default_Dair}
+                            value={value.Dair}
+                            onChange={(e) =>
+                              setValue((prev) => ({
+                                ...prev,
+                                Dair: e.target.value,
+                              }))
+                            }
+                            placeholder={defaultValue.Dair}
                             required
                             type="number"
                           />
@@ -288,9 +242,14 @@ const Coc = () => {
                         <S.Td>cm2/s</S.Td>
                         <S.Td>
                           <input
-                            value={value_Dwater}
-                            onChange={(e) => setValue_Dwater(e.target.value)}
-                            placeholder={default_Dwater}
+                            value={value.Dwater}
+                            onChange={(e) =>
+                              setValue((prev) => ({
+                                ...prev,
+                                Dwater: e.target.value,
+                              }))
+                            }
+                            placeholder={defaultValue.Dwater}
                             required
                             type="number"
                           />
@@ -302,9 +261,14 @@ const Coc = () => {
                         <S.Td>cal/mol</S.Td>
                         <S.Td>
                           <input
-                            value={value_DHvb}
-                            onChange={(e) => setValue_DHvb(e.target.value)}
-                            placeholder={default_DHvb}
+                            value={value.DHvb}
+                            onChange={(e) =>
+                              setValue((prev) => ({
+                                ...prev,
+                                DHvb: e.target.value,
+                              }))
+                            }
+                            placeholder={defaultValue.DHvb}
                             required
                             type="number"
                           />
@@ -316,9 +280,14 @@ const Coc = () => {
                         <S.Td>K</S.Td>
                         <S.Td>
                           <input
-                            value={value_Tc}
-                            onChange={(e) => setValue_Tc(e.target.value)}
-                            placeholder={default_Tc}
+                            value={value.Tc}
+                            onChange={(e) =>
+                              setValue((prev) => ({
+                                ...prev,
+                                Tc: e.target.value,
+                              }))
+                            }
+                            placeholder={defaultValue.Tc}
                             required
                             type="number"
                           />
@@ -330,9 +299,14 @@ const Coc = () => {
                         <S.Td>K</S.Td>
                         <S.Td>
                           <input
-                            value={value_Tb}
-                            onChange={(e) => setValue_Tb(e.target.value)}
-                            placeholder={default_Tb}
+                            value={value.Tb}
+                            onChange={(e) =>
+                              setValue((prev) => ({
+                                ...prev,
+                                Tb: e.target.value,
+                              }))
+                            }
+                            placeholder={defaultValue.Tb}
                             required
                             type="number"
                           />
@@ -344,9 +318,14 @@ const Coc = () => {
                         <S.Td>g/mol</S.Td>
                         <S.Td>
                           <input
-                            value={value_MW}
-                            onChange={(e) => setValue_MW(e.target.value)}
-                            placeholder={default_MW}
+                            value={value.MW}
+                            onChange={(e) =>
+                              setValue((prev) => ({
+                                ...prev,
+                                MW: e.target.value,
+                              }))
+                            }
+                            placeholder={defaultValue.MW}
                             required
                             type="number"
                           />
@@ -358,9 +337,14 @@ const Coc = () => {
                         <S.Td>(ug/m3)^-1</S.Td>
                         <S.Td>
                           <input
-                            value={value_IUR}
-                            onChange={(e) => setValue_IUR(e.target.value)}
-                            placeholder={default_IUR}
+                            value={value.IUR}
+                            onChange={(e) =>
+                              setValue((prev) => ({
+                                ...prev,
+                                IUR: e.target.value,
+                              }))
+                            }
+                            placeholder={defaultValue.IUR}
                             disabled={disabled_IUR}
                             required
                             type={typeIUR}
@@ -373,9 +357,14 @@ const Coc = () => {
                         <S.Td>mg/m3</S.Td>
                         <S.Td>
                           <input
-                            value={value_Rfc}
-                            onChange={(e) => setValue_Rfc(e.target.value)}
-                            placeholder={default_Rfc}
+                            value={value.Rfc}
+                            onChange={(e) =>
+                              setValue((prev) => ({
+                                ...prev,
+                                Rfc: e.target.value,
+                              }))
+                            }
+                            placeholder={defaultValue.Rfc}
                             disabled={disabled_Rfc}
                             required
                             type={typeRfc}
@@ -388,9 +377,14 @@ const Coc = () => {
                         <S.Td></S.Td>
                         <S.Td>
                           <select
-                            value={value_Mut}
-                            onChange={(e) => setValue_Mut(e.target.value)}
-                            placeholder={default_Mut}
+                            value={value.Mut}
+                            onChange={(e) =>
+                              setValue((prev) => ({
+                                ...prev,
+                                Mut: e.target.value,
+                              }))
+                            }
+                            placeholder={defaultValue.Mut}
                             required
                           >
                             <option>Yes</option>
