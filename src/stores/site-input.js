@@ -28,24 +28,3 @@ export const siteInputState = atom({
   },
   effects_UNSTABLE: [persistAtom],
 })
-
-export const siteDefaultInputState = atom({
-  key: "siteDefaultInput",
-  default: {
-    coc: {
-      S: 0,
-      Hc: 0,
-      Dair: 0,
-      Dwater: 0,
-      DHvb: 0,
-      Tc: 0,
-      Tb: 0,
-      MW: 0,
-      IUR: 0,
-      Rfc: 0,
-      Mut: 0,
-      Koc: 0,
-      foc: 0,
-    },
-  },
-})
