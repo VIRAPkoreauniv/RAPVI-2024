@@ -2,9 +2,11 @@ import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { BiChevronRight } from "react-icons/bi"
 import { useNavigate } from "react-router-dom"
+import { useRecoilState } from "recoil"
 import Header from "../../components/header"
 import Menu from "../../components/menu"
 import { CHEMICAL_LIST } from "../../data/chemicals"
+import { siteInputState } from "../../stores/site-input"
 import * as S from "../../styles/Home.style"
 import getDefaultValues from "../../utils/getDefaultValues"
 
@@ -12,75 +14,31 @@ const Coc = () => {
   const { t } = useTranslation("site")
   const navigate = useNavigate()
 
-  const [chem, setChem] = useState("오염 물질")
+  const [siteInputValue, setSiteInputValue] = useRecoilState(siteInputState)
+
+  const [chem, setChem] = useState(siteInputValue.chemicalName)
   const [value, setValue] = useState({})
   const [defaultValue, setDefaultValue] = useState({})
   const [option, setOption] = useState("inline-block")
-
-  // null 이면 input disabled
   const [disabled_IUR, setDisabled_IUR] = useState("disabled")
   const [disabled_Rfc, setDisabled_Rfc] = useState("disabled")
-
   const [typeIUR, setTypeIUR] = useState("number")
   const [typeRfc, setTypeRfc] = useState("number")
 
-  // 세션 값 있으면 그거 쓰기
-  const getSession = () => {
-    if (sessionStorage.getItem("chem") !== null) {
-      setChem(sessionStorage.getItem("chem"))
-    }
+  const selectChem = (chemicalName) => {
+    const defaultValues = getDefaultValues(chemicalName)
 
-    setValue((prev) => ({
-      ...prev,
-      S: sessionStorage.getItem("value_S"),
-      Hc: sessionStorage.getItem("value_Hc"),
-      Dair: sessionStorage.getItem("value_Dair"),
-      Dwater: sessionStorage.getItem("value_Dwater"),
-      DHvb: sessionStorage.getItem("value_DHvb"),
-      Tc: sessionStorage.getItem("value_Tc"),
-      Tb: sessionStorage.getItem("value_Tb"),
-      MW: sessionStorage.getItem("value_MW"),
-      IUR: sessionStorage.getItem("value_IUR"),
-      Rfc: sessionStorage.getItem("value_Rfc"),
-      Mut: sessionStorage.getItem("value_Mut"),
-      Koc: sessionStorage.getItem("value_Koc"),
-      foc: sessionStorage.getItem("value_foc"),
-    }))
-
-    if (
-      sessionStorage.getItem("value_IUR") === "NULL" ||
-      sessionStorage.getItem("value_IUR") === "0"
-    ) {
-      setDisabled_IUR("disabled")
-      setTypeIUR("text")
-      setValue((prev) => ({ ...prev, IUR: "NULL" }))
-    } else if (value.IUR !== null) {
-      setDisabled_IUR("")
-      setTypeIUR("number")
-    }
-    if (
-      sessionStorage.getItem("value_Rfc") === "NULL" ||
-      sessionStorage.getItem("value_Rfc") === "0"
-    ) {
-      setDisabled_Rfc("disabled")
-      setTypeRfc("text")
-      setValue((prev) => ({ ...prev, Rfc: "NULL" }))
-    } else if (value.Rfc !== null) {
-      setDisabled_Rfc("")
-      setTypeRfc("number")
-    }
-  }
-
-  const selectChem = (e) => {
-    let selectedChem = e.target.value
     setOption("none")
-    setChem(selectedChem)
-
-    const defaultValues = getDefaultValues(selectedChem)
-
+    setChem(chemicalName)
     setDefaultValue(defaultValues)
     setValue(defaultValues)
   }
+
+  useEffect(() => {
+    if (siteInputValue.chemicalName !== "오염 물질") {
+      selectChem(siteInputValue.chemicalName)
+    }
+  }, [])
 
   const setNull = () => {
     if (value.IUR === null || value.IUR === "0") {
@@ -101,7 +59,14 @@ const Coc = () => {
     }
   }
 
+  useEffect(() => {
+    setNull()
+  }, [value.Hc])
+
   const saveData = () => {
+    setSiteInputValue((prev) => ({ ...prev, chemicalName: chem, coc: value }))
+
+    // TODO: 세션 저장 로직 제거
     sessionStorage.setItem("chem", chem)
     sessionStorage.setItem("value_S", value.S)
     sessionStorage.setItem("value_Hc", value.Hc)
@@ -120,14 +85,6 @@ const Coc = () => {
     sessionStorage.setItem("default_foc", defaultValue.foc)
     sessionStorage.setItem("check_coc", true)
   }
-
-  useEffect(() => {
-    setNull()
-  }, [value.Hc])
-
-  useEffect(() => {
-    getSession()
-  }, [])
 
   return (
     <>
@@ -150,7 +107,7 @@ const Coc = () => {
                       <S.Td>{t("coc.pageTitle")}</S.Td>
                       <S.Td>
                         <select
-                          onChange={(e) => selectChem(e)}
+                          onChange={(e) => selectChem(e.target.value)}
                           value={chem}
                           required
                         >
