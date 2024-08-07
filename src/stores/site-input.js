@@ -9,6 +9,7 @@ const { persistAtom } = recoilPersist({
 export const siteInputState = atom({
   key: "siteInput",
   default: {
+    chemicalName: "오염 물질",
     coc: {
       S: 0,
       Hc: 0,
